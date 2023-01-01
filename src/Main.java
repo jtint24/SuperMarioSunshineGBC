@@ -6,5 +6,7 @@ public class Main {
         frame.setContentPane(new JPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+
     }
 }

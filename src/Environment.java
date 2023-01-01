@@ -60,12 +60,9 @@ public class Environment {
             i--;
             Tile t = tiles[x][y+i][z-i];
             if ( t != null) {
-                renderTile(x, y + i, z + i);
+                tiles[x][y + i][z + i].render();
             }
         } while (isValidZ(z-i) && isValidY(y+i));
-    }
-    void renderTile(int x, int y, int z) {
-
     }
 
     void sortActors() {
@@ -81,6 +78,24 @@ public class Environment {
                 j = j - 1;
             }
             actors[j + 1] = key;
+        }
+    }
+
+    boolean isUncovered(int x, int y, int z) {
+        int i = 0;
+        while (isValidY(i+y) && isValidZ(z-i)) {
+            if (tiles[x][i+y][i+z].type.isBackground) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    void renderActors() {
+        for (Actor actor : actors) {
+            if (isUncovered(actor.x, actor.y, actor.z)) {
+                actor.render();
+            }
         }
 
     }
