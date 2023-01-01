@@ -1,34 +1,29 @@
 class Actor implements Renderable {
 
-    int x = 0;
-    int y = 0;
-    int z = 0;
+    Point location;
 
-    int offsetX = 0;
-    int offsetY = 0;
-    int offsetZ = 0;
 
     // higher means draw this one last
     // lower means draw this one first
     int drawLayer() {
-        return z-y;
+        return location.z-location.y;
     }
 
     void updateOffsets() {
-        int addToX = offsetX / 16;
-        offsetX = offsetX % 16;
-        int addToY = offsetY / 16;
-        offsetY = offsetY % 16;
-        int addToZ = offsetZ / 16;
-        offsetZ = offsetZ % 16;
+        int addToX = location.offsetX / 16;
+        location.offsetX = location.offsetX % 16;
+        int addToY = location.offsetY / 16;
+        location.offsetY = location.offsetY % 16;
+        int addToZ = location.offsetZ / 16;
+        location.offsetZ = location.offsetZ % 16;
 
-        x += addToX;
-        y += addToY;
-        z += addToZ;
+        location.x += addToX;
+        location.y += addToY;
+        location.z += addToZ;
     }
 
     @Override
-    public void render() {
+    public void render(Point p) {
 
     }
 }

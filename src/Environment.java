@@ -1,6 +1,7 @@
 public class Environment {
     Tile[][][] tiles;
     Actor[] actors;
+    Player player;
 
     Tile[] adjacentTiles(int x, int y, int z) {
         assert x>=0;
@@ -60,7 +61,7 @@ public class Environment {
             i--;
             Tile t = tiles[x][y+i][z-i];
             if ( t != null) {
-                tiles[x][y + i][z + i].render();
+                tiles[x][y + i][z + i].render(player.location);
             }
         } while (isValidZ(z-i) && isValidY(y+i));
     }
@@ -81,10 +82,10 @@ public class Environment {
         }
     }
 
-    boolean isUncovered(int x, int y, int z) {
+    boolean isUncovered(Point p) {
         int i = 0;
-        while (isValidY(i+y) && isValidZ(z-i)) {
-            if (tiles[x][i+y][i+z].type.isBackground) {
+        while (isValidY(i+p.y) && isValidZ(p.z-i)) {
+            if (tiles[p.x][i+p.y][i+p.z].type.isBackground) {
                 return false;
             }
         }
@@ -93,10 +94,13 @@ public class Environment {
 
     void renderActors() {
         for (Actor actor : actors) {
-            if (isUncovered(actor.x, actor.y, actor.z)) {
-                actor.render();
+            if (isUncovered(player.location)) {
+                actor.render(player.location);
             }
         }
-
     }
+
+
+
+
 }

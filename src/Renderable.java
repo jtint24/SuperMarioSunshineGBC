@@ -1,3 +1,3 @@
-public interface Renderable {
-    void render();
+interface Renderable {
+    void render(Point p);
 }

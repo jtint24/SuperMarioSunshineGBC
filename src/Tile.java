@@ -1,12 +1,10 @@
 public class Tile implements Renderable {
-    int x = 0;
-    int y = 0;
-    int z = 0;
+    private Point location;
 
     TileType type;
 
     @Override
-    public void render() {
+    public void render(Point p) {
 
     }
 }
