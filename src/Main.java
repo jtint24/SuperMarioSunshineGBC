@@ -16,6 +16,25 @@ public class Main {
 
         Canvas myCanvas = new Canvas();
 
+        Player mario = new Player();
+
+
+        Environment biancoHills = new Environment(mario, null, new Actor[0], myCanvas);
+
+        biancoHills.tiles = new Tile[100][100][10];
+
+        BufferedImage water1 = ImageIO.read(new File("src/resources/water1.png"));
+
+        TileType water = new TileType(true, ()-> water1);
+
+        for (int i = 0; i<100; i++) {
+            for (int j = 0; j<100; j++) {
+                biancoHills.tiles[i][j][0] = new Tile(new Point(i,j,0), water);
+            }
+        }
+
+        biancoHills.render();
+
         frame.add(myCanvas);
 
 

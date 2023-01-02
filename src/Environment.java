@@ -1,10 +1,16 @@
-import java.beans.beancontext.BeanContextServiceAvailableEvent;
 
 public class Environment {
     Tile[][][] tiles;
     Actor[] actors;
     Player player;
     Canvas canvas;
+
+    Environment(Player _player, Tile[][][] _tiles, Actor[] _actors,  Canvas _canvas) {
+        tiles = _tiles;
+        actors = _actors;
+        player = _player;
+        canvas = _canvas;
+    }
 
     Tile[] adjacentTiles(int x, int y, int z) {
         assert x>=0;
@@ -55,18 +61,20 @@ public class Environment {
             Tile t = tiles[x][y+i][z-i];
             if (t != null) {
                 if (t.type.isBackground) {
-                    return;
+                    break;
                 }
             }
             i++;
         }
-        do {
-            i--;
+        while ( (isValidZ(z-i) && isValidY(y+i))) {
             Tile t = tiles[x][y+i][z-i];
+            System.out.println("getting "+x+" "+(y+i)+" "+(z-i)+": "+t);
             if ( t != null) {
-                tiles[x][y + i][z + i].render(player.location, canvas);
+                System.out.println("render tile");
+                tiles[x][y + i][z - i].render(player.location, canvas);
             }
-        } while (isValidZ(z-i) && isValidY(y+i));
+            i--;
+        }
     }
 
     void sortActors() {
@@ -101,6 +109,20 @@ public class Environment {
                 actor.render(player.location, canvas);
             }
         }
+    }
+
+    void render() {
+        sortActors();
+
+        for (int i = 0; i< tiles.length; i++) {
+            for (int j = 0; j<tiles[0].length; j++) {
+                System.out.println("rendering column "+i+" "+j);
+                renderColumn(i, j, tiles[0][0].length-1);
+            }
+        }
+        renderActors();
+
+
     }
 
 

@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class Canvas extends JPanel {
 
-    Stack<Tile> tilesToRender = new Stack<>();
+    Stack<RenderedImage> imagesToRender = new Stack<>();
 
     Canvas() {
         setPreferredSize(new Dimension(200, 200));
@@ -13,9 +13,9 @@ public class Canvas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
 
-        for (Tile tile : tilesToRender) {
+        for (RenderedImage i : imagesToRender) {
 
-            g.drawImage(tile.type.imageFetcher.getImage(), 16 * tile.location.x, 16 * tile.location.y, null);
+            g.drawImage(i.image, 16 * i.x, 16 * i.y, null);
         }
 
     }
