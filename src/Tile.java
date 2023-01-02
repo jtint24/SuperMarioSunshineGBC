@@ -16,12 +16,13 @@ public class Tile implements Renderable {
     public void render(Point p, Canvas c) {
         Image scaledImage = imageFetcher.getImage().getScaledInstance(80,80, Image.SCALE_DEFAULT);
         int dispX = (location.x-p.x)*5*16;
-        int dispY = (location.y-p.y-24)*5*16;
+        int dispY = (location.y-p.y+location.z)*5*16;
 
         if (dispX < 1000 && dispY < 1000) {
             System.out.println("dispX "+dispX);
             System.out.println("DispY "+dispY);
         }
+
 
 
         c.imagesToRender.push(new RenderedImage(scaledImage, dispX, dispY));

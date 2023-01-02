@@ -14,7 +14,7 @@ public class Main {
 
         Canvas myCanvas = new Canvas();
 
-        Player mario = new Player(new Point(0,0,0));
+        Player mario = new Player(new Point(0,24,0));
 
 
         Environment biancoHills = new Environment(mario, null, new Actor[0], myCanvas);

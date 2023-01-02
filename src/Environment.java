@@ -114,9 +114,15 @@ public class Environment {
     void render() {
         sortActors();
 
-        for (int i = 0; i< tiles.length; i++) {
-            for (int j = 0; j<tiles[0].length; j++) {
-                System.out.println("rendering column "+i+" "+j);
+        int lowerX = Math.max(player.location.x-10, 0);
+        int upperX = Math.min(player.location.x+10, tiles.length);
+        int lowerY = Math.max(player.location.y-10, 0);
+        int upperY = Math.min(player.location.y+10, tiles[0].length);
+
+
+        for (int i = lowerX; i< upperX; i++) {
+            for (int j = lowerY; j<upperY; j++) {
+                // System.out.println("rendering column "+i+" "+j);
                 renderColumn(i, j, tiles[0][0].length-1);
             }
         }
