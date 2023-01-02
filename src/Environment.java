@@ -68,7 +68,7 @@ public class Environment {
         }
         while ( (isValidZ(z-i) && isValidY(y+i))) {
             Tile t = tiles[x][y+i][z-i];
-            System.out.println("getting "+x+" "+(y+i)+" "+(z-i)+": "+t);
+            //System.out.println("getting "+x+" "+(y+i)+" "+(z-i)+": "+t);
             if ( t != null) {
                 System.out.println("render tile");
                 tiles[x][y + i][z - i].render(player.location, canvas);

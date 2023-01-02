@@ -2,6 +2,10 @@ class Actor implements Renderable {
 
     Point location;
 
+    public Actor(Point location) {
+        this.location = location;
+    }
+
 
     // higher means draw this one last
     // lower means draw this one first

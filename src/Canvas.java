@@ -15,9 +15,7 @@ public class Canvas extends JPanel {
 
         System.out.println("starting paint component");
         for (RenderedImage i : imagesToRender) {
-            System.out.println("rendering "+i);
-
-            g.drawImage(i.image, 16 * i.x, 16 * i.y, null);
+            g.drawImage(i.image, i.x, i.y, null);
         }
 
     }
