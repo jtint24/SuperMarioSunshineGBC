@@ -3,7 +3,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
 
 - [ ] Environments
     - [ ] Make the environment builder
-        - [x] Make cliffs
+        - [ ] Make cliffs
         - [ ] Make lakes
         - [ ] Make paths
         - [ ] Make bridges
@@ -18,6 +18,4 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [ ] make the B key fire FLUDD
     - [ ] Make interactive goop
     - [ ] Make moving enemies (stus?)
-    - [ ] Add a jetpack FLUDD nozzle
-    - [ ] Give shadows to Actors
-    - [ ] Give ooutlines to Actors
+    - [ ] add a jetpack FLUDD nozzle

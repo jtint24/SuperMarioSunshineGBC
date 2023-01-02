@@ -23,7 +23,7 @@ public class Main {
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
         biancoBuilder.getFloor().makeWater();
-        biancoBuilder.getArea(0,100,5,6,1,6).makeCliff();
+        biancoBuilder.getArea(0,100,25,26,1,6).makeCliff();
         biancoBuilder.getArea().setImages();
 
         System.out.println(biancoHills.tiles[0][0][0].type.name);

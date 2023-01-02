@@ -18,12 +18,6 @@ public class Tile implements Renderable {
         int dispX = (location.x-p.x)*5*16;
         int dispY = (location.y-p.y+location.z)*5*16;
 
-        if (dispX < 1000 && dispY < 1000) {
-            System.out.println("dispX "+dispX);
-            System.out.println("DispY "+dispY);
-        }
-
-
 
         c.imagesToRender.push(new RenderedImage(scaledImage, dispX, dispY));
     }

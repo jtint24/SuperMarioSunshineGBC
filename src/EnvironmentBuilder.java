@@ -65,11 +65,9 @@ public class EnvironmentBuilder {
             fillType(grass);
         }
         public void fillType(TileType t) {
-            System.out.println("filling with "+t.name);
             for (int i = minX; i<maxX; i++) {
                 for (int j = minY; j<maxY; j++) {
                     for (int k = minZ; k<maxZ; k++) {
-                        System.out.println("making "+i+" "+j+" "+k+" a "+t.name);
                         e.tiles[i][j][k] = new Tile(new Point(i,j,k), t, null);
                     }
                 }
@@ -87,7 +85,7 @@ public class EnvironmentBuilder {
                         t.imageFetcher = switch (t.type.name) {
                             case "water" -> () -> Images.water1;
                             case "cliff" -> {
-                                if (e.tileBelowIs(i,j,k, cliff) && e.tileBelowIs(i,j,k,cliff)) {
+                                if (e.tileBelowIs(i,j,k, cliff) && e.tileAboveIs(i,j,k,cliff)) {
                                     yield () -> Images.cliffM;
                                 } else if (e.tileAboveIs(i,j,k,cliff)) {
                                     yield () -> Images.cliffB;

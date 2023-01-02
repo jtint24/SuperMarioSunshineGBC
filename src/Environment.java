@@ -68,9 +68,7 @@ public class Environment {
         }
         while ( (isValidZ(z-i) && isValidY(y+i))) {
             Tile t = tiles[x][y+i][z-i];
-            //System.out.println("getting "+x+" "+(y+i)+" "+(z-i)+": "+t);
             if ( t != null) {
-                System.out.println("render tile");
                 tiles[x][y + i][z - i].render(player.location, canvas);
             }
             i--;
@@ -129,10 +127,10 @@ public class Environment {
         renderActors();
     }
 
-    boolean tileAboveIs(int i, int j, int k, TileType t) {
+    boolean tileBelowIs(int i, int j, int k, TileType t) {
         if (k<tiles.length-2) {
             Tile tile = tiles[i][j][k+1];
-            if (t == null) {
+            if (tile == null) {
                 return false;
             }
             return tile.type == t;
@@ -140,10 +138,10 @@ public class Environment {
             return false;
         }
     }
-    boolean tileBelowIs(int i, int j, int k, TileType t) {
+    boolean tileAboveIs(int i, int j, int k, TileType t) {
         if (k>0) {
             Tile tile = tiles[i][j][k-1];
-            if (t == null) {
+            if (tile == null) {
                 return false;
             }
             return tile.type == t;
