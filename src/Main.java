@@ -7,6 +7,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        Images.initializeImages();
+
         Application frame = new Application("Super Mario Sunshine GBC");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -17,40 +19,16 @@ public class Main {
         Player mario = new Player(new Point(0,24,0));
 
 
-        Environment biancoHills = new Environment(mario, null, new Actor[0], myCanvas);
+        Environment biancoHills = new Environment(mario, new Tile[100][100][10], new Actor[0], myCanvas);
+        EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
-        biancoHills.tiles = new Tile[100][100][10];
+        biancoBuilder.getFloor().makeWater();
+        biancoBuilder.getArea(0,100,5,6,1,6).makeCliff();
+        biancoBuilder.getArea().setImages();
 
-        BufferedImage water1 = ImageIO.read(new File("src/resources/water1.png"));
-        BufferedImage cliffT = ImageIO.read(new File("src/resources/cliffT.png"));
-        BufferedImage cliffM = ImageIO.read(new File("src/resources/cliffM.png"));
-        BufferedImage cliffB = ImageIO.read(new File("src/resources/cliffB.png"));
-
-
-
-        TileType water = new TileType(true, false);
-        TileType cliff = new TileType(true, false);
+        System.out.println(biancoHills.tiles[0][0][0].type.name);
 
 
-        for (int i = 0; i<100; i++) {
-            for (int j = 0; j<100; j++) {
-                biancoHills.tiles[i][j][0] = new Tile(new Point(i,j,0), water, ()-> water1);
-
-                //if (j == 1) {
-                    //biancoHills.tiles[i][i][1] = new Tile(new Point(i, j, 0), cliff, () -> cliffB);
-                //}
-
-
-            }
-        }
-
-        for (int i = 0; i<100; i++) {
-            for (int j = 1; j<5; j++) {
-                biancoHills.tiles[i][25][j] = new Tile(new Point(i,25,j), cliff, ()->cliffM);
-
-            }
-
-        }
 
         biancoHills.render();
 

@@ -127,8 +127,29 @@ public class Environment {
             }
         }
         renderActors();
+    }
 
-
+    boolean tileAboveIs(int i, int j, int k, TileType t) {
+        if (k<tiles.length-2) {
+            Tile tile = tiles[i][j][k+1];
+            if (t == null) {
+                return false;
+            }
+            return tile.type == t;
+        } else {
+            return false;
+        }
+    }
+    boolean tileBelowIs(int i, int j, int k, TileType t) {
+        if (k>0) {
+            Tile tile = tiles[i][j][k-1];
+            if (t == null) {
+                return false;
+            }
+            return tile.type == t;
+        } else {
+            return false;
+        }
     }
 
 
