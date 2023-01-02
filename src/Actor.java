@@ -23,7 +23,7 @@ class Actor implements Renderable {
     }
 
     @Override
-    public void render(Point p) {
+    public void render(Point p, Canvas c) {
 
     }
 }

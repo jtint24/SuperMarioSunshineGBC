@@ -1,7 +1,10 @@
+import java.beans.beancontext.BeanContextServiceAvailableEvent;
+
 public class Environment {
     Tile[][][] tiles;
     Actor[] actors;
     Player player;
+    Canvas canvas;
 
     Tile[] adjacentTiles(int x, int y, int z) {
         assert x>=0;
@@ -61,7 +64,7 @@ public class Environment {
             i--;
             Tile t = tiles[x][y+i][z-i];
             if ( t != null) {
-                tiles[x][y + i][z + i].render(player.location);
+                tiles[x][y + i][z + i].render(player.location, canvas);
             }
         } while (isValidZ(z-i) && isValidY(y+i));
     }
@@ -95,7 +98,7 @@ public class Environment {
     void renderActors() {
         for (Actor actor : actors) {
             if (isUncovered(player.location)) {
-                actor.render(player.location);
+                actor.render(player.location, canvas);
             }
         }
     }

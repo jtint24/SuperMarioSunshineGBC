@@ -12,13 +12,12 @@ public class Main {
         frame.setContentPane(new JPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-
-
-        ImagePanel myImagePanel = new ImagePanel("src/resources/img.png");
+        frame.setSize(new Dimension(160*5,144*5));
 
         Canvas myCanvas = new Canvas();
 
         frame.add(myCanvas);
+
 
 
 

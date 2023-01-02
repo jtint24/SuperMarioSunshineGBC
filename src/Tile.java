@@ -1,10 +1,10 @@
 public class Tile implements Renderable {
-    private Point location;
+    Point location;
 
     TileType type;
 
     @Override
-    public void render(Point p) {
-
+    public void render(Point p, Canvas c) {
+        c.tilesToRender.push(this);
     }
 }

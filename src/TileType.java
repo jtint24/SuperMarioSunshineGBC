@@ -1,6 +1,5 @@
-import java.awt.*;
 
-public class TileType {
+abstract class TileType {
     boolean isBackground;
-    Image display;
+    TileImageFetcher imageFetcher;
 }
