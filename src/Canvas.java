@@ -13,7 +13,9 @@ public class Canvas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
 
+        System.out.println("starting paint component");
         for (RenderedImage i : imagesToRender) {
+            System.out.println("rendering "+i);
 
             g.drawImage(i.image, 16 * i.x, 16 * i.y, null);
         }

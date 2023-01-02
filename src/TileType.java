@@ -2,10 +2,9 @@
 class TileType {
     boolean isBackground;
     boolean isWalkable;
-    TileImageFetcher imageFetcher;
 
-    public TileType(boolean isBackground, TileImageFetcher imageFetcher) {
+    public TileType(boolean isBackground, boolean isWalkable) {
         this.isBackground = isBackground;
-        this.imageFetcher = imageFetcher;
+        this.isWalkable = isWalkable;
     }
 }
