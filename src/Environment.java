@@ -56,8 +56,8 @@ public class Environment {
 
     void renderColumn(int x, int y, int z) {
         int i = 0;
-        while (isValidZ(z-i) && isValidY(y+i)) {
-            Tile t = tiles[x][y+i][z-i];
+        while (isValidZ(z-i) && isValidY(y-i)) {
+            Tile t = tiles[x][y-i][z-i];
             if (t != null) {
                 if (t.type.isBackground) {
                     break;
@@ -65,10 +65,10 @@ public class Environment {
             }
             i++;
         }
-        while ( (isValidZ(z-i) && isValidY(y+i))) {
-            Tile t = tiles[x][y+i][z-i];
-            if ( t != null) {
-                tiles[x][y + i][z - i].render(player.location, canvas);
+        while (isValidZ(z-i) && isValidY(y-i)) {
+            Tile t = tiles[x][y-i][z-i];
+            if (t != null) {
+                tiles[x][y - i][z - i].render(player.location, canvas);
             }
             i--;
         }
@@ -114,8 +114,8 @@ public class Environment {
 
         int lowerX = Math.max(player.location.x-1, 0);
         int upperX = Math.min(player.location.x+11, tiles.length);
-        int lowerY = Math.max(player.location.y-10, 0);
-        int upperY = Math.min(player.location.y+1, tiles[0].length);
+        int lowerY = Math.max(player.location.y-1, 0);
+        int upperY = Math.min(player.location.y+20, tiles[0].length);
 
 
         for (int i = lowerX; i< upperX; i++) {
@@ -129,7 +129,7 @@ public class Environment {
         canvas.repaint();
     }
 
-    boolean tileBelowIs(int i, int j, int k, TileType t) {
+    boolean tileAboveIs(int i, int j, int k, TileType t) {
         if (k<tiles.length-2) {
             Tile tile = tiles[i][j][k+1];
             if (tile == null) {
@@ -141,7 +141,7 @@ public class Environment {
         }
     }
 
-    boolean tileAboveIs(int i, int j, int k, TileType t) {
+    boolean tileBelowIs(int i, int j, int k, TileType t) {
         if (k>0) {
             Tile tile = tiles[i][j][k-1];
             if (tile == null) {

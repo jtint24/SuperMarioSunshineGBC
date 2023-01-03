@@ -81,7 +81,7 @@ public class Main implements Runnable {
             gameEnvironment.render();
 
             try {
-                Thread.sleep(30);
+                Thread.sleep(40);
             } catch (InterruptedException ignored) {}
         }
     }
