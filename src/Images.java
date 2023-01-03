@@ -1,25 +1,44 @@
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class Images {
-    static BufferedImage water1;
-    static BufferedImage cliffT;
-    static BufferedImage cliffM;
-    static BufferedImage cliffB;
-    static BufferedImage grass;
-    static BufferedImage grassDetail;
 
+    static HashMap<String, BufferedImage> images = new HashMap<>();
+    static String[] imageNames = {
+            "water1",
+            "cliffT",
+            "cliffM",
+            "cliffB",
+            "grass",
+            "grassDetail",
+            "pathTR",
+            "pathTL",
+            "pathTM",
+            "pathMR",
+            "pathML",
+            "pathMM",
+            "pathBR",
+            "pathBL",
+            "pathBM",
+            "lpathTR",
+            "lpathTL",
+            "lpathBR",
+            "lpathBL",
+    };
+
+    static Image getImage(String s) {
+        return images.get(s);
+    }
 
     static void initializeImages() {
         try {
-            water1 = ImageIO.read(new File("src/resources/water1.png"));
-            cliffT = ImageIO.read(new File("src/resources/cliffT.png"));
-            cliffM = ImageIO.read(new File("src/resources/cliffM.png"));
-            cliffB = ImageIO.read(new File("src/resources/cliffB.png"));
-            grass = ImageIO.read(new File("src/resources/grass.png"));
-            grassDetail = ImageIO.read(new File("src/resources/grassDetail.png"));
+            for (String name : imageNames) {
+                images.put(name, ImageIO.read(new File("src/resources/"+name+".png")));
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

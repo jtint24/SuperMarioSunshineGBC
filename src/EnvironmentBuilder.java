@@ -85,25 +85,25 @@ public class EnvironmentBuilder {
                             continue;
                         }
                         t.imageFetcher = switch (t.type.name) {
-                            case "water" -> () -> Images.water1;
+                            case "water" -> () -> Images.getImage("water1");
                             case "grass" -> {
                                 String coordinates = ""+(i+1)*(j+1)+""+(j+1)*(k+1)+""+(k+1)*(i+1);
                                 if (coordinates.hashCode() % 10 == 0) {
-                                    yield () -> Images.grassDetail;
+                                    yield () -> Images.getImage("grassDetail");
                                 } else {
-                                    yield () -> Images.grass;
+                                    yield () -> Images.getImage("grass");
                                 }
                             }
                             case "cliff" -> {
                                 if (e.tileBelowIs(i,j,k, cliff) && e.tileAboveIs(i,j,k,cliff)) {
-                                    yield () -> Images.cliffM;
+                                    yield () -> Images.getImage("cliffM");
                                 } else if (e.tileAboveIs(i,j,k,cliff)) {
-                                    yield () -> Images.cliffB;
+                                    yield () -> Images.getImage("cliffB");
                                 } else {
-                                    yield () -> Images.cliffT;
+                                    yield () -> Images.getImage("cliffT");
                                 }
                             }
-                            default -> () -> Images.water1;
+                            default -> () -> Images.getImage("water1");
                         };
                     }
                 }
