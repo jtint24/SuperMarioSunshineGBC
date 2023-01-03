@@ -32,7 +32,15 @@ public class Main implements Runnable {
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
         biancoBuilder.getFloor().makeGrass();
-        biancoBuilder.getArea(0,100,25,26,1,6).makeCliff();
+        biancoBuilder.getArea(0,1,25,26,1,6).makeCliff();
+        biancoBuilder.getArea(1,2,25,26,1,5).makeCliff();
+        biancoBuilder.getArea(2,3,25,26,1,4).makeCliff();
+        biancoBuilder.getArea(3,4,25,26,1,3).makeCliff();
+        biancoBuilder.getArea(4,5,25,26,1,2).makeCliff();
+
+        biancoBuilder.getArea(5,10,30,35).makePath();
+        biancoBuilder.getArea(5,10,15,20).makePath();
+
         biancoBuilder.getArea().setImages();
         return biancoHills;
     }

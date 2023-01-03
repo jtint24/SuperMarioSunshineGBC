@@ -12,9 +12,9 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [ ] Make Corona Mountain
     - [ ] Make Gelato Beach
 - [ ] Interactivity
-    - [ ] Make the arrow keys move Mario
+    - [x] Make the arrow keys move Mario
     - [ ] Animate Mario
-    - [ ] Make movement context sensitive
+    - [ ] Make movement context-sensitive
     - [ ] Make the A key jump
     - [ ] make the B key fire FLUDD
     - [ ] Make interactive goop

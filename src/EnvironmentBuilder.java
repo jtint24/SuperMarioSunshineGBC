@@ -3,7 +3,9 @@ import java.util.Arrays;
 public class EnvironmentBuilder {
     final TileType water = new TileType("water", true, false);
     final TileType cliff = new TileType("cliff",true, false);
-    final TileType grass = new TileType("grass", true, false);
+    final TileType grass = new TileType("grass", true, true);
+    final TileType path = new TileType("path", true, true);
+
 
     Environment e;
 
@@ -60,6 +62,9 @@ public class EnvironmentBuilder {
         public void makeWater() {
             fillType(water);
         }
+        public void makePath() {
+            fillType(path);
+        }
         public void makeCliff() {
             fillType(cliff);
         }
@@ -101,6 +106,29 @@ public class EnvironmentBuilder {
                                     yield () -> Images.getImage("cliffB");
                                 } else {
                                     yield () -> Images.getImage("cliffT");
+                                }
+                            }
+                            case "path" -> {
+                                if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
+                                    yield () -> Images.getImage("pathMM");
+                                } else if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileLeftIs(i,j,k,path)) {
+                                    yield () -> Images.getImage("pathMR");
+                                } else if (e.tileBehindIs(i,j,k,path) && e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
+                                    yield () -> Images.getImage("pathBM");
+                                } else if (e.tileFrontIs(i,j,k, path) && e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
+                                    yield () -> Images.getImage("pathTM");
+                                } else if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileRightIs(i,j,k,path) ) {
+                                    yield () -> Images.getImage("pathML");
+                                } else if (e.tileFrontIs(i,j,k, path) && e.tileRightIs(i,j,k,path) ) {
+                                    yield () -> Images.getImage("pathTL");
+                                } else if (e.tileBehindIs(i,j,k, path) && e.tileRightIs(i,j,k,path) ) {
+                                    yield () -> Images.getImage("pathBL");
+                                } else if (e.tileBehindIs(i,j,k, path) && e.tileLeftIs(i,j,k,path) ) {
+                                    yield () -> Images.getImage("pathBR");
+                                } else if (e.tileFrontIs(i,j,k, path) && e.tileLeftIs(i,j,k,path) ) {
+                                    yield () -> Images.getImage("pathTR");
+                                } else {
+                                    yield () -> Images.getImage("lpathTR");
                                 }
                             }
                             default -> () -> Images.getImage("water1");

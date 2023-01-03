@@ -31,6 +31,9 @@ public class Images {
     };
 
     static Image getImage(String s) {
+        if (!images.containsKey(s)) {
+            throw new IllegalArgumentException("There is no image called " + s);
+        }
         return images.get(s);
     }
 

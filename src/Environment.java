@@ -153,4 +153,53 @@ public class Environment {
         }
     }
 
+    boolean tileFrontIs(int i, int j, int k, TileType t) {
+        if (isValidY(j+1)) {
+            Tile tile = tiles[i][j+1][k];
+            if (tile == null) {
+                return false;
+            }
+            return tile.type == t;
+        } else {
+            return false;
+        }
+    }
+
+    boolean tileBehindIs(int i, int j, int k, TileType t) {
+        if (isValidY(j-1)) {
+            Tile tile = tiles[i][j-1][k];
+            if (tile == null) {
+                return false;
+            }
+            return tile.type == t;
+        } else {
+            return false;
+        }
+    }
+
+    boolean tileLeftIs(int i, int j, int k, TileType t) {
+        if (isValidX(i-1)) {
+            Tile tile = tiles[i-1][j][k];
+            if (tile == null) {
+                return false;
+            }
+            return tile.type == t;
+        } else {
+            return false;
+        }
+    }
+
+    boolean tileRightIs(int i, int j, int k, TileType t) {
+        if (isValidX(i+1)) {
+            Tile tile = tiles[i+1][j][k];
+            if (tile == null) {
+                return false;
+            }
+            return tile.type == t;
+        } else {
+            return false;
+        }
+    }
+
+
 }
