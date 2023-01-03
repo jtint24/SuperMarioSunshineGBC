@@ -7,10 +7,18 @@ public class Player extends Actor  {
 
     void move() {
         if (Application.keyData.getIsPressed(KeyEvent.VK_UP)) {
-            location.y -= 1;
+            location.offsetY -= 1;
         }
         if (Application.keyData.getIsPressed(KeyEvent.VK_DOWN)) {
-            location.y += 1;
+            location.offsetY += 1;
         }
+        if (Application.keyData.getIsPressed(KeyEvent.VK_LEFT)) {
+            location.offsetX -= 1;
+        }
+        if (Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
+            location.offsetX += 1;
+        }
+
+        updateOffsets();
     }
 }

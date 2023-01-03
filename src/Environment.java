@@ -114,10 +114,10 @@ public class Environment {
 
         sortActors();
 
-        int lowerX = Math.max(player.location.x-10, 0);
-        int upperX = Math.min(player.location.x+10, tiles.length);
+        int lowerX = Math.max(player.location.x-1, 0);
+        int upperX = Math.min(player.location.x+11, tiles.length);
         int lowerY = Math.max(player.location.y-10, 0);
-        int upperY = Math.min(player.location.y+10, tiles[0].length);
+        int upperY = Math.min(player.location.y+1, tiles[0].length);
 
 
         for (int i = lowerX; i< upperX; i++) {
