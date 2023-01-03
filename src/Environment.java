@@ -1,5 +1,3 @@
-import java.awt.event.KeyEvent;
-
 public class Environment {
     Tile[][][] tiles;
     Actor[] actors;
