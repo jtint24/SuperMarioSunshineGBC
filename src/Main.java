@@ -2,32 +2,32 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Stack;
 
-public class Main  {
+public class Main implements Runnable {
 
     static Environment gameEnvironment;
     static Canvas gameCanvas;
-    static Player player;
-
 
     public static void main(String[] args) {
         Images.initializeImages();
 
         gameCanvas = new Canvas();
 
-        player = new Player(new Point(0,29,0));
+        Player mario = new Player(new Point(0,29,0));
 
-        gameEnvironment = createBiancoHills();
+        gameEnvironment = createBiancoHills(mario);
 
         gameEnvironment.render();
 
         JFrame frame = createFrame();
 
         frame.setContentPane(gameCanvas);
+
+        Main newMain = new Main();
+        newMain.run();
     }
 
-    public static Environment createBiancoHills() {
+    public static Environment createBiancoHills(Player player) {
         Environment biancoHills = new Environment(player, new Tile[100][100][10], new Actor[0], gameCanvas);
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
@@ -46,17 +46,35 @@ public class Main  {
         frame.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
+
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-                gameEnvironment.keyEvents.keyPressed(e);
+                int key = e.getExtendedKeyCode();
+                Application.keyData.setPressed(key);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
+                int key = e.getExtendedKeyCode();
+                Application.keyData.setReleased(key);
+
             }
         });
         return frame;
+    }
+
+    @Override
+    public void run() {
+        boolean running = true;
+        while (running) {
+            gameEnvironment.player.move();
+            gameEnvironment.render();
+
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException ignored) {}
+        }
     }
 }

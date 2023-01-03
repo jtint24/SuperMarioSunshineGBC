@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class RenderedImage {
+public class RenderedImage implements Cloneable {
     Image image;
     int x;
     int y;
@@ -9,5 +9,9 @@ public class RenderedImage {
         this.image = image;
         this.x = x;
         this.y = y;
+    }
+
+    public RenderedImage clone() {
+        return new RenderedImage(image, x, y);
     }
 }

@@ -5,7 +5,6 @@ public class Environment {
     Actor[] actors;
     Player player;
     Canvas canvas;
-    KeyEvents keyEvents = new KeyEvents();
 
     Environment(Player _player, Tile[][][] _tiles, Actor[] _actors,  Canvas _canvas) {
         tiles = _tiles;
@@ -78,8 +77,7 @@ public class Environment {
     }
 
     void sortActors() {
-        // insertion sort of actors in order of what should be rendered firs
-        //
+        // insertion sort of actors in order of what should be rendered first
 
         int n = actors.length;
         for (int i = 1; i < n; ++i) {
@@ -112,6 +110,8 @@ public class Environment {
     }
 
     void render() {
+        canvas.clear();
+
         sortActors();
 
         int lowerX = Math.max(player.location.x-10, 0);
@@ -127,6 +127,8 @@ public class Environment {
             }
         }
         renderActors();
+
+        canvas.repaint();
     }
 
     boolean tileBelowIs(int i, int j, int k, TileType t) {
@@ -140,6 +142,7 @@ public class Environment {
             return false;
         }
     }
+
     boolean tileAboveIs(int i, int j, int k, TileType t) {
         if (k>0) {
             Tile tile = tiles[i][j][k-1];
@@ -149,18 +152,6 @@ public class Environment {
             return tile.type == t;
         } else {
             return false;
-        }
-    }
-
-    class KeyEvents {
-        void keyPressed(KeyEvent e) {
-            int key = e.getExtendedKeyCode();
-            if (key == KeyEvent.VK_UP) {
-                player.location.y -= 1;
-                canvas.clear();
-                render();
-                canvas.repaint();
-            }
         }
     }
 
