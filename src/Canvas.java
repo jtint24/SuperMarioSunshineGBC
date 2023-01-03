@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Iterator;
 import java.util.Stack;
 
 public class Canvas extends JPanel {
@@ -15,7 +14,7 @@ public class Canvas extends JPanel {
     public void paintComponent(Graphics g) {
 
         Stack<RenderedImage> imagesToRenderCopy = (Stack<RenderedImage>) imagesToRender.clone();
-
+        // System.out.println(imagesToRenderCopy.size());
         for (RenderedImage i : imagesToRenderCopy) {
             g.drawImage(i.image, i.x, i.y, null);
         }

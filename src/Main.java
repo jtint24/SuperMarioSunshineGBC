@@ -38,7 +38,9 @@ public class Main implements Runnable {
         biancoBuilder.getArea(3,4,25,26,1,3).makeCliff();
         biancoBuilder.getArea(4,5,25,26,1,2).makeCliff();
 
-        biancoBuilder.getArea(5,10,30,35).makePath();
+        biancoBuilder.getArea(5,20,30,35).makePath();
+        biancoBuilder.getArea(10,15,25,40).makePath();
+
         biancoBuilder.getArea(5,10,15,20).makePath();
 
         biancoBuilder.getArea().setImages();

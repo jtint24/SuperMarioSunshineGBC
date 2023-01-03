@@ -109,8 +109,16 @@ public class EnvironmentBuilder {
                                 }
                             }
                             case "path" -> {
-                                if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
+                                if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileFrontIs(i-1,j,k, path) && e.tileBehindIs(i-1,j,k,path) && e.tileFrontIs(i+1,j,k, path) && e.tileBehindIs(i+1,j,k,path) &&  e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
                                     yield () -> Images.getImage("pathMM");
+                                } else if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && !e.tileFrontIs(i-1,j,k, path) && e.tileBehindIs(i-1,j,k,path) && e.tileFrontIs(i+1,j,k, path) && e.tileBehindIs(i+1,j,k,path) &&  e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
+                                    yield () -> Images.getImage("lpathBL");
+                                } else if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileFrontIs(i-1,j,k, path) && !e.tileBehindIs(i-1,j,k,path) && e.tileFrontIs(i+1,j,k, path) && e.tileBehindIs(i+1,j,k,path) &&  e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
+                                    yield () -> Images.getImage("lpathTL");
+                                } else if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileFrontIs(i-1,j,k, path) && e.tileBehindIs(i-1,j,k,path) && !e.tileFrontIs(i+1,j,k, path) && e.tileBehindIs(i+1,j,k,path) &&  e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
+                                    yield () -> Images.getImage("lpathBR");
+                                } else if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileFrontIs(i-1,j,k, path) && e.tileBehindIs(i-1,j,k,path) && e.tileFrontIs(i+1,j,k, path) && !e.tileBehindIs(i+1,j,k,path) &&  e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
+                                    yield () -> Images.getImage("lpathTR");
                                 } else if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileLeftIs(i,j,k,path)) {
                                     yield () -> Images.getImage("pathMR");
                                 } else if (e.tileBehindIs(i,j,k,path) && e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
