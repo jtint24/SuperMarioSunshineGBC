@@ -18,4 +18,8 @@ public class Canvas extends JPanel {
         }
 
     }
+
+    void clear() {
+        imagesToRender = new Stack<>();
+    }
 }

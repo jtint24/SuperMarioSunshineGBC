@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class EnvironmentBuilder {
     final TileType water = new TileType("water", true, false);
     final TileType cliff = new TileType("cliff",true, false);
@@ -84,6 +86,14 @@ public class EnvironmentBuilder {
                         }
                         t.imageFetcher = switch (t.type.name) {
                             case "water" -> () -> Images.water1;
+                            case "grass" -> {
+                                String coordinates = ""+(i+1)*(j+1)+""+(j+1)*(k+1)+""+(k+1)*(i+1);
+                                if (coordinates.hashCode() % 10 == 0) {
+                                    yield () -> Images.grassDetail;
+                                } else {
+                                    yield () -> Images.grass;
+                                }
+                            }
                             case "cliff" -> {
                                 if (e.tileBelowIs(i,j,k, cliff) && e.tileAboveIs(i,j,k,cliff)) {
                                     yield () -> Images.cliffM;

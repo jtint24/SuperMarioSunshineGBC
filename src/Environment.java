@@ -1,9 +1,11 @@
+import java.awt.event.KeyEvent;
 
 public class Environment {
     Tile[][][] tiles;
     Actor[] actors;
     Player player;
     Canvas canvas;
+    KeyEvents keyEvents = new KeyEvents();
 
     Environment(Player _player, Tile[][][] _tiles, Actor[] _actors,  Canvas _canvas) {
         tiles = _tiles;
@@ -150,7 +152,16 @@ public class Environment {
         }
     }
 
-
-
+    class KeyEvents {
+        void keyPressed(KeyEvent e) {
+            int key = e.getExtendedKeyCode();
+            if (key == KeyEvent.VK_UP) {
+                player.location.y -= 1;
+                canvas.clear();
+                render();
+                canvas.repaint();
+            }
+        }
+    }
 
 }

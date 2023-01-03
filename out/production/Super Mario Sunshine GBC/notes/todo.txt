@@ -3,7 +3,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
 
 - [ ] Environments
     - [ ] Make the environment builder
-        - [ ] Make cliffs
+        - [x] Make cliffs
         - [ ] Make lakes
         - [ ] Make paths
         - [ ] Make bridges
@@ -13,9 +13,12 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [ ] Make Gelato Beach
 - [ ] Interactivity
     - [ ] Make the arrow keys move Mario
+    - [ ] Animate Mario
     - [ ] Make movement context sensitive
     - [ ] Make the A key jump
     - [ ] make the B key fire FLUDD
     - [ ] Make interactive goop
     - [ ] Make moving enemies (stus?)
-    - [ ] add a jetpack FLUDD nozzle
+    - [ ] Add a jetpack FLUDD nozzle
+    - [ ] Give shadows to Actors
+    - [ ] Give ooutlines to Actors
