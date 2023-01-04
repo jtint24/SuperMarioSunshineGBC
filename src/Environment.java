@@ -116,10 +116,10 @@ public class Environment {
 
         sortActors();
 
-        int lowerX = Math.max(player.location.x-1, 0);
-        int upperX = Math.min(player.location.x+11, tiles.length);
-        int lowerY = Math.max(player.location.y-1, 0);
-        int upperY = Math.min(player.location.y+20, tiles[0].length);
+        int lowerX = Math.max(player.location.x-6, 0);
+        int upperX = Math.min(player.location.x+6, tiles.length);
+        int lowerY = Math.max(player.location.y-player.location.z-1, 0);
+        int upperY = Math.min(player.location.y-player.location.z+20, tiles[0].length);
 
 
         for (int i = lowerX; i< upperX; i++) {
@@ -228,6 +228,40 @@ public class Environment {
             }
         }
         return retList;
+    }
+
+    int highestZAt(Point p) {
+        ArrayList<Integer> zValues = new ArrayList<>();
+        zValues.add(highestZ[p.x][p.y]);
+        if (p.offsetX > 0) {
+            zValues.add(highestZ[p.x+1][p.y]);
+            if (p.offsetY > 0) {
+                zValues.add(highestZ[p.x + 1][p.y + 1]);
+            } else if (p.offsetY < 0) {
+                zValues.add(highestZ[p.x + 1][p.y - 1]);
+            }
+        } else {
+            zValues.add(highestZ[p.x-1][p.y]);
+            if (p.offsetY > 0) {
+                zValues.add(highestZ[p.x - 1][p.y + 1]);
+            } else if (p.offsetY < 0) {
+                zValues.add(highestZ[p.x - 1][p.y - 1]);
+            }
+        }
+        if (p.offsetY > 0) {
+            zValues.add(highestZ[p.x][p.y + 1]);
+        } else if (p.offsetY < 0) {
+            zValues.add(highestZ[p.x][p.y - 1]);
+        }
+
+        int max = -1;
+        for (int zValue : zValues) {
+            if (zValue > max) {
+                max = zValue;
+            }
+        }
+
+        return max;
     }
 
     private void addIfPossible(ArrayList<Tile> a, int x, int y, int z) {
