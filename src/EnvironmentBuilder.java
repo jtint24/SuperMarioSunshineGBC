@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
 public class EnvironmentBuilder {
-    final TileType water = new TileType("water", true, false);
-    final TileType cliff = new TileType("cliff",true, false);
+    final TileType water = new TileType("water", true, true);
+    final TileType cliff = new TileType("cliff",true, true);
     final TileType grass = new TileType("grass", true, true);
     final TileType path = new TileType("path", true, true);
     final TileType bridge = new TileType("bridge", false, true);
@@ -111,7 +111,24 @@ public class EnvironmentBuilder {
             e.tiles[midX][maxY-1][minZ].type = door;
         }
 
-        public void setImages() {
+        public void finalizeArea() {
+            setImages();
+            for (int i = minX; i<maxX; i++) {
+                for (int j = minY; j < maxY; j++) {
+                    for (int k = maxZ - 1; k > minZ - 1; k--) {
+                        Tile t = e.tiles[i][j][k];
+                        if (t != null) {
+                            if (t.type.isWalkable) {
+                                e.highestZ[i][j] = k;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void setImages() {
             for (int i = minX; i<maxX; i++) {
                 for (int j = minY; j<maxY; j++) {
                     for (int k = minZ; k<maxZ; k++) {

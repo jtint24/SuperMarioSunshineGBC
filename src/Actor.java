@@ -24,6 +24,11 @@ class Actor implements Renderable {
         location.x += addToX;
         location.y += addToY;
         location.z += addToZ;
+
+        if (location.offsetZ < 0) {
+            location.z -= 1;
+            location.offsetZ += 16;
+        }
     }
 
     @Override

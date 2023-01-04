@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Environment {
     Tile[][][] tiles;
+    int[][] highestZ;
     Actor[] actors;
     Player player;
     Canvas canvas;
@@ -11,6 +12,7 @@ public class Environment {
         actors = _actors;
         player = _player;
         canvas = _canvas;
+        highestZ = new int[tiles.length][tiles[0].length];
     }
 
     Tile[] adjacentTiles(int x, int y, int z) {

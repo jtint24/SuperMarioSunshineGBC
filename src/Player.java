@@ -31,13 +31,15 @@ public class Player extends Actor  {
             location.offsetZ--;
         }
         location.offsetZ += dz;
-        System.out.println(location.z+" "+ location.offsetZ);
 
         updateOffsets();
+        System.out.println(location.z+" "+ location.offsetZ);
+
     }
 
     boolean onSolidGround() {
         for (Tile t : environment.tilesAround(new Point(location.x, location.y, location.z-1, location.offsetX, location.offsetY, 0))) {
+            System.out.println(t.type.name);
             if (t.type.isWalkable) {
                 return true;
             }

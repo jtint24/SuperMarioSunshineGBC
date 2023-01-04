@@ -44,7 +44,7 @@ public class Main implements Runnable {
         biancoBuilder.getArea(10,17, 40,45, 2,6).makeHouse();
 
 
-        biancoBuilder.getArea().setImages();
+        biancoBuilder.getArea().finalizeArea();
         return biancoHills;
     }
 

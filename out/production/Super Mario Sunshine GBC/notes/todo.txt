@@ -6,17 +6,17 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Make cliffs
         - [x] Make lakes
         - [x] Make paths
-        - [ ] Make bridges
-        - [ ] Make buildings
+        - [x] Make bridges
+        - [x] Make buildings
     - [ ] Make Delfino Plaza
     - [ ] Make Bianco Hills
     - [ ] Make Corona Mountain
     - [ ] Make Gelato Beach
 - [ ] Interactivity
     - [x] Make the arrow keys move Mario
-    - [ ] Animate Mario
-    - [ ] Make movement context-sensitive
-    - [ ] Make the A key jump
+    - [ ] Animate Mario .
+    - [ ] Make movement context-sensitive .
+    - [ ] Make the A key jump .
     - [ ] make the B key fire FLUDD
     - [ ] Make interactive goop
     - [ ] Make moving enemies (stus?)
