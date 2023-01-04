@@ -54,6 +54,22 @@ public class Images {
             "roofBM",
             "roofBR",
             "roofBL",
+            "marioD1",
+            "marioD2",
+            "marioD3",
+            "marioD4",
+            "marioU1",
+            "marioU2",
+            "marioU3",
+            "marioU4",
+            "marioR1",
+            "marioR2",
+            "marioR3",
+            "marioR4",
+            "marioL1",
+            "marioL2",
+            "marioL3",
+            "marioL4",
     };
 
     static Image getImage(String s) {

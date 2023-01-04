@@ -1,5 +1,5 @@
 import java.awt.*;
 
-public interface TileImageFetcher {
+public interface ImageFetcher {
     Image getImage();
 }

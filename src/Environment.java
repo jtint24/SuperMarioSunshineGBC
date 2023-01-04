@@ -1,20 +1,24 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Environment {
     Tile[][][] tiles;
     int[][] highestZ;
-    Actor[] actors;
+    ArrayList<Actor> actors = new ArrayList<>();
     Player player;
     Canvas canvas;
 
-    Environment(Player _player, Tile[][][] _tiles, Actor[] _actors,  Canvas _canvas) {
+    Environment(Player _player, Tile[][][] _tiles, ArrayList<Actor> _actors,  Canvas _canvas) {
         tiles = _tiles;
-        actors = _actors;
         player = _player;
         canvas = _canvas;
         highestZ = new int[tiles.length][tiles[0].length];
 
-        player.environment = this;
+        if (_actors != null) {
+            actors.addAll(_actors);
+        }
+        actors.add(player);
 
         for (Actor actor : actors) {
             actor.environment = this;
@@ -87,33 +91,39 @@ public class Environment {
     void sortActors() {
         // insertion sort of actors in order of what should be rendered first
 
-        int n = actors.length;
+        int n = actors.size();
         for (int i = 1; i < n; ++i) {
-            Actor key = actors[i];
+            Actor key = actors.get(i);
             int j = i - 1;
-            while (j >= 0 && actors[j].drawLayer() > key.drawLayer()) {
-                actors[j + 1] = actors[j];
+            while (j >= 0 && actors.get(j).drawLayer() > key.drawLayer()) {
+                actors.set(j + 1, actors.get(j));
                 j = j - 1;
             }
-            actors[j + 1] = key;
+            actors.set(j + 1, key);
         }
     }
 
     boolean isUncovered(Point p) {
         int i = 0;
-        while (isValidY(i+p.y) && isValidZ(p.z-i)) {
-            if (tiles[p.x][i+p.y][i+p.z].type.isBackground) {
-                return false;
+        while (isValidY(i+p.y) && isValidZ(p.z+i)) {
+            if (tiles[p.x][i+p.y][i+p.z] != null) {
+                if (tiles[p.x][i + p.y][i + p.z].type.isBackground) {
+                    return false;
+                }
             }
+            i++;
         }
         return true;
     }
 
     void renderActors() {
         for (Actor actor : actors) {
-            if (isUncovered(player.location)) {
+            if (isUncovered(actor.location)) {
                 actor.render(player.location, canvas);
             }
+        }
+        if (isUncovered(player.location)) {
+            player.render(player.location, canvas);
         }
     }
 
@@ -129,9 +139,9 @@ public class Environment {
 
 
         for (int i = lowerX; i< upperX; i++) {
-            for (int j = lowerY; j<upperY; j++) {
+            for (int j = lowerY; j < upperY; j++) {
                 // System.out.println("rendering column "+i+" "+j);
-                renderColumn(i, j, tiles[0][0].length-1);
+                renderColumn(i, j, tiles[0][0].length - 1);
             }
         }
         renderActors();

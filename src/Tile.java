@@ -3,9 +3,9 @@ import java.awt.*;
 public class Tile implements Renderable {
     Point location;
     TileType type;
-    TileImageFetcher imageFetcher;
+    ImageFetcher imageFetcher;
 
-    public Tile(Point location, TileType type, TileImageFetcher imageFetcher) {
+    public Tile(Point location, TileType type, ImageFetcher imageFetcher) {
         this.location = location;
         this.type = type;
         this.imageFetcher = imageFetcher;

@@ -28,7 +28,7 @@ public class Main implements Runnable {
     }
 
     public static Environment createBiancoHills(Player player) {
-        Environment biancoHills = new Environment(player, new Tile[100][100][10], new Actor[0], gameCanvas);
+        Environment biancoHills = new Environment(player, new Tile[100][100][10], null, gameCanvas);
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
         biancoBuilder.getFloor().makeGrass();
