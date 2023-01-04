@@ -13,11 +13,9 @@ public class Main implements Runnable {
 
         gameCanvas = new Canvas();
 
-        Player mario = new Player(new Point(10,33,3), null);
+        Player mario = new Player(new Point(10,33,3));
 
         gameEnvironment = createBiancoHills(mario);
-
-        mario.environment = gameEnvironment;
 
         gameEnvironment.render();
 

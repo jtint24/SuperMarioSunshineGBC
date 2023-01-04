@@ -13,6 +13,12 @@ public class Environment {
         player = _player;
         canvas = _canvas;
         highestZ = new int[tiles.length][tiles[0].length];
+
+        player.environment = this;
+
+        for (Actor actor : actors) {
+            actor.environment = this;
+        }
     }
 
     Tile[] adjacentTiles(int x, int y, int z) {
