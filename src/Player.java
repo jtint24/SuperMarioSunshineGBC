@@ -23,12 +23,12 @@ public class Player extends Actor  {
             location.offsetX += 1;
         }
 
-        if (Application.keyData.getIsPressed(KeyEvent.VK_Z)) {
+        if (Application.keyData.getIsPressed(KeyEvent.VK_Z) && onSolidGround()) {
             dz = 10;
         }
         changeZBy(dz);
 
-        if (!onSolidGround() || location.offsetZ>0) {
+        if (!onSolidGround()) {
             dz--;
         } else {
             dz = 0;
@@ -36,12 +36,15 @@ public class Player extends Actor  {
 
 
         updateOffsets();
-        System.out.println(location.z+" "+ location.offsetZ);
+        System.out.println(location.z+" "+ location.offsetZ+" +/-: "+dz);
     }
 
     boolean onSolidGround() {
        // return (location.z == environment.highestZAt(location)+1 && location.offsetZ == 0);
 
+        if ( location.offsetZ>0 ) {
+            return false;
+        }
         for (Tile t : environment.tilesAround(new Point(location.x, location.y, location.z-1, location.offsetX, location.offsetY, 0))) {
             if (t.type.isWalkable) {
                 return true;
@@ -57,11 +60,11 @@ public class Player extends Actor  {
         int d = zDiff > 0 ? 1 : -1;
         zDiff *= d;
         for (int i = 0; i<zDiff; i++) {
-            location.offsetZ += d;
-            updateOffsets();
             if (onSolidGround() && d == -1) {
                 return;
             }
+            location.offsetZ += d;
+            updateOffsets();
         }
     }
 }
