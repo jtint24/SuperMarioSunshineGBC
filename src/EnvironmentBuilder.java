@@ -5,6 +5,8 @@ public class EnvironmentBuilder {
     final TileType cliff = new TileType("cliff",true, false);
     final TileType grass = new TileType("grass", true, true);
     final TileType path = new TileType("path", true, true);
+    final TileType bridge = new TileType("bridge", false, true);
+    final TileType grassEdge = new TileType("grassEdge", false, false);
 
 
     Environment e;
@@ -99,15 +101,27 @@ public class EnvironmentBuilder {
                                     yield () -> Images.getImage("grass");
                                 }
                             }
+                            case "bridge" ->{
+                                if (e.tileRightIs(i,j,k, bridge) && e.tileLeftIs(i,j,k,bridge)) {
+                                    yield () -> Images.getImage("bridgeM");
+                                } else if (e.tileLeftIs(i,j,k, bridge)) {
+                                    yield () -> Images.getImage("bridgeR");
+                                } else {
+                                    yield () -> Images.getImage("bridgeL");
+                                }
+                            }
                             case "cliff" -> {
                                 if (e.tileBelowIs(i,j,k, cliff) && e.tileAboveIs(i,j,k,cliff)) {
                                     yield () -> Images.getImage("cliffM");
                                 } else if (e.tileAboveIs(i,j,k,cliff)) {
                                     yield () -> Images.getImage("cliffB");
-                                } else {
+                                } else if (e.tileBelowIs(i,j,k,cliff)) {
                                     yield () -> Images.getImage("cliffT");
+                                } else {
+                                    yield () -> Images.getImage("cliffS");
                                 }
                             }
+                            case "grassEdge" -> () -> Images.getImage("grassEdge");
                             case "path" -> {
                                 if (e.tileFrontIs(i,j,k, path) && e.tileBehindIs(i,j,k,path) && e.tileFrontIs(i-1,j,k, path) && e.tileBehindIs(i-1,j,k,path) && e.tileFrontIs(i+1,j,k, path) && e.tileBehindIs(i+1,j,k,path) &&  e.tileLeftIs(i,j,k,path) && e.tileRightIs(i,j,k,path)) {
                                     yield () -> Images.getImage("pathMM");

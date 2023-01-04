@@ -4,9 +4,10 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
 - [ ] Environments
     - [ ] Make the environment builder
         - [x] Make cliffs
-        - [ ] Make lakes
-        - [ ] Make paths
+        - [x] Make lakes
+        - [x] Make paths
         - [ ] Make bridges
+        - [ ] Make buildings
     - [ ] Make Delfino Plaza
     - [ ] Make Bianco Hills
     - [ ] Make Corona Mountain
@@ -21,4 +22,4 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [ ] Make moving enemies (stus?)
     - [ ] Add a jetpack FLUDD nozzle
     - [ ] Give shadows to Actors
-    - [ ] Give ooutlines to Actors
+    - [ ] Give outlines to Actors

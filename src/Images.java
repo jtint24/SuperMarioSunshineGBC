@@ -28,6 +28,11 @@ public class Images {
             "lpathTL",
             "lpathBR",
             "lpathBL",
+            "cliffS",
+            "grassEdge",
+            "bridgeL",
+            "bridgeM",
+            "bridgeR"
     };
 
     static Image getImage(String s) {
