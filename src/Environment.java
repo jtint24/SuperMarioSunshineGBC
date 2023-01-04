@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Environment {
     Tile[][][] tiles;
     Actor[] actors;
@@ -198,6 +200,39 @@ public class Environment {
             return tile.type == t;
         } else {
             return false;
+        }
+    }
+
+    ArrayList<Tile> tilesAround(Point p) {
+        ArrayList<Tile> retList = new ArrayList<>();
+        addIfPossible(retList, p.x, p.y, p.z);
+        if (p.offsetX > 0) {
+            addIfPossible(retList, p.x+1, p.y, p.z);
+            if (p.offsetY > 0) {
+                addIfPossible(retList, p.x+1, p.y+1, p.z);
+                addIfPossible(retList, p.x, p.y+1, p.z);
+            } else if (p.offsetY < 0) {
+                addIfPossible(retList, p.x+1, p.y-1, p.z);
+                addIfPossible(retList, p.x, p.y-1, p.z);
+            }
+        } else if (p.offsetX < 0) {
+            addIfPossible(retList, p.x-1, p.y, p.z);
+            if (p.offsetY > 0) {
+                addIfPossible(retList, p.x-1, p.y+1, p.z);
+                addIfPossible(retList, p.x, p.y+1, p.z);
+            } else if (p.offsetY < 0) {
+                addIfPossible(retList, p.x-1, p.y-1, p.z);
+                addIfPossible(retList, p.x, p.y-1, p.z);
+            }
+        }
+        return retList;
+    }
+
+    private void addIfPossible(ArrayList<Tile> a, int x, int y, int z) {
+        if (isValidX(x) && isValidY(y) && isValidZ(z)) {
+            if (tiles[x][y][z] != null) {
+                a.add(tiles[x][y][z]);
+            }
         }
     }
 

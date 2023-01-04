@@ -1,8 +1,12 @@
 import java.awt.event.KeyEvent;
 
 public class Player extends Actor  {
-    public Player(Point location) {
+    float dz = 0;
+    Environment environment;
+
+    public Player(Point location, Environment environment) {
         super(location);
+        this.environment = environment;
     }
 
     void move() {
@@ -19,6 +23,25 @@ public class Player extends Actor  {
             location.offsetX += 1;
         }
 
+        if (Application.keyData.getIsPressed(KeyEvent.VK_Z)) {
+            dz = 10;
+        }
+
+        if (!onSolidGround() || location.offsetZ>0) {
+            location.offsetZ--;
+        }
+        location.offsetZ += dz;
+        System.out.println(location.z+" "+ location.offsetZ);
+
         updateOffsets();
+    }
+
+    boolean onSolidGround() {
+        for (Tile t : environment.tilesAround(new Point(location.x, location.y, location.z-1, location.offsetX, location.offsetY, 0))) {
+            if (t.type.isWalkable) {
+                return true;
+            }
+        }
+        return false;
     }
 }
