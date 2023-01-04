@@ -7,6 +7,12 @@ public class EnvironmentBuilder {
     final TileType path = new TileType("path", true, true);
     final TileType bridge = new TileType("bridge", false, true);
     final TileType grassEdge = new TileType("grassEdge", false, false);
+    final TileType wall = new TileType("wall", true, true);
+    final TileType roof = new TileType("roof", false, true);
+    final TileType awning = new TileType("awning", true, true);
+    final TileType window = new TileType("window", true, true);
+    final TileType door = new TileType("door", true, true);
+
 
 
     Environment e;
@@ -83,6 +89,28 @@ public class EnvironmentBuilder {
             }
         }
 
+        public void makeHouse() {
+            fillType(wall);
+            for (int i = minX; i<maxX; i++) {
+                for (int j = minY; j<maxY; j++) {
+                    e.tiles[i][j][maxZ-1] = new Tile(new Point(i,j,maxZ-1), roof, null);
+                }
+            }
+            int midZ = (minZ+maxZ-1)/2;
+            for (int i = minX; i<maxX; i++) {
+                for (int j = minY; j<maxY; j++) {
+                    e.tiles[i][j][midZ] = new Tile(new Point(i,j,midZ), awning, null);
+                }
+            }
+            for (int i = minX+1; i<maxX; i+=2) {
+                for (int j = minY; j<maxY; j++) {
+                    e.tiles[i][j][midZ+1] = new Tile(new Point(i,j,midZ+1), window, null);
+                }
+            }
+            int midX = (minX+maxX)/2;
+            e.tiles[midX][maxY-1][minZ].type = door;
+        }
+
         public void setImages() {
             for (int i = minX; i<maxX; i++) {
                 for (int j = minY; j<maxY; j++) {
@@ -151,6 +179,59 @@ public class EnvironmentBuilder {
                                     yield () -> Images.getImage("pathTR");
                                 } else {
                                     yield () -> Images.getImage("lpathTR");
+                                }
+                            }
+                            case "door" -> () -> Images.getImage("door");
+                            case "wall" -> {
+                                if ((e.tileBelowIs(i, j, k, wall) || e.tileBelowIs(i, j, k, window) ||  e.tileBelowIs(i, j, k, awning) || e.tileBelowIs(i,j,k,door))) {
+                                    if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door)) && (e.tileLeftIs(i, j, k, wall) || e.tileLeftIs(i, j, k, window) || e.tileLeftIs(i,j,k,door))) {
+                                        yield () -> Images.getImage("wallMM");
+                                    } else if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door))) {
+                                        yield () -> Images.getImage("wallML");
+                                    } else {
+                                        yield () -> Images.getImage("wallMR");
+                                    }
+                                } else {
+                                    if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door)) && (e.tileLeftIs(i, j, k, wall) || e.tileLeftIs(i, j, k, window) || e.tileLeftIs(i,j,k,door))) {
+                                        yield () -> Images.getImage("wallBM");
+                                    } else if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door))) {
+                                        yield () -> Images.getImage("wallBL");
+                                    } else {
+                                        yield () -> Images.getImage("wallBR");
+                                    }
+                                }
+                            }
+                            case "window" -> () -> Images.getImage("window");
+                            case "awning" -> {
+                                if (e.tileRightIs(i,j,k, awning) && e.tileLeftIs(i,j,k,awning)) {
+                                    yield () -> Images.getImage("awningM");
+                                } else if (e.tileRightIs(i,j,k, awning)) {
+                                    yield () -> Images.getImage("awningL");
+                                } else {
+                                    yield () -> Images.getImage("awningR");
+                                }
+                            }
+                            case "roof" -> {
+                                if (e.tileRightIs(i,j,k,roof) && e.tileLeftIs(i,j,k,roof) && e.tileFrontIs(i,j,k,roof) && e.tileBehindIs(i,j,k,roof)) {
+                                    yield () -> Images.getImage("roofMM");
+                                }  else if (!e.tileRightIs(i,j,k,roof) && e.tileLeftIs(i,j,k,roof) && e.tileFrontIs(i,j,k,roof) && e.tileBehindIs(i,j,k,roof)) {
+                                    yield () -> Images.getImage("roofMR");
+                                } else if (e.tileRightIs(i,j,k,roof) && !e.tileLeftIs(i,j,k,roof) && e.tileFrontIs(i,j,k,roof) && e.tileBehindIs(i,j,k,roof)) {
+                                    yield () -> Images.getImage("roofML");
+                                } else if (e.tileRightIs(i,j,k,roof) && e.tileLeftIs(i,j,k,roof) && !e.tileFrontIs(i,j,k,roof) && e.tileBehindIs(i,j,k,roof)) {
+                                    yield () -> Images.getImage("roofBM");
+                                } else if (e.tileRightIs(i,j,k,roof) && e.tileLeftIs(i,j,k,roof) && e.tileFrontIs(i,j,k,roof) && !e.tileBehindIs(i,j,k,roof)) {
+                                    yield () -> Images.getImage("roofTM");
+                                } else if (e.tileFrontIs(i,j,k,roof) && e.tileLeftIs(i,j,k,roof)) {
+                                    yield () -> Images.getImage("roofTR");
+                                } else if (e.tileBehindIs(i,j,k,roof) && e.tileLeftIs(i,j,k,roof)) {
+                                    yield () -> Images.getImage("roofBR");
+                                } else if (e.tileFrontIs(i,j,k,roof) && e.tileRightIs(i,j,k,roof)) {
+                                    yield () -> Images.getImage("roofTL");
+                                } else if (e.tileBehindIs(i,j,k,roof) && e.tileRightIs(i,j,k,roof)) {
+                                    yield () -> Images.getImage("roofBL");
+                                } else {
+                                    yield () -> Images.getImage("roofMM");
                                 }
                             }
                             default -> () -> Images.getImage("water1");

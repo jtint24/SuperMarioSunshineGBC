@@ -32,7 +32,28 @@ public class Images {
             "grassEdge",
             "bridgeL",
             "bridgeM",
-            "bridgeR"
+            "bridgeR",
+            "roofMM",
+            "wallMR",
+            "wallML",
+            "wallMM",
+            "wallBR",
+            "wallBL",
+            "wallBM",
+            "awningL",
+            "awningM",
+            "awningR",
+
+            "door",
+            "window",
+            "roofMR",
+            "roofML",
+            "roofTM",
+            "roofTR",
+            "roofTL",
+            "roofBM",
+            "roofBR",
+            "roofBL",
     };
 
     static Image getImage(String s) {
@@ -43,12 +64,13 @@ public class Images {
     }
 
     static void initializeImages() {
-        try {
-            for (String name : imageNames) {
+        for (String name : imageNames) {
+            try {
                 images.put(name, ImageIO.read(new File("src/resources/"+name+".png")));
+            } catch (IOException e) {
+                System.out.println(name+".png not found");
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

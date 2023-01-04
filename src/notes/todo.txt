@@ -6,8 +6,8 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Make cliffs
         - [x] Make lakes
         - [x] Make paths
-        - [ ] Make bridges
-        - [ ] Make buildings
+        - [x] Make bridges
+        - [x] Make buildings
     - [ ] Make Delfino Plaza
     - [ ] Make Bianco Hills
     - [ ] Make Corona Mountain
