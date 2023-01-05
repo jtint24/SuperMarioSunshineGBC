@@ -26,4 +26,12 @@ public class Application extends JFrame {
             return data.get(key);
         }
     }
+
+    static int frameNumber(int duration, int frameCount) {
+        return ((int)(System.currentTimeMillis()/duration % frameCount))+1;
+    }
+
+    static int frameNumber() {
+        return frameNumber(200, 4);
+    }
 }

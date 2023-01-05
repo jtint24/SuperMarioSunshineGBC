@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class Environment {
     Tile[][][] tiles;
@@ -103,16 +101,29 @@ public class Environment {
         }
     }
 
-    boolean isUncovered(Point p) {
+    boolean isUncoveredStrict(Point p) {
         int i = 0;
         while (isValidY(i+p.y) && isValidZ(p.z+i)) {
             if (tiles[p.x][i+p.y][i+p.z] != null) {
-                if (tiles[p.x][i + p.y][i + p.z].type.isBackground) {
-                    return false;
-                }
+                return false;
             }
             i++;
         }
+        return true;
+    }
+
+    boolean isUncovered(Point p) {
+        ArrayList<Point> pointList = p.getClusteredPoints();
+
+        // System.out.println(pointList.size());
+
+        for (Point point : pointList) {
+            if (!isUncoveredStrict(point)) {
+                // System.out.println(point.x+" "+point.y+" "+ point.z);
+                return false;
+            }
+        }
+
         return true;
     }
 
@@ -228,20 +239,22 @@ public class Environment {
             addIfPossible(retList, p.x+1, p.y, p.z);
             if (p.offsetY > 0) {
                 addIfPossible(retList, p.x+1, p.y+1, p.z);
-                addIfPossible(retList, p.x, p.y+1, p.z);
             } else if (p.offsetY < 0) {
                 addIfPossible(retList, p.x+1, p.y-1, p.z);
-                addIfPossible(retList, p.x, p.y-1, p.z);
             }
         } else if (p.offsetX < 0) {
             addIfPossible(retList, p.x-1, p.y, p.z);
             if (p.offsetY > 0) {
                 addIfPossible(retList, p.x-1, p.y+1, p.z);
-                addIfPossible(retList, p.x, p.y+1, p.z);
             } else if (p.offsetY < 0) {
                 addIfPossible(retList, p.x-1, p.y-1, p.z);
-                addIfPossible(retList, p.x, p.y-1, p.z);
             }
+        }
+        if (p.offsetY < 0) {
+            addIfPossible(retList, p.x, p.y-1, p.z);
+        } else {
+            addIfPossible(retList, p.x, p.y+1, p.z);
+
         }
         return retList;
     }
