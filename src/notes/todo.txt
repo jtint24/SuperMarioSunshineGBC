@@ -15,7 +15,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
 - [ ] Interactivity
     - [x] Make the arrow keys move Mario
     - [x] Animate Mario
-    - [ ] Make movement context-sensitive .
+    - [x] Make movement context-sensitive .
     - [x] Make the A key jump
     - [ ] make the B key fire FLUDD
     - [ ] Make interactive goop

@@ -16,18 +16,30 @@ public class Player extends Actor  {
         if (Application.keyData.getIsPressed(KeyEvent.VK_UP)) {
             direction = Direction.UP;
             location.offsetY -= 1;
+            if (!canMoveBack()) {
+                location.offsetY += 1;
+            }
         }
         if (Application.keyData.getIsPressed(KeyEvent.VK_DOWN)) {
             direction = Direction.DOWN;
             location.offsetY += 1;
+            if (!canMoveFront()) {
+                location.offsetY -= 1;
+            }
         }
         if (Application.keyData.getIsPressed(KeyEvent.VK_LEFT)) {
             direction = Direction.LEFT;
             location.offsetX -= 1;
+            if (!canMoveLeft()) {
+                location.offsetX += 1;
+            }
         }
         if (Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
             direction = Direction.RIGHT;
             location.offsetX += 1;
+            if (!canMoveRight()) {
+                location.offsetX -= 1;
+            }
         }
         moving = Application.keyData.getIsPressed(KeyEvent.VK_RIGHT) || Application.keyData.getIsPressed(KeyEvent.VK_LEFT) || Application.keyData.getIsPressed(KeyEvent.VK_DOWN) || Application.keyData.getIsPressed(KeyEvent.VK_UP);
 

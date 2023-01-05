@@ -232,7 +232,60 @@ public class Environment {
         }
     }
 
-    ArrayList<Tile> tilesAround(Point p) {
+    ArrayList<Tile> tilesAroundYZ(Point p) {
+        ArrayList<Tile> retList = new ArrayList<>();
+        addIfPossible(retList, p.x, p.y, p.z);
+        if (p.offsetY > 0) {
+            addIfPossible(retList, p.x, p.y+1, p.z);
+            if (p.offsetZ > 0) {
+                addIfPossible(retList, p.x, p.y+1, p.z+1);
+            } else if (p.offsetZ < 0) {
+                addIfPossible(retList, p.x, p.y+1, p.z-1);
+            }
+        } else if (p.offsetY < 0) {
+            addIfPossible(retList, p.x, p.y-1, p.z);
+            if (p.offsetZ > 0) {
+                addIfPossible(retList, p.x, p.y-1, p.z+1);
+            } else if (p.offsetZ < 0) {
+                addIfPossible(retList, p.x, p.y-1, p.z-1);
+            }
+        }
+        if (p.offsetZ < 0) {
+            addIfPossible(retList, p.x, p.y, p.z-1);
+        } else {
+            addIfPossible(retList, p.x, p.y, p.z+1);
+
+        }
+        return retList;
+    }
+
+    ArrayList<Tile> tilesAroundXZ(Point p) {
+        ArrayList<Tile> retList = new ArrayList<>();
+        addIfPossible(retList, p.x, p.y, p.z);
+        if (p.offsetX > 0) {
+            addIfPossible(retList, p.x+1, p.y, p.z);
+            if (p.offsetZ > 0) {
+                addIfPossible(retList, p.x+1, p.y, p.z+1);
+            } else if (p.offsetZ < 0) {
+                addIfPossible(retList, p.x-1, p.y, p.z-1);
+            }
+        } else if (p.offsetX < 0) {
+            addIfPossible(retList, p.x-1, p.y, p.z);
+            if (p.offsetZ > 0) {
+                addIfPossible(retList, p.x-1, p.y, p.z+1);
+            } else if (p.offsetZ < 0) {
+                addIfPossible(retList, p.x-1, p.y, p.z-1);
+            }
+        }
+        if (p.offsetZ < 0) {
+            addIfPossible(retList, p.x, p.y, p.z-1);
+        } else {
+            addIfPossible(retList, p.x, p.y, p.z+1);
+        }
+        return retList;
+    }
+
+    ArrayList<Tile> tilesAroundXY(Point p) {
         ArrayList<Tile> retList = new ArrayList<>();
         addIfPossible(retList, p.x, p.y, p.z);
         if (p.offsetX > 0) {

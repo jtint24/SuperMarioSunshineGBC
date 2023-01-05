@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 class Actor implements Renderable {
 
@@ -55,12 +56,41 @@ class Actor implements Renderable {
         if ( location.offsetZ>0 ) {
             return false;
         }
-        for (Tile t : environment.tilesAround(new Point(location.x, location.y, location.z-1, location.offsetX, location.offsetY, 0))) {
+        for (Tile t : environment.tilesAroundXY(new Point(location.x, location.y, location.z-1, location.offsetX, location.offsetY, 0))) {
             if (t.type.isWalkable) {
                 return true;
             }
         }
         return false;
+    }
+
+    boolean canMoveFront() {
+        if ( location.offsetY<0 ) {
+            return true;
+        }
+        ArrayList<Tile> arr = environment.tilesAroundXZ(new Point(location.x, location.y+1, location.z, location.offsetX, location.offsetY, 0));
+        return arr.size() == 0;
+    }
+    boolean canMoveBack() {
+        if ( location.offsetY>0 ) {
+            return true;
+        }
+        ArrayList<Tile> arr = environment.tilesAroundXZ(new Point(location.x, location.y-1, location.z, location.offsetX, location.offsetY, 0));
+        return arr.size() == 0;
+    }
+    boolean canMoveLeft() {
+        if ( location.offsetX>0 ) {
+            return true;
+        }
+        ArrayList<Tile> arr = environment.tilesAroundYZ(new Point(location.x-1, location.y, location.z, location.offsetX, location.offsetY, 0));
+        return arr.size() == 0;
+    }
+    boolean canMoveRight() {
+        if ( location.offsetX<0 ) {
+            return true;
+        }
+        ArrayList<Tile> arr = environment.tilesAroundYZ(new Point(location.x+1, location.y, location.z, location.offsetX, location.offsetY, 0));
+        return arr.size() == 0;
     }
 
     void changeZBy(int zDiff) {
