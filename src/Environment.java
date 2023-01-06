@@ -6,6 +6,9 @@ public class Environment {
     ArrayList<Actor> actors = new ArrayList<>();
     Player player;
     Canvas canvas;
+    private final ArrayList<Actor> actorsToRemove = new ArrayList<>();
+    private final ArrayList<Actor> actorsToAdd = new ArrayList<>();
+
 
     Environment(Player _player, Tile[][][] _tiles, ArrayList<Actor> _actors,  Canvas _canvas) {
         tiles = _tiles;
@@ -352,6 +355,27 @@ public class Environment {
                 a.add(tiles[x][y][z]);
             }
         }
+    }
+
+    public void runFrame() {
+        for (Actor actor : actorsToRemove) {
+            actors.remove(actor);
+        }
+        actorsToRemove.clear();
+
+        actors.addAll(actorsToAdd);
+        actorsToAdd.clear();
+
+        for (Actor actor : actors) {
+            actor.move();
+        }
+    }
+
+    public void deleteActor(Actor a) {
+        actorsToRemove.add(a);
+    }
+    public void addActor(Actor a) {
+        actorsToAdd.add(a);
     }
 
 

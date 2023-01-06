@@ -70,6 +70,8 @@ public class Images {
             "marioL2",
             "marioL3",
             "marioL4",
+            "shadow",
+            "waterDrop"
     };
 
     static Image getImage(String s) {

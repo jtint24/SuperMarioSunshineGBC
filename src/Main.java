@@ -13,9 +13,11 @@ public class Main implements Runnable {
 
         gameCanvas = new Canvas();
 
-        Player mario = new Player(new Point(10,33,3));
+        Player mario = new Player(new Point(10,33,3), gameEnvironment);
 
         gameEnvironment = createBiancoHills(mario);
+
+        gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
 
         gameEnvironment.render();
 
@@ -78,7 +80,7 @@ public class Main implements Runnable {
     public void run() {
         boolean running = true;
         while (running) {
-            gameEnvironment.player.move();
+            gameEnvironment.runFrame();
             gameEnvironment.render();
 
             try {

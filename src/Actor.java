@@ -1,15 +1,17 @@
 import java.awt.*;
 import java.util.ArrayList;
 
-class Actor implements Renderable {
+public class Actor implements Renderable {
 
     Point location;
     Environment environment;
     int dz = 0;
     ImageFetcher imageFetcher;
 
-    public Actor(Point location) {
+    public Actor(Point location, Environment environment) {
+
         this.location = location;
+        this.environment = environment;
     }
 
     // higher means draw this one last
@@ -18,9 +20,7 @@ class Actor implements Renderable {
         return location.z-location.y;
     }
 
-    void move() {
-
-    }
+    void move() {}
 
     void updateOffsets() {
         int addToX = location.offsetX / 16;
