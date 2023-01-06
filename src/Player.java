@@ -4,6 +4,7 @@ public class Player extends Actor  {
 
     Direction direction = Direction.DOWN;
     boolean moving = false;
+    private final int speed = 2;
 
     public Player(Point location) {
         super(location);
@@ -15,30 +16,30 @@ public class Player extends Actor  {
     void move() {
         if (Application.keyData.getIsPressed(KeyEvent.VK_UP)) {
             direction = Direction.UP;
-            location.offsetY -= 1;
+            location.offsetY -= speed;
             if (!canMoveBack()) {
-                location.offsetY += 1;
+                location.offsetY += speed;
             }
         }
         if (Application.keyData.getIsPressed(KeyEvent.VK_DOWN)) {
             direction = Direction.DOWN;
-            location.offsetY += 1;
+            location.offsetY += speed;
             if (!canMoveFront()) {
-                location.offsetY -= 1;
+                location.offsetY -= speed;
             }
         }
         if (Application.keyData.getIsPressed(KeyEvent.VK_LEFT)) {
             direction = Direction.LEFT;
-            location.offsetX -= 1;
+            location.offsetX -= speed;
             if (!canMoveLeft()) {
-                location.offsetX += 1;
+                location.offsetX += speed;
             }
         }
         if (Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
             direction = Direction.RIGHT;
-            location.offsetX += 1;
+            location.offsetX += speed;
             if (!canMoveRight()) {
-                location.offsetX -= 1;
+                location.offsetX -= speed;
             }
         }
         moving = Application.keyData.getIsPressed(KeyEvent.VK_RIGHT) || Application.keyData.getIsPressed(KeyEvent.VK_LEFT) || Application.keyData.getIsPressed(KeyEvent.VK_DOWN) || Application.keyData.getIsPressed(KeyEvent.VK_UP);

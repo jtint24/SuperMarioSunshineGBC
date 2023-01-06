@@ -32,6 +32,6 @@ public class Application extends JFrame {
     }
 
     static int frameNumber() {
-        return frameNumber(200, 4);
+        return frameNumber(160, 4);
     }
 }
