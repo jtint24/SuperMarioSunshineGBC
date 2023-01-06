@@ -82,6 +82,7 @@ public class Main implements Runnable {
         while (running) {
             gameEnvironment.runFrame();
             gameEnvironment.render();
+            Application.frameCount++;
 
             try {
                 Thread.sleep(40);

@@ -17,7 +17,7 @@ public class Actor implements Renderable {
     // higher means draw this one last
     // lower means draw this one first
     int drawLayer() {
-        return location.z-location.y;
+        return (location.y*16+location.offsetY)+(location.z*16+location.offsetZ);
     }
 
     void move() {}

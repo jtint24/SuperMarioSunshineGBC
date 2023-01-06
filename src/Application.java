@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 public class Application extends JFrame {
     static KeyData keyData = new KeyData();
+    static int frameCount = 0;
 
     Application(String name) {
         super(name);

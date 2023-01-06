@@ -44,7 +44,7 @@ public class Player extends Actor  {
                 location.offsetX -= speed;
             }
         }
-        if (Application.keyData.getIsPressed(KeyEvent.VK_X)) {
+        if (Application.keyData.getIsPressed(KeyEvent.VK_X) && Application.frameCount%2==0) {
             Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 16);
             int dx = switch (direction) {
                 case LEFT -> -5;

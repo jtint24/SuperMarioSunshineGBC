@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Environment {
     Tile[][][] tiles;
@@ -98,10 +99,11 @@ public class Environment {
             int j = i - 1;
             while (j >= 0 && actors.get(j).drawLayer() > key.drawLayer()) {
                 actors.set(j + 1, actors.get(j));
-                j = j - 1;
+                j--;
             }
             actors.set(j + 1, key);
         }
+
     }
 
     boolean isUncoveredStrict(Point p) {
@@ -136,15 +138,18 @@ public class Environment {
                 actor.render(player.location, canvas);
             }
         }
-        if (isUncovered(player.location)) {
-            player.render(player.location, canvas);
-        }
     }
 
     void render() {
         canvas.clear();
 
         sortActors();
+
+        for (Actor a : actors) {
+            System.out.print(a instanceof ActorLibrary.WaterDrop ? "t" : "f");
+            System.out.print(a.drawLayer()+" ");
+        }
+        System.out.println();
 
         int lowerX = Math.max(player.location.x-6, 0);
         int upperX = Math.min(player.location.x+6, tiles.length);
