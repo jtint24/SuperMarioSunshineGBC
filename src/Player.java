@@ -1,6 +1,4 @@
 import java.awt.event.KeyEvent;
-import java.security.Key;
-import java.util.Locale;
 
 public class Player extends Actor  {
 
@@ -44,7 +42,7 @@ public class Player extends Actor  {
                 location.offsetX -= speed;
             }
         }
-        if (Application.keyData.getIsPressed(KeyEvent.VK_X) && Application.frameCount%2==0) {
+        if (Application.keyData.getIsPressed(KeyEvent.VK_X) && Application.frameCount%2==0 && environment.hud.waterLevel > 0) {
             Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 16);
             int dx = switch (direction) {
                 case LEFT -> -5;
@@ -58,6 +56,9 @@ public class Player extends Actor  {
             };
 
             environment.addActor(new ActorLibrary.WaterDrop(loc, environment, dx, dy));
+
+            environment.hud.waterLevel-=.5;
+            environment.hud.waterLevel = Math.max(0, environment.hud.waterLevel);
         }
 
         moving = Application.keyData.getIsPressed(KeyEvent.VK_RIGHT) || Application.keyData.getIsPressed(KeyEvent.VK_LEFT) || Application.keyData.getIsPressed(KeyEvent.VK_DOWN) || Application.keyData.getIsPressed(KeyEvent.VK_UP);

@@ -7,6 +7,7 @@ public class Main implements Runnable {
 
     static Environment gameEnvironment;
     static Canvas gameCanvas;
+    static HUD hud = new HUD();
 
     public static void main(String[] args) {
         Images.initializeImages();
@@ -25,12 +26,14 @@ public class Main implements Runnable {
 
         frame.setContentPane(gameCanvas);
 
+        hud.addMeter("coin", new HUD.Meter(Images.getImage("coinIcon")));
+
         Main newMain = new Main();
         newMain.run();
     }
 
     public static Environment createBiancoHills(Player player) {
-        Environment biancoHills = new Environment(player, new Tile[100][100][10], null, gameCanvas);
+        Environment biancoHills = new Environment(player, new Tile[100][100][10], null, gameCanvas, hud);
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
         biancoBuilder.getFloor().makeGrass();
@@ -82,6 +85,9 @@ public class Main implements Runnable {
         while (running) {
             gameEnvironment.runFrame();
             gameEnvironment.render();
+
+            hud.render(gameEnvironment.player.location, gameCanvas);
+
             Application.frameCount++;
 
             try {

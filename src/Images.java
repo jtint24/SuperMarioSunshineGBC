@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Images {
 
@@ -71,7 +72,32 @@ public class Images {
             "marioL3",
             "marioL4",
             "shadow",
-            "waterDrop"
+            "waterDrop",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "coinIcon",
+            "xIcon",
+            "blueCoinIcon",
+            "shineIcon",
+            "h2oIcon",
+            "fludd10",
+            "fludd9",
+            "fludd8",
+            "fludd7",
+            "fludd6",
+            "fludd5",
+            "fludd4",
+            "fludd3",
+            "fludd2",
+            "fludd1"
     };
 
     static Image getImage(String s) {

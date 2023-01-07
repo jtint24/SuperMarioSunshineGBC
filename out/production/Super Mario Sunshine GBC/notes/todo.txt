@@ -15,11 +15,18 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
 - [ ] Interactivity
     - [x] Make the arrow keys move Mario
     - [x] Animate Mario
-    - [x] Make movement context-sensitive .
+    - [x] Make movement context-sensitive
     - [x] Make the A key jump
-    - [ ] make the B key fire FLUDD
+    - [x] make the B key fire FLUDD
     - [ ] Make interactive goop
     - [ ] Make moving enemies (stus?)
     - [ ] Add a jetpack FLUDD nozzle
-    - [ ] Give shadows to Actors
+    - [x] Give shadows to Actors
     - [ ] Give outlines to Actors
+- [ ] HUD
+    - [ ] Make a FLUDD Meter
+    - [ ] Make a life count
+    - [ ] Make a coin count
+    - [ ] Make a blue coin count
+
+

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Environment {
     Tile[][][] tiles;
@@ -9,13 +8,15 @@ public class Environment {
     Canvas canvas;
     private final ArrayList<Actor> actorsToRemove = new ArrayList<>();
     private final ArrayList<Actor> actorsToAdd = new ArrayList<>();
+    HUD hud;
 
 
-    Environment(Player _player, Tile[][][] _tiles, ArrayList<Actor> _actors,  Canvas _canvas) {
+    Environment(Player _player, Tile[][][] _tiles, ArrayList<Actor> _actors,  Canvas _canvas, HUD _hud) {
         tiles = _tiles;
         player = _player;
         canvas = _canvas;
         highestZ = new int[tiles.length][tiles[0].length];
+        hud = _hud;
 
         if (_actors != null) {
             actors.addAll(_actors);
@@ -144,12 +145,6 @@ public class Environment {
         canvas.clear();
 
         sortActors();
-
-        for (Actor a : actors) {
-            System.out.print(a instanceof ActorLibrary.WaterDrop ? "t" : "f");
-            System.out.print(a.drawLayer()+" ");
-        }
-        System.out.println();
 
         int lowerX = Math.max(player.location.x-6, 0);
         int upperX = Math.min(player.location.x+6, tiles.length);

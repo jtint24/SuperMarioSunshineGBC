@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class Canvas extends JPanel {
 
-    Stack<RenderedImage> imagesToRender = new Stack<>();
+    public Stack<RenderedImage> imagesToRender = new Stack<>();
 
     Canvas() {
         setPreferredSize(new Dimension(200, 200));
