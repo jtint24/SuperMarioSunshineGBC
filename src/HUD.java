@@ -6,6 +6,7 @@ class HUD implements Renderable {
     int lastShowFrame = 0;
     Meter meterToShow;
     float waterLevel = 100;
+    int lifeLevel = 8;
 
     public HUD() {}
 
@@ -26,6 +27,7 @@ class HUD implements Renderable {
 
         c.imagesToRender.push(new RenderedImage(Images.getImage("fludd"+dispWaterLevel).getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 600));
         c.imagesToRender.push(new RenderedImage(Images.getImage("h2oIcon").getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 510));
+        c.imagesToRender.push(new RenderedImage(Images.getImage("life"+lifeLevel).getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 10));
     }
 
     void show(String name) {

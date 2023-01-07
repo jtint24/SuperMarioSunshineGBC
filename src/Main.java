@@ -26,7 +26,14 @@ public class Main implements Runnable {
 
         frame.setContentPane(gameCanvas);
 
-        hud.addMeter("coin", new HUD.Meter(Images.getImage("coinIcon")));
+        HUD.Meter coinMeter =  new HUD.Meter(Images.getImage("coinIcon"));
+        HUD.Meter blueCoinMeter =  new HUD.Meter(Images.getImage("blueCoinIcon"));
+
+
+        hud.addMeter("coin", coinMeter);
+        hud.addMeter("blueCoin", blueCoinMeter);
+
+        hud.meterToShow = blueCoinMeter;
 
         Main newMain = new Main();
         newMain.run();

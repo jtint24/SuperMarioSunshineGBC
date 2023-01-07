@@ -25,7 +25,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [ ] Give outlines to Actors
 - [ ] HUD
     - [x] Make a FLUDD Meter
-    - [ ] Make a life count
+    - [x] Make a life count
     - [x] Make a coin count
     - [ ] Make a blue coin count
 

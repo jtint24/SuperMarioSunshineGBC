@@ -97,7 +97,16 @@ public class Images {
             "fludd4",
             "fludd3",
             "fludd2",
-            "fludd1"
+            "fludd1",
+            "life8",
+            "life7",
+            "life6",
+            "life5",
+            "life4",
+            "life3",
+            "life2",
+            "life1",
+            "life0",
     };
 
     static Image getImage(String s) {
