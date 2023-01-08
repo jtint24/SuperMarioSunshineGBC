@@ -22,6 +22,8 @@ public class Main implements Runnable {
 
         gameEnvironment.render();
 
+        gameEnvironment.actors.add(new ActorLibrary.Coin(new Point(11, 33, 3), gameEnvironment));
+
         JFrame frame = createFrame();
 
         frame.setContentPane(gameCanvas);

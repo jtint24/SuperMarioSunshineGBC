@@ -107,6 +107,10 @@ public class Images {
             "life2",
             "life1",
             "life0",
+            "coin1",
+            "coin2",
+            "coin3",
+            "coin4"
     };
 
     static Image getImage(String s) {

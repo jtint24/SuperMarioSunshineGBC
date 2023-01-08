@@ -1,4 +1,20 @@
 public class ActorLibrary {
+    static class Coin extends Actor {
+        public Coin(Point p, Environment e) {
+            super(p, e);
+            imageFetcher = () -> Images.getImage("coin"+Application.frameNumber());
+        }
+
+        @Override
+        void move() {
+            if (environment.player.location.distanceToSQ(location) < 256) {
+                environment.deleteActor(this);
+                environment.hud.meters.get("coin").increment();
+                environment.hud.show("coin");
+            }
+        }
+    }
+
     static class Shadow extends Actor {
         Actor owner;
 

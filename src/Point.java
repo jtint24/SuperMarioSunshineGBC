@@ -61,4 +61,12 @@ public class Point {
         }
         return retList;
     }
+
+    public int distanceToSQ(Point p) {
+        int xDiff = (p.x-x)*16+(p.offsetX-offsetX);
+        int yDiff = (p.y-y)*16+(p.offsetY-offsetY);
+        int zDiff = (p.z-z)*16+(p.offsetZ-offsetZ);
+        return xDiff*xDiff + yDiff*yDiff + zDiff*zDiff;
+
+    }
 }

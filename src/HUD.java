@@ -73,8 +73,8 @@ class HUD implements Renderable {
 
             c.imagesToRender.push(new RenderedImage(scaledIcon, 0, dispY));
             c.imagesToRender.push(new RenderedImage(scaledX, 80, dispY));
-            c.imagesToRender.push(new RenderedImage(scaledDigit1, 160, dispY));
-            c.imagesToRender.push(new RenderedImage(scaledDigit2, 240, dispY));
+            c.imagesToRender.push(new RenderedImage(scaledDigit2, 160, dispY));
+            c.imagesToRender.push(new RenderedImage(scaledDigit1, 240, dispY));
         }
     }
 }
