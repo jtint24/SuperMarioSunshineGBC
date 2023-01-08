@@ -120,7 +120,7 @@ public class Images {
             "wallTopBM",
             "wallTopBR",
             "wallTopBL",
-
+            "goop"
     };
 
     static Image getImage(String s) {

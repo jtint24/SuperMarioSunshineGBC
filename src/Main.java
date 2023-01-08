@@ -26,6 +26,8 @@ public class Main implements Runnable {
         gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(12, 33, 4), null));
         gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(13, 33, 4), null));
         gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(14, 33, 2), null));
+        gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
+
 
 
 

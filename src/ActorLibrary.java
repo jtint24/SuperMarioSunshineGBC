@@ -1,4 +1,22 @@
 public class ActorLibrary {
+
+    static class Goop extends Actor {
+        public Goop(Point p, Environment e) {
+            super(p, e);
+            imageFetcher = () -> Images.getImage("goop");
+        }
+
+        @Override
+        void move() {
+            for (Actor a : environment.actors) {
+                if (a instanceof WaterDrop) {
+                    if (a.location.distanceToSQ(location) < 128) {
+                        environment.deleteActor(this);
+                    }
+                }
+            }
+        }
+    }
     static class Coin extends Actor {
         public Coin(Point p, Environment e) {
             super(p, e);
@@ -44,8 +62,8 @@ public class ActorLibrary {
     }
 
     static class WaterDrop extends Actor {
-        int dx = 0;
-        int dy = 0;
+        int dx;
+        int dy;
 
         public WaterDrop(Point p, Environment e, int dx, int dy) {
             super(p, e);

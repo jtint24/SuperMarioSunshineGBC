@@ -10,7 +10,7 @@ public class Application extends JFrame {
     }
 
     static class KeyData {
-        private HashMap<Integer, Boolean> data = new HashMap<>();
+        private final HashMap<Integer, Boolean> data = new HashMap<>();
 
         void setPressed(int key) {
             data.put(key, true);
