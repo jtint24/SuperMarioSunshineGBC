@@ -110,7 +110,17 @@ public class Images {
             "coin1",
             "coin2",
             "coin3",
-            "coin4"
+            "coin4",
+            "wallTopTM",
+            "wallTopTR",
+            "wallTopTL",
+            "wallTopMM",
+            "wallTopMR",
+            "wallTopML",
+            "wallTopBM",
+            "wallTopBR",
+            "wallTopBL",
+
     };
 
     static Image getImage(String s) {

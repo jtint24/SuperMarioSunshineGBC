@@ -61,6 +61,8 @@ public class Main implements Runnable {
         biancoBuilder.getArea(10,14, 26,31,1,2).fillType(biancoBuilder.bridge);
         biancoBuilder.getArea(10,17, 40,45, 2,6).makeHouse();
 
+        biancoBuilder.getArea(20,22, 0,40, 2,6).fillType(biancoBuilder.wall);
+
 
         biancoBuilder.getArea().finalizeArea();
         return biancoHills;

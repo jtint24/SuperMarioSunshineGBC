@@ -200,6 +200,28 @@ public class EnvironmentBuilder {
                             }
                             case "door" -> () -> Images.getImage("door");
                             case "wall" -> {
+                                if (!(e.tileAboveIs(i, j, k, roof) || e.tileAboveIs(i, j, k, wall) || e.tileAboveIs(i, j, k, window) ||  e.tileAboveIs(i, j, k, awning) || e.tileAboveIs(i,j,k,door))) {
+                                    if (e.tileFrontIs(i,j,k, wall) && e.tileLeftIs(i,j,k,wall) && e.tileRightIs(i,j,k,wall) && e.tileBehindIs(i,j,k, wall) ) {
+                                        yield () -> Images.getImage("wallTopMM");
+                                    } else if (!e.tileFrontIs(i,j,k, wall) && e.tileLeftIs(i,j,k,wall) && e.tileRightIs(i,j,k,wall) && e.tileBehindIs(i,j,k, wall) ) {
+                                        yield () -> Images.getImage("wallTopBM");
+                                    } else if (e.tileFrontIs(i,j,k, wall) && e.tileLeftIs(i,j,k,wall) && e.tileRightIs(i,j,k,wall) && !e.tileBehindIs(i,j,k, wall) ) {
+                                        yield () -> Images.getImage("wallTopTM");
+                                    } else if (e.tileFrontIs(i,j,k, wall) && !e.tileLeftIs(i,j,k,wall) && e.tileRightIs(i,j,k,wall) && e.tileBehindIs(i,j,k, wall) ) {
+                                        yield () -> Images.getImage("wallTopML");
+                                    } else if (e.tileFrontIs(i,j,k, wall) && e.tileLeftIs(i,j,k,wall) && !e.tileRightIs(i,j,k,wall) && e.tileBehindIs(i,j,k, wall) ) {
+                                        yield () -> Images.getImage("wallTopMR");
+                                    } else if (e.tileFrontIs(i,j,k, wall)  && e.tileRightIs(i,j,k,wall)) {
+                                        yield () -> Images.getImage("wallTopTL");
+                                    } else if (e.tileBehindIs(i,j,k, wall)  && e.tileRightIs(i,j,k,wall)) {
+                                        yield () -> Images.getImage("wallTopBL");
+                                    } else if (e.tileFrontIs(i,j,k, wall)  && e.tileLeftIs(i,j,k,wall)) {
+                                        yield () -> Images.getImage("wallTopTR");
+                                    } else if (e.tileBehindIs(i,j,k, wall)  && e.tileLeftIs(i,j,k,wall)) {
+                                        yield () -> Images.getImage("wallTopBR");
+                                    }
+                                }
+
                                 if ((e.tileBelowIs(i, j, k, wall) || e.tileBelowIs(i, j, k, window) ||  e.tileBelowIs(i, j, k, awning) || e.tileBelowIs(i,j,k,door))) {
                                     if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door)) && (e.tileLeftIs(i, j, k, wall) || e.tileLeftIs(i, j, k, window) || e.tileLeftIs(i,j,k,door))) {
                                         yield () -> Images.getImage("wallMM");
