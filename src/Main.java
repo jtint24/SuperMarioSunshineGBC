@@ -22,7 +22,13 @@ public class Main implements Runnable {
 
         gameEnvironment.render();
 
-        gameEnvironment.actors.add(new ActorLibrary.Coin(new Point(11, 33, 3), gameEnvironment));
+        gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(11, 33, 2), null));
+        gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(12, 33, 4), null));
+        gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(13, 33, 4), null));
+        gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(14, 33, 2), null));
+
+
+
 
         JFrame frame = createFrame();
 

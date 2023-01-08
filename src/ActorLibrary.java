@@ -29,6 +29,9 @@ public class ActorLibrary {
         @Override
         void move() {
             this.location = new Point(owner.location.x, owner.location.y, environment.highestZAt(owner.location)+1,owner.location.offsetX, owner.location.offsetY, 0);
+            if (!environment.actors.contains(owner)) {
+                environment.deleteActor(this);
+            }
         }
 
         @Override

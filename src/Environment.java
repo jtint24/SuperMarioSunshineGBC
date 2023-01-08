@@ -377,6 +377,11 @@ public class Environment {
     public void addActor(Actor a) {
         actorsToAdd.add(a);
     }
-
+    public void addActorWithShadow(Actor a) {
+        a.environment = this;
+        ActorLibrary.Shadow shadow = new ActorLibrary.Shadow(a, this);
+        actorsToAdd.add(a);
+        actorsToAdd.add(shadow);
+    }
 
 }
