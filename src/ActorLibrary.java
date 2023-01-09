@@ -1,9 +1,9 @@
 public class ActorLibrary {
-    static class Pokey extends Actor {
+    static class Pokey extends MovingActor {
         boolean isBenign = false;
 
         public Pokey(Point p, Environment e) {
-            super(p,e);
+            super(p,e,5);
             imageFetcher = () -> Images.getImage("pokey"+Application.frameNumber());
         }
 
@@ -87,12 +87,10 @@ public class ActorLibrary {
 
     }
 
-    static class WaterDrop extends Actor {
-        int dx;
-        int dy;
+    static class WaterDrop extends MovingActor {
 
         public WaterDrop(Point p, Environment e, int dx, int dy) {
-            super(p, e);
+            super(p, e,100);
 
             imageFetcher = () -> Images.getImage("waterDrop");
             this.dz = 5;
@@ -103,8 +101,7 @@ public class ActorLibrary {
         @Override
         void move() {
             applyGravity();
-            this.location.offsetX += dx;
-            this.location.offsetY += dy;
+            super.move();
             this.updateOffsets();
             if (onSolidGround()) {
                 environment.deleteActor(this);
