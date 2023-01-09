@@ -53,5 +53,6 @@ public class MovingActor extends Actor {
         if (dx < 0 && !canMoveLeft()) {
             location.offsetX -= dx;
         }
+        updateOffsets();
     }
 }

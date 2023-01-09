@@ -25,8 +25,8 @@ class HUD implements Renderable {
 
         int dispWaterLevel = (int) Math.min(10,Math.ceil(1+waterLevel/10.0));
 
-        c.imagesToRender.push(new RenderedImage(Images.getImage("fludd"+dispWaterLevel).getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 600));
-        c.imagesToRender.push(new RenderedImage(Images.getImage("h2oIcon").getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 510));
+        c.imagesToRender.push(new RenderedImage(Images.getImage("fludd"+dispWaterLevel).getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 560));
+        c.imagesToRender.push(new RenderedImage(Images.getImage("h2oIcon").getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 600));
         c.imagesToRender.push(new RenderedImage(Images.getImage("life"+lifeLevel).getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 10));
     }
 

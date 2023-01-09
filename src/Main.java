@@ -60,7 +60,7 @@ public class Main implements Runnable {
         biancoHills.addActorWithShadow(new ActorLibrary.Coin(new Point(12, 33, 4), null));
         biancoHills.addActorWithShadow(new ActorLibrary.Coin(new Point(13, 33, 4), null));
         biancoHills.addActorWithShadow(new ActorLibrary.Coin(new Point(14, 33, 2), null));
-        biancoHills.addActorWithShadow(new ActorLibrary.Pokey(new Point(17, 34,2), null));
+        biancoHills.addActorWithShadow(new ActorLibrary.Pokey(new Point(17, 34,2), null, 15, 18));
         //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
 
         return biancoHills;

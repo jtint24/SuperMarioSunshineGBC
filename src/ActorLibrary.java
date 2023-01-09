@@ -1,10 +1,18 @@
 public class ActorLibrary {
     static class Pokey extends MovingActor {
         boolean isBenign = false;
+        int maxX;
+        int minX;
 
-        public Pokey(Point p, Environment e) {
-            super(p,e,5);
+        public Pokey(Point p, Environment e, int minX, int maxX) {
+            super(p,e,3);
             imageFetcher = () -> Images.getImage("pokey"+Application.frameNumber());
+
+            this.maxX = maxX;
+            this.minX = minX;
+
+            dx = 2;
+            //accelRight();
         }
 
         @Override
@@ -21,6 +29,16 @@ public class ActorLibrary {
 
                 }
             }
+
+            if (location.x > maxX) {
+                accelLeft();
+            }
+            if (location.x < minX) {
+                accelRight();
+            }
+
+
+            super.move();
         }
     }
     static class Goop extends Actor {

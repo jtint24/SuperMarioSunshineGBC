@@ -24,7 +24,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [x] Make moving enemies (stus?)
     - [ ] Add a jetpack FLUDD nozzle
     - [x] Give shadows to Actors
-    - [ ] Give outlines to Actors
+    - [x] Give outlines to Actors
 - [x] HUD
     - [x] Make a FLUDD Meter
     - [x] Make a life count
