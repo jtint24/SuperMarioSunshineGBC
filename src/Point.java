@@ -69,4 +69,9 @@ public class Point {
         return xDiff*xDiff + yDiff*yDiff + zDiff*zDiff;
 
     }
+
+    @Override
+    public String toString() {
+        return "("+x+":"+offsetX+", "+y+":"+offsetY+", "+z+":"+offsetZ+")";
+    }
 }

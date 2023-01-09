@@ -120,7 +120,11 @@ public class Images {
             "wallTopBM",
             "wallTopBR",
             "wallTopBL",
-            "goop"
+            "goop",
+            "pokey1",
+            "pokey2",
+            "pokey3",
+            "pokey4",
     };
 
     static Image getImage(String s) {

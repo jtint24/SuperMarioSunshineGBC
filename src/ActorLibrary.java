@@ -1,5 +1,27 @@
 public class ActorLibrary {
+    static class Pokey extends Actor {
+        boolean isBenign = false;
 
+        public Pokey(Point p, Environment e) {
+            super(p,e);
+            imageFetcher = () -> Images.getImage("pokey"+Application.frameNumber());
+        }
+
+        @Override
+        void move() {
+            if (environment.player.location.distanceToSQ(location) < 256 && !isBenign) {
+                if (environment.player.location.z < location.z || (environment.player.location.offsetZ > location.offsetZ)) {
+                    environment.deleteActor(this);
+                    // System.out.println("kill!");
+                    isBenign = true;
+                } else {
+                    environment.player.damage();
+                    // System.out.println("damage! "+environment.player.location+" "+location);
+
+                }
+            }
+        }
+    }
     static class Goop extends Actor {
         public Goop(Point p, Environment e) {
             super(p, e);
