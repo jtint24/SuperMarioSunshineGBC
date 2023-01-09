@@ -15,6 +15,9 @@ public class ActorLibrary {
                     }
                 }
             }
+            if (environment.player.location.distanceToSQ(location) < 256) {
+                environment.player.damage();
+            }
         }
     }
     static class Coin extends Actor {

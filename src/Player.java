@@ -5,6 +5,7 @@ public class Player extends Actor  {
     Direction direction = Direction.DOWN;
     boolean moving = false;
     private final int speed = 2;
+    private int flashingBeginFrame = -100;
 
     public Player(Point location, Environment e) {
         super(location, e);
@@ -71,5 +72,19 @@ public class Player extends Actor  {
 
         updateOffsets();
         // System.out.println(location.z+" "+ location.offsetZ+" +/-: "+dz);
+    }
+
+    @Override
+    public void render(Point p, Canvas c) {
+        if (Application.frameCount-flashingBeginFrame > 50 || ((Application.frameCount/5)%2) == 0) {
+            super.render(p,c);
+        }
+    }
+
+    void damage() {
+        if (Application.frameCount-flashingBeginFrame > 50) {
+            environment.hud.lifeLevel--;
+            flashingBeginFrame = Application.frameCount;
+        }
     }
 }

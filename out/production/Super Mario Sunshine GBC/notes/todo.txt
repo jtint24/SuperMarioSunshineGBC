@@ -20,7 +20,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [x] Make the A key jump
     - [x] make the B key fire FLUDD
     - [x] make interactive coins
-    - [ ] Make interactive goop
+    - [x] Make interactive goop
     - [ ] Make moving enemies (stus?)
     - [ ] Add a jetpack FLUDD nozzle
     - [x] Give shadows to Actors
