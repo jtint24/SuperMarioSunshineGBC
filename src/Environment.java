@@ -135,10 +135,13 @@ public class Environment {
 
     void renderActors() {
         for (Actor actor : actors) {
-            if (isUncovered(actor.location)) {
-                actor.render(player.location, canvas);
+            if (!(actor instanceof Player)) {
+                if (isUncovered(actor.location)) {
+                    actor.render(player.location, canvas);
+                }
             }
         }
+        player.render(player.location, canvas);
     }
 
     void render() {

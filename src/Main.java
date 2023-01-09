@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Main implements Runnable {
-
     static Environment gameEnvironment;
     static Canvas gameCanvas;
     static HUD hud = new HUD();
@@ -22,24 +21,12 @@ public class Main implements Runnable {
 
         gameEnvironment.render();
 
-        gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(11, 33, 2), null));
-        gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(12, 33, 4), null));
-        gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(13, 33, 4), null));
-        gameEnvironment.addActorWithShadow(new ActorLibrary.Coin(new Point(14, 33, 2), null));
-        gameEnvironment.addActorWithShadow(new ActorLibrary.Pokey(new Point(17, 34,2), null));
-        //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
-
-
-
-
-
         JFrame frame = createFrame();
 
         frame.setContentPane(gameCanvas);
 
         HUD.Meter coinMeter =  new HUD.Meter(Images.getImage("coinIcon"));
         HUD.Meter blueCoinMeter =  new HUD.Meter(Images.getImage("blueCoinIcon"));
-
 
         hud.addMeter("coin", coinMeter);
         hud.addMeter("blueCoin", blueCoinMeter);
@@ -68,6 +55,14 @@ public class Main implements Runnable {
 
 
         biancoBuilder.getArea().finalizeArea();
+
+        biancoHills.addActorWithShadow(new ActorLibrary.Coin(new Point(11, 33, 2), null));
+        biancoHills.addActorWithShadow(new ActorLibrary.Coin(new Point(12, 33, 4), null));
+        biancoHills.addActorWithShadow(new ActorLibrary.Coin(new Point(13, 33, 4), null));
+        biancoHills.addActorWithShadow(new ActorLibrary.Coin(new Point(14, 33, 2), null));
+        biancoHills.addActorWithShadow(new ActorLibrary.Pokey(new Point(17, 34,2), null));
+        //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
+
         return biancoHills;
     }
 

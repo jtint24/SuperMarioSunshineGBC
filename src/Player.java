@@ -10,7 +10,17 @@ public class Player extends MovingActor  {
     public Player(Point location, Environment e) {
         super(location, e, 3);
 
-        imageFetcher = () -> moving ? Images.getImage("mario"+direction.charCode()+Application.frameNumber()) : Images.getImage("mario"+direction.charCode()+"2");
+        imageFetcher = () -> {
+            String shadow = "";
+            if (!environment.isUncovered(location)) {
+                shadow = "s";
+            }
+            if (!onSolidGround()) {
+                return Images.getImage(shadow+"mario"+direction.charCode()+"J");
+            } else {
+                return moving ? Images.getImage(shadow+"mario" + direction.charCode() + Application.frameNumber()) : Images.getImage(shadow+"mario" + direction.charCode() + "2");
+            }
+        };
     }
 
     @Override
