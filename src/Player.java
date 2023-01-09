@@ -4,7 +4,10 @@ public class Player extends Actor  {
 
     Direction direction = Direction.DOWN;
     boolean moving = false;
-    private final int speed = 2;
+    private int dy = 0;
+    private int dx = 0;
+    private final int maxSpeed = 3;
+
     private int flashingBeginFrame = -100;
 
     public Player(Point location, Environment e) {
@@ -13,36 +16,49 @@ public class Player extends Actor  {
         imageFetcher = () -> moving ? Images.getImage("mario"+direction.charCode()+Application.frameNumber()) : Images.getImage("mario"+direction.charCode()+"2");
     }
 
+    int constrainedAdd(int a, int b) {
+        return Math.min(Math.max(a+b, -maxSpeed), maxSpeed);
+    }
+
     @Override
     void move() {
         if (Application.keyData.getIsPressed(KeyEvent.VK_UP)) {
             direction = Direction.UP;
-            location.offsetY -= speed;
-            if (!canMoveBack()) {
-                location.offsetY += speed;
-            }
-        }
-        if (Application.keyData.getIsPressed(KeyEvent.VK_DOWN)) {
+            dy = constrainedAdd(dy, -2);
+        } else if (Application.keyData.getIsPressed(KeyEvent.VK_DOWN)) {
             direction = Direction.DOWN;
-            location.offsetY += speed;
-            if (!canMoveFront()) {
-                location.offsetY -= speed;
-            }
+            dy = constrainedAdd(dy, 2);
+        } else {
+            dy /= 2;
         }
         if (Application.keyData.getIsPressed(KeyEvent.VK_LEFT)) {
             direction = Direction.LEFT;
-            location.offsetX -= speed;
-            if (!canMoveLeft()) {
-                location.offsetX += speed;
-            }
-        }
-        if (Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
+            dx = constrainedAdd(dx, -2);
+        } else if (Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
             direction = Direction.RIGHT;
-            location.offsetX += speed;
-            if (!canMoveRight()) {
-                location.offsetX -= speed;
-            }
+            dx = constrainedAdd(dx, 2);
+        } else {
+            dx /= 2;
         }
+
+
+        location.offsetY += dy;
+        location.offsetX += dx;
+
+        if (dy < 0 && !canMoveBack()) {
+            location.offsetY -= dy;
+        }
+        if (dy > 0 && !canMoveFront()) {
+            location.offsetY -= dy;
+        }
+        if (dx > 0 && !canMoveRight()) {
+            location.offsetX -= dx;
+        }
+        if (dx < 0 && !canMoveLeft()) {
+            location.offsetX -= dx;
+        }
+
+
         if (Application.keyData.getIsPressed(KeyEvent.VK_X) && Application.frameCount%2==0 && environment.hud.waterLevel > 0) {
             Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 16);
             int dx = switch (direction) {
@@ -65,7 +81,12 @@ public class Player extends Actor  {
         moving = Application.keyData.getIsPressed(KeyEvent.VK_RIGHT) || Application.keyData.getIsPressed(KeyEvent.VK_LEFT) || Application.keyData.getIsPressed(KeyEvent.VK_DOWN) || Application.keyData.getIsPressed(KeyEvent.VK_UP);
 
         if (Application.keyData.getIsPressed(KeyEvent.VK_Z) && onSolidGround()) {
-            dz = 10;
+            dz = 8;
+        }
+
+        if (!Application.keyData.getIsPressed(KeyEvent.VK_UP) && !Application.keyData.getIsPressed(KeyEvent.VK_DOWN) &&!Application.keyData.getIsPressed(KeyEvent.VK_LEFT) && !Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
+            dx = 0;
+            dy = 0;
         }
 
         applyGravity();

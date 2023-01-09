@@ -14,6 +14,7 @@ public class ActorLibrary {
                     environment.deleteActor(this);
                     // System.out.println("kill!");
                     isBenign = true;
+                    environment.player.dz += 13;
                 } else {
                     environment.player.damage();
                     // System.out.println("damage! "+environment.player.location+" "+location);
