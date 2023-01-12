@@ -89,6 +89,23 @@ public class EnvironmentBuilder {
             }
         }
 
+        public void placeCoins() {
+            for (int i = minX; i<maxX; i++) {
+                for (int j = minY; j<maxY; j++) {
+                    for (int k = minZ; k<maxZ; k++) {
+                        e.addActorWithShadow(new ActorLibrary.Coin(new Point(i,j,k), e));
+                    }
+                }
+            }
+        }
+
+        public void placeCoinArch() {
+            e.addActorWithShadow(new ActorLibrary.Coin(new Point(minX,minY,minZ), e));
+            e.addActorWithShadow(new ActorLibrary.Coin(new Point(minX+1,minY,minZ+2), e));
+            e.addActorWithShadow(new ActorLibrary.Coin(new Point(minX+2,minY,minZ+2), e));
+            e.addActorWithShadow(new ActorLibrary.Coin(new Point(minX+3,minY,minZ), e));
+        }
+
         public void makeHouse() {
             fillType(wall);
             for (int i = minX; i<maxX; i++) {

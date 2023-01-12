@@ -5,7 +5,7 @@ public class ActorLibrary {
         int minX;
 
         public Pokey(Point p, Environment e, int minX, int maxX) {
-            super(p,e,3);
+            super(p,e,2);
             imageFetcher = () -> Images.getImage("pokey"+Application.frameNumber());
 
             this.maxX = maxX;
@@ -22,7 +22,7 @@ public class ActorLibrary {
                     environment.deleteActor(this);
                     // System.out.println("kill!");
                     isBenign = true;
-                    environment.player.dz += 13;
+                    environment.player.dz = 6;
                 } else {
                     environment.player.damage();
                     // System.out.println("damage! "+environment.player.location+" "+location);
