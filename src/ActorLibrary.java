@@ -18,7 +18,7 @@ public class ActorLibrary {
         @Override
         void move() {
             if (environment.player.location.distanceToSQ(location) < 256 && !isBenign) {
-                if (environment.player.location.z < location.z || (environment.player.location.offsetZ > location.offsetZ)) {
+                if (environment.player.dz <= 0 && (environment.player.location.z < location.z || (environment.player.location.offsetZ > location.offsetZ))) {
                     environment.deleteActor(this);
                     // System.out.println("kill!");
                     isBenign = true;

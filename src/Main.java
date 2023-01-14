@@ -49,11 +49,13 @@ public class Main implements Runnable {
         biancoBuilder.getArea(0,100,30, 31, 1,2).fillType(biancoBuilder.grassEdge);
         biancoBuilder.getArea(0,100, 25,26,0,1).makeCliff();
         biancoBuilder.getArea(10,14, 26,31,1,2).fillType(biancoBuilder.bridge);
+        biancoBuilder.getArea(18,22, 26,31,1,2).fillType(biancoBuilder.bridge);
         biancoBuilder.getArea(10,17, 40,45, 2,6).makeHouse();
-        biancoBuilder.getArea(20,22, 0,40, 2,6).fillType(biancoBuilder.wall);
+        biancoBuilder.getArea(40,42, 0,40, 2,6).fillType(biancoBuilder.wall);
         biancoBuilder.getArea(0, 100, 20,22,2, 6).fillType(biancoBuilder.wall);
 
         biancoBuilder.getArea(11,16, 41,45, 6,7).placeCoins();
+        biancoBuilder.getArea(14, 19, 28,29, 2,4).placeShadowDelicateCoinArch();
 
         biancoBuilder.getArea().finalizeArea();
 

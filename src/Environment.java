@@ -378,6 +378,7 @@ public class Environment {
         actorsToRemove.add(a);
     }
     public void addActor(Actor a) {
+        a.environment = this;
         actorsToAdd.add(a);
     }
     public void addActorWithShadow(Actor a) {
