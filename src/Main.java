@@ -48,18 +48,30 @@ public class Main implements Runnable {
         biancoBuilder.getArea(0,100,0,25, 0,2).makeGrass();
         biancoBuilder.getArea(0,100,30, 31, 1,2).fillType(biancoBuilder.grassEdge);
         biancoBuilder.getArea(0,100, 25,26,0,1).makeCliff();
+
         biancoBuilder.getArea(10,14, 26,31,1,2).fillType(biancoBuilder.bridge);
         biancoBuilder.getArea(18,22, 26,31,1,2).fillType(biancoBuilder.bridge);
+
+        biancoBuilder.getArea(9,15, 31,40, 1,2).makePath();
+        biancoBuilder.getArea(17,23, 31,40, 1,2).makePath();
+
+
         biancoBuilder.getArea(10,17, 40,45, 2,6).makeHouse();
+        biancoBuilder.getArea(20,25, 40,45, 2,7).makeHouse();
+        biancoBuilder.getArea(8, 27, 38, 47,1,2).makePath();
+
+
+
         biancoBuilder.getArea(40,42, 0,40, 2,6).fillType(biancoBuilder.wall);
         biancoBuilder.getArea(0, 100, 20,22,2, 6).fillType(biancoBuilder.wall);
 
-        biancoBuilder.getArea(11,16, 41,45, 6,7).placeCoins();
+
+        biancoBuilder.getArea(11,16, 39,40, 2,3).placeCoins();
         biancoBuilder.getArea(14, 19, 28,29, 2,4).placeShadowDelicateCoinArch();
 
         biancoBuilder.getArea().finalizeArea();
 
-        biancoHills.addActorWithShadow(new ActorLibrary.Pokey(new Point(17, 34,2), null, 15, 18));
+        //biancoHills.addActorWithShadow(new ActorLibrary.Pokey(new Point(17, 34,2), null, 15, 18));
         //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
 
         return biancoHills;

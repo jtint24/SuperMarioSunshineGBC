@@ -162,7 +162,7 @@ public class EnvironmentBuilder {
                             continue;
                         }
                         t.imageFetcher = switch (t.type.name) {
-                            case "water" -> () -> Images.getImage("water1");
+                            case "water" -> () -> Images.getImage("water"+Application.frameNumber(320,6));
                             case "grass" -> {
                                 String coordinates = ""+(i+1)*(j+1)+""+(j+1)*(k+1)+""+(k+1)*(i+1);
                                 if (coordinates.hashCode() % 10 == 0) {

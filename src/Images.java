@@ -4,13 +4,17 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Locale;
 
 public class Images {
 
     static HashMap<String, BufferedImage> images = new HashMap<>();
     static String[] imageNames = {
             "water1",
+            "water2",
+            "water3",
+            "water4",
+            "water5",
+            "water6",
             "cliffT",
             "cliffM",
             "cliffB",
