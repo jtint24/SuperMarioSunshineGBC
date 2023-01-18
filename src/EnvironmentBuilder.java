@@ -12,6 +12,10 @@ public class EnvironmentBuilder {
     final TileType awning = new TileType("awning", true, true);
     final TileType window = new TileType("window", true, true);
     final TileType door = new TileType("door", true, true);
+    final TileType sand = new TileType("sand", true, true);
+    final TileType beach = new TileType("beach", true, true);
+
+
 
 
 
@@ -113,6 +117,16 @@ public class EnvironmentBuilder {
             e.addActor(new ActorLibrary.Coin(new Point(minX+3,minY,minZ), e));
         }
 
+        public void placeGoop() {
+            for (int i = minX; i<maxX; i++) {
+                for (int j = minY; j<maxY; j++) {
+                    for (int k = minZ; k<maxZ; k++) {
+                        e.addActor(new ActorLibrary.Goop(new Point(i,j,k),e));
+                    }
+                }
+            }
+        }
+
 
         public void makeHouse() {
             fillType(wall);
@@ -171,6 +185,15 @@ public class EnvironmentBuilder {
                                     yield () -> Images.getImage("grass");
                                 }
                             }
+                            case "sand" -> {
+                                String coordinates = ""+(i+1)*(j+1)+""+(j+1)*(k+1)+""+(k+1)*(i+1);
+                                if (coordinates.hashCode() % 10 == 0) {
+                                    yield () -> Images.getImage("sandDetail");
+                                } else {
+                                    yield () -> Images.getImage("sand");
+                                }
+                            }
+                            case "beach" -> () -> Images.getImage("beach"+Application.frameNumber(320, 4));
                             case "bridge" ->{
                                 if (e.tileRightIs(i,j,k, bridge) && e.tileLeftIs(i,j,k,bridge)) {
                                     yield () -> Images.getImage("bridgeM");

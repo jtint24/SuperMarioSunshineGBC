@@ -15,7 +15,7 @@ public class Main implements Runnable {
 
         Player mario = new Player(new Point(10,33,3), gameEnvironment);
 
-        gameEnvironment = createBiancoHills(mario);
+        gameEnvironment = createGelatoBeach(mario); //createBiancoHills(mario);
 
         gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
 
@@ -69,12 +69,30 @@ public class Main implements Runnable {
         biancoBuilder.getArea(11,16, 39,40, 2,3).placeCoins();
         biancoBuilder.getArea(14, 19, 28,29, 2,4).placeShadowDelicateCoinArch();
 
+        biancoBuilder.getArea(11, 20, 51,61, 2,3).placeGoop();
+        biancoBuilder.getArea(10, 21, 49,61, 1,2).makePath();
+
+
+
         biancoBuilder.getArea().finalizeArea();
 
         //biancoHills.addActorWithShadow(new ActorLibrary.Pokey(new Point(17, 34,2), null, 15, 18));
         //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
 
         return biancoHills;
+    }
+
+    public static Environment createGelatoBeach(Player player) {
+        Environment gelatoBeach = new Environment(player, new Tile[100][100][10], null, gameCanvas, hud);
+        EnvironmentBuilder gelatoBuilder = new EnvironmentBuilder(gelatoBeach);
+
+        gelatoBuilder.getArea(0,100,0,30,0,1).fillType(gelatoBuilder.sand);
+        gelatoBuilder.getArea(0,100,30,31,0,1).fillType(gelatoBuilder.beach);
+        gelatoBuilder.getArea(0,100,31,100,0,1).fillType(gelatoBuilder.water);
+
+        gelatoBuilder.getArea().finalizeArea();
+
+        return gelatoBeach;
     }
 
     public static JFrame createFrame() {

@@ -134,14 +134,20 @@ public class Environment {
     }
 
     void renderActors() {
+        boolean playerCovered = false;
         for (Actor actor : actors) {
-            if (!(actor instanceof Player)) {
-                if (isUncovered(actor.location)) {
-                    actor.render(player.location, canvas);
+            if (isUncovered(actor.location)) {
+                actor.render(player.location, canvas);
+            } else {
+                if (actor instanceof Player) {
+                    playerCovered = true;
                 }
             }
         }
-        player.render(player.location, canvas);
+        if (playerCovered) {
+            player.render(player.location, canvas);
+        }
+
     }
 
     void render() {

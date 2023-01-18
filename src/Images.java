@@ -48,7 +48,6 @@ public class Images {
             "awningL",
             "awningM",
             "awningR",
-
             "door",
             "window",
             "roofMR",
@@ -153,6 +152,16 @@ public class Images {
             "pokey2",
             "pokey3",
             "pokey4",
+            "goop1",
+            "goop2",
+            "goop3",
+            "goop4",
+            "sand",
+            "sandDetail",
+            "beach1",
+            "beach2",
+            "beach3",
+            "beach4",
     };
 
     static Image getImage(String s) {

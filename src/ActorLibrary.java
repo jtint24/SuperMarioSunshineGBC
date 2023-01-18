@@ -44,14 +44,14 @@ public class ActorLibrary {
     static class Goop extends Actor {
         public Goop(Point p, Environment e) {
             super(p, e);
-            imageFetcher = () -> Images.getImage("goop");
+            imageFetcher = () -> Images.getImage("goop"+Application.frameNumber(320,4));
         }
 
         @Override
         void move() {
             for (Actor a : environment.actors) {
                 if (a instanceof WaterDrop) {
-                    if (a.location.distanceToSQ(location) < 128) {
+                    if (a.location.distanceToSQ(location) < 200) {
                         environment.deleteActor(this);
                     }
                 }
@@ -111,7 +111,7 @@ public class ActorLibrary {
             super(p, e,100);
 
             imageFetcher = () -> Images.getImage("waterDrop");
-            this.dz = 5;
+            this.dz = 4;
             this.dx = dx;
             this.dy = dy;
         }
