@@ -107,11 +107,11 @@ public class ActorLibrary {
 
     static class WaterDrop extends MovingActor {
 
-        public WaterDrop(Point p, Environment e, int dx, int dy) {
+        public WaterDrop(Point p, Environment e, int dx, int dy, int dz) {
             super(p, e,100);
 
             imageFetcher = () -> Images.getImage("waterDrop");
-            this.dz = 4;
+            this.dz = dz;
             this.dx = dx;
             this.dy = dy;
         }

@@ -62,12 +62,11 @@ public class Player extends MovingActor  {
                     default -> 0;
                 };
 
-                environment.addActor(new ActorLibrary.WaterDrop(loc, environment, wdx, wdy));
+                environment.addActor(new ActorLibrary.WaterDrop(loc, environment, wdx, wdy, 4));
             } else {
                 Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 0);
-                environment.addActor(new ActorLibrary.WaterDrop(loc, environment, 0, 0));
-
-
+                environment.addActor(new ActorLibrary.WaterDrop(loc, environment, 0, 0, -2));
+                dz += Math.min(dz+2,2);
             }
 
             environment.hud.waterLevel-=.5;
