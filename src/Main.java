@@ -90,6 +90,13 @@ public class Main implements Runnable {
         gelatoBuilder.getArea(0,100,30,31,0,1).fillType(gelatoBuilder.beach);
         gelatoBuilder.getArea(0,100,31,100,0,1).fillType(gelatoBuilder.water);
 
+        gelatoBuilder.getFloor().fillType(gelatoBuilder.lava);
+
+        gelatoBeach.addActorWithShadow(new ActorLibrary.Enemy("cataquack", new Point(30, 27, 1), gelatoBeach, 10, 40,1));
+
+        gelatoBeach.addActorWithShadow(new ActorLibrary.Enemy("cataquack", new Point(35, 23, 1), gelatoBeach, 10, 40,1));
+
+
         gelatoBuilder.getArea().finalizeArea();
 
         return gelatoBeach;
@@ -133,6 +140,8 @@ public class Main implements Runnable {
             hud.render(gameEnvironment.player.location, gameCanvas);
 
             Application.frameCount++;
+
+            // System.out.println(gameEnvironment.player.location.toString());
 
             try {
                 Thread.sleep(40);

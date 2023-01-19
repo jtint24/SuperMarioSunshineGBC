@@ -14,6 +14,7 @@ public class EnvironmentBuilder {
     final TileType door = new TileType("door", true, true);
     final TileType sand = new TileType("sand", true, true);
     final TileType beach = new TileType("beach", true, true);
+    final TileType lava = new TileType("lava", true, true);
 
 
 
@@ -185,6 +186,7 @@ public class EnvironmentBuilder {
                                     yield () -> Images.getImage("grass");
                                 }
                             }
+                            case "lava" -> () -> Images.getImage("lava"+Application.frameNumber(480, 4));
                             case "sand" -> {
                                 String coordinates = ""+(i+1)*(j+1)+""+(j+1)*(k+1)+""+(k+1)*(i+1);
                                 if (coordinates.hashCode() % 10 == 0) {

@@ -162,6 +162,14 @@ public class Images {
             "beach2",
             "beach3",
             "beach4",
+            "cataquack1",
+            "cataquack2",
+            "cataquack3",
+            "cataquack4",
+            "lava1",
+            "lava2",
+            "lava3",
+            "lava4",
     };
 
     static Image getImage(String s) {

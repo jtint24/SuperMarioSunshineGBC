@@ -1,12 +1,12 @@
 public class ActorLibrary {
-    static class Pokey extends MovingActor {
+    static class Enemy extends MovingActor {
         boolean isBenign = false;
         int maxX;
         int minX;
 
-        public Pokey(Point p, Environment e, int minX, int maxX) {
-            super(p,e,2);
-            imageFetcher = () -> Images.getImage("pokey"+Application.frameNumber());
+        public Enemy(String name, Point p, Environment e, int minX, int maxX, int speed) {
+            super(p,e,speed);
+            imageFetcher = () -> Images.getImage(name+Application.frameNumber());
 
             this.maxX = maxX;
             this.minX = minX;
