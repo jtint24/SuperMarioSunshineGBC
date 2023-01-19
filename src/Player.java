@@ -4,6 +4,7 @@ public class Player extends MovingActor  {
 
     Direction direction = Direction.DOWN;
     boolean moving = false;
+    FluddType fluddType = FluddType.jet;
 
     private int flashingBeginFrame = -100;
 
@@ -47,19 +48,27 @@ public class Player extends MovingActor  {
         super.move();
 
         if (Application.keyData.getIsPressed(KeyEvent.VK_X) && Application.frameCount%2==0 && environment.hud.waterLevel > 0) {
-            Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 16);
-            int wdx = switch (direction) {
-                case LEFT -> -5+dx;
-                case RIGHT -> 5+dx;
-                default -> 0;
-            };
-            int wdy = switch (direction) {
-                case UP -> -5+dy;
-                case DOWN -> 5+dy;
-                default -> 0;
-            };
 
-            environment.addActor(new ActorLibrary.WaterDrop(loc, environment, wdx, wdy));
+            if (fluddType == FluddType.squirt) {
+                Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 16);
+                int wdx = switch (direction) {
+                    case LEFT -> -5 + dx;
+                    case RIGHT -> 5 + dx;
+                    default -> 0;
+                };
+                int wdy = switch (direction) {
+                    case UP -> -5 + dy;
+                    case DOWN -> 5 + dy;
+                    default -> 0;
+                };
+
+                environment.addActor(new ActorLibrary.WaterDrop(loc, environment, wdx, wdy));
+            } else {
+                Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 0);
+                environment.addActor(new ActorLibrary.WaterDrop(loc, environment, 0, 0));
+
+
+            }
 
             environment.hud.waterLevel-=.5;
             environment.hud.waterLevel = Math.max(0, environment.hud.waterLevel);
@@ -94,5 +103,9 @@ public class Player extends MovingActor  {
             environment.hud.lifeLevel--;
             flashingBeginFrame = Application.frameCount;
         }
+    }
+
+    enum FluddType {
+        jet, squirt
     }
 }

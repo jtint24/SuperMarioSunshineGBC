@@ -13,9 +13,9 @@ public class Main implements Runnable {
 
         gameCanvas = new Canvas();
 
-        Player mario = new Player(new Point(10,33,3), gameEnvironment);
+        Player mario = new Player(new Point(22,22,8), gameEnvironment);
 
-        gameEnvironment = createGelatoBeach(mario); //createBiancoHills(mario);
+        gameEnvironment = createCoronaMountain(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
 
         gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
 
@@ -82,6 +82,20 @@ public class Main implements Runnable {
         return biancoHills;
     }
 
+    public static Environment createCoronaMountain(Player player) {
+        Environment coronaMountain = new Environment(player, new Tile[100][100][10], null, gameCanvas, hud);
+
+        EnvironmentBuilder coronaBuilder = new EnvironmentBuilder(coronaMountain);
+
+
+        coronaBuilder.getFloor().fillType(coronaBuilder.lava);
+        coronaBuilder.getArea(20,26,20,24,0,6).makePlatform();
+
+        coronaBuilder.getArea().finalizeArea();
+
+        return coronaMountain;
+    }
+
     public static Environment createGelatoBeach(Player player) {
         Environment gelatoBeach = new Environment(player, new Tile[100][100][10], null, gameCanvas, hud);
         EnvironmentBuilder gelatoBuilder = new EnvironmentBuilder(gelatoBeach);
@@ -90,7 +104,6 @@ public class Main implements Runnable {
         gelatoBuilder.getArea(0,100,30,31,0,1).fillType(gelatoBuilder.beach);
         gelatoBuilder.getArea(0,100,31,100,0,1).fillType(gelatoBuilder.water);
 
-        gelatoBuilder.getFloor().fillType(gelatoBuilder.lava);
 
         gelatoBeach.addActorWithShadow(new ActorLibrary.Enemy("cataquack", new Point(30, 27, 1), gelatoBeach, 10, 40,1));
 

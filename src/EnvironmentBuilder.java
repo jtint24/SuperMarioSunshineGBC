@@ -15,8 +15,8 @@ public class EnvironmentBuilder {
     final TileType sand = new TileType("sand", true, true);
     final TileType beach = new TileType("beach", true, true);
     final TileType lava = new TileType("lava", true, true);
-
-
+    final TileType platform = new TileType("platform", false, true);
+    final TileType pole = new TileType("pole", true, true);
 
 
 
@@ -151,6 +151,26 @@ public class EnvironmentBuilder {
             e.tiles[midX][maxY-1][minZ].type = door;
         }
 
+        public void makePlatform() {
+            int midX = (maxX+minX)/2;
+            int midY = (maxY+minY)/2;
+            for (int i = midX-1; i<midX+1; i++) {
+                for (int j = midY-1; j<midY+1; j++) {
+                    for (int k = minZ; k<maxZ; k++) {
+                        e.tiles[i][j][k] = new Tile(new Point(i,j,k), pole, null);
+                    }
+                }
+            }
+
+            for (int i = minX; i<maxX; i++) {
+                for (int j = minY; j<maxY; j++) {
+                    for (int k = maxZ-2; k<maxZ; k++) {
+                        e.tiles[i][j][k] = new Tile(new Point(i,j,k), platform, null);
+                    }
+                }
+            }
+        }
+
         public void finalizeArea() {
             setImages();
             for (int i = minX; i<maxX; i++) {
@@ -203,6 +223,46 @@ public class EnvironmentBuilder {
                                     yield () -> Images.getImage("bridgeR");
                                 } else {
                                     yield () -> Images.getImage("bridgeL");
+                                }
+                            }
+                            case "pole" -> {
+                                if (e.tileRightIs(i,j,k,pole)) {
+                                    yield () -> Images.getImage("poleL");
+                                } else {
+                                    yield () -> Images.getImage("poleR");
+                                }
+                            }
+                            case "platform" -> {
+                                if (e.tileAboveIs(i,j,k,platform)) {
+                                    if (e.tileLeftIs(i,j,k,platform) && e.tileRightIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformBM");
+                                    } else if (e.tileLeftIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformBR");
+                                    } else {
+                                        yield () -> Images.getImage("platformBL");
+                                    }
+                                } else {
+                                    if (e.tileRightIs(i,j,k,platform) && e.tileLeftIs(i,j,k,platform) && e.tileFrontIs(i,j,k,platform) && e.tileBehindIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformTMM");
+                                    }  else if (!e.tileRightIs(i,j,k,platform) && e.tileLeftIs(i,j,k,platform) && e.tileFrontIs(i,j,k,platform) && e.tileBehindIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformTMR");
+                                    } else if (e.tileRightIs(i,j,k,platform) && !e.tileLeftIs(i,j,k,platform) && e.tileFrontIs(i,j,k,platform) && e.tileBehindIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformTML");
+                                    } else if (e.tileRightIs(i,j,k,platform) && e.tileLeftIs(i,j,k,platform) && !e.tileFrontIs(i,j,k,platform) && e.tileBehindIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformTBM");
+                                    } else if (e.tileRightIs(i,j,k,platform) && e.tileLeftIs(i,j,k,platform) && e.tileFrontIs(i,j,k,platform) && !e.tileBehindIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformTTM");
+                                    } else if (e.tileFrontIs(i,j,k,platform) && e.tileLeftIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformTTR");
+                                    } else if (e.tileBehindIs(i,j,k,platform) && e.tileLeftIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformTBR");
+                                    } else if (e.tileFrontIs(i,j,k,platform) && e.tileRightIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformTTL");
+                                    } else if (e.tileBehindIs(i,j,k,platform) && e.tileRightIs(i,j,k,platform)) {
+                                        yield () -> Images.getImage("platformTBL");
+                                    } else {
+                                        yield () -> Images.getImage("platformTMM");
+                                    }
                                 }
                             }
                             case "cliff" -> {

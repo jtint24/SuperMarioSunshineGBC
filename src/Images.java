@@ -170,6 +170,22 @@ public class Images {
             "lava2",
             "lava3",
             "lava4",
+            "platformBL",
+            "platformBM",
+            "platformBR",
+            "platformTBR",
+            "platformTBL",
+            "platformTBM",
+            "platformTMR",
+            "platformTML",
+            "platformTMM",
+            "platformTTR",
+            "platformTTL",
+            "platformTTM",
+            "platformTBR",
+            "platformTBL",
+            "poleL",
+            "poleR",
     };
 
     static Image getImage(String s) {
