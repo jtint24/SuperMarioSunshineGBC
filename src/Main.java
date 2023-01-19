@@ -15,7 +15,7 @@ public class Main implements Runnable {
 
         Player mario = new Player(new Point(22,22,8), gameEnvironment);
 
-        gameEnvironment = createCoronaMountain(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
+        gameEnvironment = createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
 
         gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
 
@@ -62,7 +62,7 @@ public class Main implements Runnable {
 
 
 
-        biancoBuilder.getArea(40,42, 0,40, 2,6).fillType(biancoBuilder.wall);
+        biancoBuilder.getArea(30,37, 0,40, 2,6).fillType(biancoBuilder.wall);
         biancoBuilder.getArea(0, 100, 20,22,2, 6).fillType(biancoBuilder.wall);
 
 
@@ -73,10 +73,19 @@ public class Main implements Runnable {
         biancoBuilder.getArea(10, 21, 49,61, 1,2).makePath();
 
 
+        biancoBuilder.getArea(35, 50, 40,47, 1,2).makePath();
+
+
 
         biancoBuilder.getArea().finalizeArea();
 
-        //biancoHills.addActorWithShadow(new ActorLibrary.Pokey(new Point(17, 34,2), null, 15, 18));
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey",new Point(25+2, 44,2), null, 25+2, 28+2,2));
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey",new Point(29+2, 44,2), null, 28+2, 31+2,2));
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey",new Point(33+2, 44,2), null, 31+2, 34+2,2));
+
+
+
+
         //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
 
         return biancoHills;
@@ -89,7 +98,15 @@ public class Main implements Runnable {
 
 
         coronaBuilder.getFloor().fillType(coronaBuilder.lava);
-        coronaBuilder.getArea(20,26,20,24,0,6).makePlatform();
+
+        coronaBuilder.getArea(19,25,10,16,1,6).makePlatform();
+
+        coronaBuilder.getArea(20,26,20,24,1,6).makePlatform();
+
+        coronaBuilder.getArea(22,30,29,32,1,6).makePlatform();
+
+        coronaBuilder.getArea(26,32,37,41,1,6).makePlatform();
+
 
         coronaBuilder.getArea().finalizeArea();
 

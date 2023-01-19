@@ -66,7 +66,7 @@ public class Player extends MovingActor  {
             } else {
                 Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 0);
                 environment.addActor(new ActorLibrary.WaterDrop(loc, environment, 0, 0, -2));
-                dz += Math.min(dz+2,2);
+                dz = Math.min(dz+2,1);
             }
 
             environment.hud.waterLevel-=.5;

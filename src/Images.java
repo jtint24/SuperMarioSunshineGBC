@@ -186,6 +186,8 @@ public class Images {
             "platformTBL",
             "poleL",
             "poleR",
+            "poleBL",
+            "poleBR",
     };
 
     static Image getImage(String s) {

@@ -206,7 +206,7 @@ public class EnvironmentBuilder {
                                     yield () -> Images.getImage("grass");
                                 }
                             }
-                            case "lava" -> () -> Images.getImage("lava"+Application.frameNumber(480, 4));
+                            case "lava" -> () -> Images.getImage("lava"+Application.frameNumber(640, 4));
                             case "sand" -> {
                                 String coordinates = ""+(i+1)*(j+1)+""+(j+1)*(k+1)+""+(k+1)*(i+1);
                                 if (coordinates.hashCode() % 10 == 0) {
@@ -226,10 +226,18 @@ public class EnvironmentBuilder {
                                 }
                             }
                             case "pole" -> {
-                                if (e.tileRightIs(i,j,k,pole)) {
-                                    yield () -> Images.getImage("poleL");
+                                if (e.tileBelowIs(i,j,k,pole)) {
+                                    if (e.tileRightIs(i, j, k, pole)) {
+                                        yield () -> Images.getImage("poleL");
+                                    } else {
+                                        yield () -> Images.getImage("poleR");
+                                    }
                                 } else {
-                                    yield () -> Images.getImage("poleR");
+                                    if (e.tileRightIs(i, j, k, pole)) {
+                                        yield () -> Images.getImage("poleBL");
+                                    } else {
+                                        yield () -> Images.getImage("poleBR");
+                                    }
                                 }
                             }
                             case "platform" -> {
