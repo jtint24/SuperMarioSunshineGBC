@@ -188,6 +188,13 @@ public class Images {
             "poleR",
             "poleBL",
             "poleBR",
+            "blueCoin1",
+            "blueCoin2",
+            "blueCoin3",
+            "blueCoin4",
+            "bluePianta",
+            "orangePianta",
+            "pinkPianta"
     };
 
     static Image getImage(String s) {

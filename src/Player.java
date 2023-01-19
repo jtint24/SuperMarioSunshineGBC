@@ -64,7 +64,7 @@ public class Player extends MovingActor  {
 
                 environment.addActor(new ActorLibrary.WaterDrop(loc, environment, wdx, wdy, 4));
             } else {
-                Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 0);
+                Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, location.offsetZ);
                 environment.addActor(new ActorLibrary.WaterDrop(loc, environment, 0, 0, -2));
                 dz = Math.min(dz+2,1);
             }

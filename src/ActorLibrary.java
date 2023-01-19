@@ -96,6 +96,28 @@ public class ActorLibrary {
             }
         }
     }
+    static class BlueCoin extends Actor {
+        public BlueCoin(Point p, Environment e) {
+            super(p, e);
+            imageFetcher = () -> Images.getImage("blueCoin"+Application.frameNumber());
+        }
+
+        @Override
+        void move() {
+            if (environment.player.location.distanceToSQ(location) < 256) {
+                environment.deleteActor(this);
+                environment.hud.meters.get("blueCoin").increment();
+                environment.hud.show("blueCoin");
+            }
+        }
+    }
+
+    static class Pianta extends Actor {
+        public Pianta(String color, Point p, Environment e) {
+            super(p,e);
+            imageFetcher = () -> Images.getImage(color+"Pianta");
+        }
+    }
 
     static class Shadow extends Actor {
         Actor owner;

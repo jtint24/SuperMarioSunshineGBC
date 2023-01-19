@@ -13,9 +13,9 @@ public class Main implements Runnable {
 
         gameCanvas = new Canvas();
 
-        Player mario = new Player(new Point(22,22,8), gameEnvironment);
+        Player mario = new Player(new Point(30,30,1), gameEnvironment);
 
-        gameEnvironment = createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
+        gameEnvironment = createDelfinoPlaza(mario); //createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
 
         gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
 
@@ -35,6 +35,21 @@ public class Main implements Runnable {
 
         Main newMain = new Main();
         newMain.run();
+    }
+
+    public static Environment createDelfinoPlaza(Player player) {
+        Environment delfinoPlaza = new Environment(player, new Tile[100][100][10], null, gameCanvas, hud);
+        EnvironmentBuilder delfinoBuilder = new EnvironmentBuilder(delfinoPlaza);
+
+        delfinoBuilder.getFloor().makeGrass();
+
+        delfinoBuilder.getArea(30,45, 30,45).makePath();
+
+        delfinoBuilder.getArea(32, 37,24, 29, 0, 6).fillType(delfinoBuilder.wall);
+        delfinoBuilder.getArea(38, 43,24, 29, 0, 6).fillType(delfinoBuilder.wall);
+
+        delfinoBuilder.getArea().finalizeArea();
+        return delfinoPlaza;
     }
 
     public static Environment createBiancoHills(Player player) {
@@ -75,6 +90,10 @@ public class Main implements Runnable {
 
         biancoBuilder.getArea(35, 50, 40,47, 1,2).makePath();
 
+        // biancoBuilder.getArea(30, 70, 22, 23, 2,6).makeCliff();
+        biancoHills.addActorWithShadow(new ActorLibrary.Pianta("pink", new Point(55, 24, 2), biancoHills));
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(58, 23, 3), biancoHills));
+
 
 
         biancoBuilder.getArea().finalizeArea();
@@ -83,7 +102,6 @@ public class Main implements Runnable {
         biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey",new Point(29+2, 44,2), null, 28+2, 31+2,2));
         biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey",new Point(33+2, 44,2), null, 31+2, 34+2,2));
 
-        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(30, 40, 5), biancoHills));
 
 
         //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
