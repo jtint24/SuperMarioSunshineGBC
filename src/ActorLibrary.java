@@ -1,8 +1,28 @@
 public class ActorLibrary {
+    static class Shine extends Actor {
+        int initialZ;
+        int initialOffsetZ;
+        public Shine(Point p, Environment e) {
+            super(p,e);
+            initialZ = p.z;
+            initialOffsetZ = p.offsetZ;
+            imageFetcher = () -> Images.getImage("shineIcon");
+        }
+        @Override
+        void move() {
+            int offset = (int) Math.round( (8.0*Math.sin(((float)Application.frameCount)/10.0)) );
+            location.offsetZ = initialOffsetZ + offset;
+            location.z = initialZ;
+            updateOffsets();
+        }
+    }
+    static class Number {}
     static class Enemy extends MovingActor {
         boolean isBenign = false;
         int maxX;
         int minX;
+
+        public Enemy(Number one) {super(null,null, 0);}
 
         public Enemy(String name, Point p, Environment e, int minX, int maxX, int speed) {
             super(p,e,speed);
