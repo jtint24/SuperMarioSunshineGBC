@@ -15,7 +15,7 @@ public class Main implements Runnable {
 
         Player mario = new Player(new Point(30,30,1), gameEnvironment);
 
-        gameEnvironment = createDelfinoPlaza(mario); //createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
+        gameEnvironment = createBiancoHills(mario); //createCoronaMountain(mario); //createDelfinoPlaza(mario); //createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
 
         gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
 
@@ -31,6 +31,8 @@ public class Main implements Runnable {
         hud.addMeter("coin", coinMeter);
         hud.addMeter("blueCoin", blueCoinMeter);
 
+        hud.meters.get("blueCoin").incrementBy(3);
+
         hud.meterToShow = blueCoinMeter;
 
         Main newMain = new Main();
@@ -43,10 +45,29 @@ public class Main implements Runnable {
 
         delfinoBuilder.getFloor().makeGrass();
 
-        delfinoBuilder.getArea(30,45, 30,45).makePath();
+        delfinoBuilder.getArea(30,45, 30,40).makePath();
+        delfinoBuilder.getArea(34,41, 30,55).makePath();
 
-        delfinoBuilder.getArea(32, 37,24, 29, 0, 6).fillType(delfinoBuilder.wall);
-        delfinoBuilder.getArea(38, 43,24, 29, 0, 6).fillType(delfinoBuilder.wall);
+        delfinoBuilder.getArea(35, 41, 29, 32).makeWater();
+        delfinoBuilder.getArea(35,41,32,33,1,2).fillType(delfinoBuilder.grassEdge);
+        delfinoBuilder.getArea(36,37, 31, 32, 0, 3).makeFountain();
+        delfinoBuilder.getArea(39,40, 31, 32, 0, 3).makeFountain();
+
+
+        delfinoBuilder.getArea(32, 43,24, 29, 0, 6).fillType(delfinoBuilder.wall);
+        delfinoBuilder.getArea(37, 39, 29, 30, 0,1).makeSpout();
+
+        delfinoBuilder.getArea(46, 51, 33, 41, 0, 6).makeHouse();
+
+        delfinoBuilder.getArea(23, 28, 33, 41, 0, 6).makeHouse();
+
+
+        delfinoPlaza.addActor(new ActorLibrary.Pianta("blue", new Point(33,31, 1), delfinoPlaza));
+        delfinoPlaza.addActor(new ActorLibrary.Pianta("pink", new Point(38,35, 1), delfinoPlaza));
+        delfinoPlaza.addActor(new ActorLibrary.Pianta("orange", new Point(43,40, 1), delfinoPlaza));
+        delfinoPlaza.addActorWithShadow(new ActorLibrary.Shine(new Point(45, 43, 4), delfinoPlaza));
+
+
 
         delfinoBuilder.getArea().finalizeArea();
         return delfinoPlaza;
@@ -73,7 +94,10 @@ public class Main implements Runnable {
 
         biancoBuilder.getArea(10,17, 40,45, 2,6).makeHouse();
         biancoBuilder.getArea(20,25, 40,45, 2,7).makeHouse();
-        biancoBuilder.getArea(8, 27, 38, 47,1,2).makePath();
+
+        biancoBuilder.getArea(21, 24, 42,45, 8,9).placeCoins();
+
+        biancoBuilder.getArea(8, 27, 39, 48,1,2).makePath();
 
 
 
@@ -109,6 +133,27 @@ public class Main implements Runnable {
         return biancoHills;
     }
 
+    public static Environment createNokiBay(Player player) {
+        Environment nokiBay = new Environment(player, new Tile[100][100][10], null, gameCanvas, hud);
+
+        EnvironmentBuilder nokiBuilder = new EnvironmentBuilder(nokiBay);
+
+        nokiBuilder.getFloor().fillType(nokiBuilder.poison);
+
+        nokiBuilder.getArea(30, 35, 30, 35, 1,3).fillType(nokiBuilder.platform);
+
+        nokiBuilder.getArea(20, 25, 30, 35, 1,3).fillType(nokiBuilder.platform);
+
+        nokiBuilder.getArea(40, 45, 30, 35, 1,3).fillType(nokiBuilder.platform);
+
+
+        nokiBuilder.getArea(31, 34, 32, 35, 3,4).placeGoop();
+
+        nokiBuilder.getArea().finalizeArea();
+
+        return nokiBay;
+    }
+
     public static Environment createCoronaMountain(Player player) {
         Environment coronaMountain = new Environment(player, new Tile[100][100][10], null, gameCanvas, hud);
 
@@ -122,6 +167,8 @@ public class Main implements Runnable {
         coronaBuilder.getArea(20,26,20,24,1,6).makePlatform();
 
         coronaBuilder.getArea(22,30,29,32,1,6).makePlatform();
+
+        coronaMountain.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(27, 31, 8), coronaMountain));
 
         coronaBuilder.getArea(26,32,37,41,1,6).makePlatform();
 

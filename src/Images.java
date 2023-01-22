@@ -15,6 +15,10 @@ public class Images {
             "water4",
             "water5",
             "water6",
+            "poison1",
+            "poison2",
+            "poison3",
+            "poison4",
             "cliffT",
             "cliffM",
             "cliffB",
@@ -194,7 +198,16 @@ public class Images {
             "blueCoin4",
             "bluePianta",
             "orangePianta",
-            "pinkPianta"
+            "pinkPianta",
+            "fountainT1",
+            "fountainT2",
+            "fountainB1",
+            "fountainB2",
+            "spoutL1",
+            "spoutR1",
+            "spoutL2",
+            "spoutR2",
+
     };
 
     static Image getImage(String s) {

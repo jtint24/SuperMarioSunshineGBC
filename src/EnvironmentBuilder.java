@@ -17,6 +17,9 @@ public class EnvironmentBuilder {
     final TileType lava = new TileType("lava", true, true);
     final TileType platform = new TileType("platform", false, true);
     final TileType pole = new TileType("pole", true, true);
+    final TileType fountain = new TileType("fountain", false, true);
+    final TileType spout = new TileType("spout", true, true);
+    final TileType poison = new TileType("poison", true, true);
 
 
 
@@ -151,6 +154,15 @@ public class EnvironmentBuilder {
             e.tiles[midX][maxY-1][minZ].type = door;
         }
 
+        public void makeFountain() {
+            e.tiles[minX][minY][maxZ-1] = new Tile(new Point(minX,minY, maxZ-1), fountain, null);
+            e.tiles[minX][minY][maxZ-2] = new Tile(new Point(minX,minY, maxZ-2), fountain, null);
+        }
+        public void makeSpout() {
+            e.tiles[minX][minY][maxZ] = new Tile(new Point(minX,minY, maxZ), spout, null);
+            e.tiles[minX+1][minY][maxZ] = new Tile(new Point(minX+1,minY, maxZ), spout, null);
+        }
+
         public void makePlatform() {
             int midX = (maxX+minX)/2;
             int midY = (maxY+minY)/2;
@@ -198,12 +210,20 @@ public class EnvironmentBuilder {
                         }
                         t.imageFetcher = switch (t.type.name) {
                             case "water" -> () -> Images.getImage("water"+Application.frameNumber(320,6));
+                            case "poison" -> () -> Images.getImage("poison"+Application.frameNumber(320,4));
                             case "grass" -> {
                                 String coordinates = ""+(i+1)*(j+1)+""+(j+1)*(k+1)+""+(k+1)*(i+1);
                                 if (coordinates.hashCode() % 10 == 0) {
                                     yield () -> Images.getImage("grassDetail");
                                 } else {
                                     yield () -> Images.getImage("grass");
+                                }
+                            }
+                            case "fountain" -> {
+                                if (e.tileBelowIs(i,j,k, fountain)) {
+                                    yield () -> Images.getImage("fountainT"+Application.frameNumber(160, 2));
+                                } else {
+                                    yield () -> Images.getImage("fountainB"+Application.frameNumber(160, 2));
                                 }
                             }
                             case "lava" -> () -> Images.getImage("lava"+Application.frameNumber(640, 4));
@@ -318,7 +338,7 @@ public class EnvironmentBuilder {
                             }
                             case "door" -> () -> Images.getImage("door");
                             case "wall" -> {
-                                if (!(e.tileAboveIs(i, j, k, roof) || e.tileAboveIs(i, j, k, wall) || e.tileAboveIs(i, j, k, window) ||  e.tileAboveIs(i, j, k, awning) || e.tileAboveIs(i,j,k,door))) {
+                                if (!(e.tileAboveIs(i, j, k, roof) || e.tileAboveIs(i, j, k, wall) || e.tileAboveIs(i, j, k, window) ||  e.tileAboveIs(i, j, k, awning) || e.tileAboveIs(i,j,k,door) || e.tileAboveIs(i,j,k,spout))) {
                                     if (e.tileFrontIs(i,j,k, wall) && e.tileLeftIs(i,j,k,wall) && e.tileRightIs(i,j,k,wall) && e.tileBehindIs(i,j,k, wall) ) {
                                         yield () -> Images.getImage("wallTopMM");
                                     } else if (!e.tileFrontIs(i,j,k, wall) && e.tileLeftIs(i,j,k,wall) && e.tileRightIs(i,j,k,wall) && e.tileBehindIs(i,j,k, wall) ) {
@@ -340,8 +360,8 @@ public class EnvironmentBuilder {
                                     }
                                 }
 
-                                if ((e.tileBelowIs(i, j, k, wall) || e.tileBelowIs(i, j, k, window) ||  e.tileBelowIs(i, j, k, awning) || e.tileBelowIs(i,j,k,door))) {
-                                    if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door)) && (e.tileLeftIs(i, j, k, wall) || e.tileLeftIs(i, j, k, window) || e.tileLeftIs(i,j,k,door))) {
+                                if ((e.tileBelowIs(i, j, k, wall) || e.tileBelowIs(i, j, k, window) ||  e.tileBelowIs(i, j, k, awning) || e.tileBelowIs(i,j,k,door) || e.tileBelowIs(i,j,k,spout))) {
+                                    if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door)) && (e.tileLeftIs(i, j, k, wall) || e.tileLeftIs(i, j, k, window) || e.tileLeftIs(i,j,k,door) || e.tileLeftIs(i,j,k,spout))) {
                                         yield () -> Images.getImage("wallMM");
                                     } else if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door))) {
                                         yield () -> Images.getImage("wallML");
@@ -351,7 +371,7 @@ public class EnvironmentBuilder {
                                 } else {
                                     if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door)) && (e.tileLeftIs(i, j, k, wall) || e.tileLeftIs(i, j, k, window) || e.tileLeftIs(i,j,k,door))) {
                                         yield () -> Images.getImage("wallBM");
-                                    } else if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door))) {
+                                    } else if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door) || e.tileRightIs(i,j,k,spout))) {
                                         yield () -> Images.getImage("wallBL");
                                     } else {
                                         yield () -> Images.getImage("wallBR");
@@ -359,6 +379,13 @@ public class EnvironmentBuilder {
                                 }
                             }
                             case "window" -> () -> Images.getImage("window");
+                            case "spout" -> {
+                                if (e.tileRightIs(i,j,k, spout)) {
+                                    yield () -> Images.getImage("spoutL"+Application.frameNumber(160,2));
+                                } else {
+                                    yield () -> Images.getImage("spoutR"+Application.frameNumber(160,2));
+                                }
+                            }
                             case "awning" -> {
                                 if (e.tileRightIs(i,j,k, awning) && e.tileLeftIs(i,j,k,awning)) {
                                     yield () -> Images.getImage("awningM");
