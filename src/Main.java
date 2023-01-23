@@ -15,7 +15,7 @@ public class Main implements Runnable {
 
         Player mario = new Player(new Point(30,30,1), gameEnvironment);
 
-        gameEnvironment = createBiancoHills(mario); //createCoronaMountain(mario); //createDelfinoPlaza(mario); //createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
+        gameEnvironment = createDelfinoPlaza(mario); //createCoronaMountain(mario); //createDelfinoPlaza(mario); //createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
 
         gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
 
@@ -52,6 +52,12 @@ public class Main implements Runnable {
         delfinoBuilder.getArea(35,41,32,33,1,2).fillType(delfinoBuilder.grassEdge);
         delfinoBuilder.getArea(36,37, 31, 32, 0, 3).makeFountain();
         delfinoBuilder.getArea(39,40, 31, 32, 0, 3).makeFountain();
+
+        delfinoBuilder.getArea(37,38, 37, 38, 1, 2).fillType(delfinoBuilder.gaddBox);
+
+
+        delfinoBuilder.getArea(33,34, 33, 34, 1, 2).fillType(delfinoBuilder.gaddBox);
+
 
 
         delfinoBuilder.getArea(32, 43,24, 29, 0, 6).fillType(delfinoBuilder.wall);

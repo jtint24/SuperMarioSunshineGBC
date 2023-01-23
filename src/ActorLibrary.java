@@ -1,4 +1,27 @@
 public class ActorLibrary {
+
+    static class Sparkle extends MovingActor {
+        public Sparkle(Point location, Environment environment) {
+            super(location.randomize(), environment, 5);
+
+            imageFetcher = () -> Images.getImage("sparkle");
+            dz = 3;
+            dy = (int) Math.round(6.0*Math.random()-3.0);
+            dx = (int) Math.round(6.0*Math.random()-3.0);
+        }
+
+        @Override
+        void move() {
+            if (Application.frameCount % 2 == 0) {
+                applyGravity();
+            }
+            super.move();
+            this.updateOffsets();
+            if (onSolidGround()) {
+                environment.deleteActor(this);
+            }
+        }
+    }
     static class Shine extends Actor {
         int initialZ;
         int initialOffsetZ;
@@ -13,6 +36,9 @@ public class ActorLibrary {
             int offset = (int) Math.round( (8.0*Math.sin(((float)Application.frameCount)/10.0)) );
             location.offsetZ = initialOffsetZ + offset;
             location.z = initialZ;
+            if (Application.frameCount%10 == 0) {
+                environment.addActor(new Sparkle((Point) location.clone(),environment));
+            }
             updateOffsets();
         }
     }

@@ -207,7 +207,8 @@ public class Images {
             "spoutR1",
             "spoutL2",
             "spoutR2",
-
+            "sparkle",
+            "gaddBox"
     };
 
     static Image getImage(String s) {

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Point {
+public class Point implements Cloneable {
     int x;
     int y;
     int z;
@@ -73,5 +73,13 @@ public class Point {
     @Override
     public String toString() {
         return "("+x+":"+offsetX+", "+y+":"+offsetY+", "+z+":"+offsetZ+")";
+    }
+
+    public Object clone() {
+        return new Point(x,y,z, offsetX,offsetY, offsetZ);
+    }
+
+    public Point randomize() {
+        return new Point(x,y,z, (int)Math.round(offsetX+8*Math.random()-4)+8, (int)Math.round(offsetY+8*Math.random()-4), offsetZ);
     }
 }

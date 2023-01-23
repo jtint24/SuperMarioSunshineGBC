@@ -20,6 +20,7 @@ public class EnvironmentBuilder {
     final TileType fountain = new TileType("fountain", false, true);
     final TileType spout = new TileType("spout", true, true);
     final TileType poison = new TileType("poison", true, true);
+    final TileType gaddBox = new TileType("gaddBox", false, true);
 
 
 
@@ -386,6 +387,7 @@ public class EnvironmentBuilder {
                                     yield () -> Images.getImage("spoutR"+Application.frameNumber(160,2));
                                 }
                             }
+                            case "gaddBox"-> () -> Images.getImage("gaddBox");
                             case "awning" -> {
                                 if (e.tileRightIs(i,j,k, awning) && e.tileLeftIs(i,j,k,awning)) {
                                     yield () -> Images.getImage("awningM");
