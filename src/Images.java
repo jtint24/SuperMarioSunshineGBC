@@ -208,7 +208,17 @@ public class Images {
             "spoutL2",
             "spoutR2",
             "sparkle",
-            "gaddBox"
+            "gaddBox",
+            "sun1",
+            "sun2",
+            "smsLogo",
+            "pressA",
+            "flare1",
+            "flare2",
+            "flare3",
+            "copyright",
+            "cloudColumn",
+
     };
 
     static Image getImage(String s) {
@@ -227,5 +237,10 @@ public class Images {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static Image preparedImage(String name) {
+        BufferedImage unscaledImage = (BufferedImage) getImage(name);
+        return unscaledImage.getScaledInstance(unscaledImage.getWidth()*5, unscaledImage.getHeight()*5, Image.SCALE_DEFAULT);
     }
 }

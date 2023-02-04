@@ -18,6 +18,7 @@ public class Canvas extends JPanel {
         for (RenderedImage i : imagesToRenderCopy) {
             g.drawImage(i.image, i.x, i.y, null);
         }
+        this.setBackground(new Color(109, 166, 237));
 
     }
 
