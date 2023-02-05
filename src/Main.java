@@ -248,6 +248,8 @@ public class Main implements Runnable {
                 if (Application.keyData.getIsPressed(KeyEvent.VK_Z)) {
                     state = GameState.GAME;
                 }
+                Text t = new Text("delfino \nplaza",new Point(0,3,0));
+                t.render(null, gameCanvas);
             }
             Application.frameCount++;
             try {
