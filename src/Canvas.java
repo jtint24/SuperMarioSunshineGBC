@@ -7,7 +7,9 @@ public class Canvas extends JPanel {
     public Stack<RenderedImage> imagesToRender = new Stack<>();
 
     Canvas() {
+
         setPreferredSize(new Dimension(200, 200));
+        this.setBackground(new Color(109, 166, 237));
     }
 
     @Override
@@ -18,8 +20,6 @@ public class Canvas extends JPanel {
         for (RenderedImage i : imagesToRenderCopy) {
             g.drawImage(i.image, i.x, i.y, null);
         }
-        this.setBackground(new Color(109, 166, 237));
-
     }
 
 

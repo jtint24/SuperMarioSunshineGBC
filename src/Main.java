@@ -246,16 +246,41 @@ public class Main implements Runnable {
                 gameCanvas.clear();
                 showTitleScreen();
                 if (Application.keyData.getIsPressed(KeyEvent.VK_Z)) {
-                    state = GameState.GAME;
+                    state = GameState.MENU;
                 }
-                Text t = new Text("delfino \nplaza",new Point(0,3,0));
-                t.render(null, gameCanvas);
+            } else if (state == GameState.MENU) {
+                gameCanvas.clear();
+                showMenu();
             }
             Application.frameCount++;
             try {
                 Thread.sleep(40);
             } catch (InterruptedException ignored) {}
         }
+    }
+
+    public void showMenu() {
+        float i = Application.frameCount;
+
+        gameCanvas.setBackground(new Color(33,144,14));
+
+        for (int j = 2; j<6; j++) {
+            for (int k = 0; k<10; k++) {
+                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("greenBand"), k*16*5,j*5*16));
+            }
+        }
+
+        Text t = new Text("Bianco Hills", new Point(0,1,0), Text.Size.DOUBLETIGHT);
+        t.render(null, gameCanvas);
+        // Text t2 = new Text("Episode 1", new Point(0,5,0));
+        // t2.render(null, gameCanvas);
+
+
+        int shineY = nearest5((int) (5 * 48 + Math.round(16 * -Math.sin(i / 10.0))));
+
+        gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"),72*5-8*5,   shineY));
+
+        gameCanvas.repaint();
     }
 
     public void showTitleScreen() {
