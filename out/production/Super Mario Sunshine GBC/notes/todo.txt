@@ -2,18 +2,18 @@
 TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
 
 - [ ] Environments
-    - [ ] Make the environment builder
+    - [x] Make the environment builder
         - [x] Make cliffs
         - [x] Make lakes
         - [x] Make paths
         - [x] Make bridges
         - [x] Make buildings
         - [x] Make walls
-        - [ ] Make beaches
-    - [ ] Make Delfino Plaza
-    - [ ] Make Bianco Hills
-    - [ ] Make Corona Mountain
-    - [ ] Make Gelato Beach
+        - [x] Make beaches
+    - [x] Make Delfino Plaza
+    - [x] Make Bianco Hills
+    - [x] Make Corona Mountain
+    - [x] Make Gelato Beach
 - [ ] Interactivity
     - [x] Make the arrow keys move Mario
     - [x] Animate Mario
@@ -31,5 +31,13 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [x] Make a life count
     - [x] Make a coin count
     - [x] Make a blue coin count
+- [ ] Improvements
+    - [ ] Add pause menu
+        - [ ] Add FLUDD-Switching
+    - [ ] Add scalable Text
+    - [ ] Make shines collectable
+    - [ ] Make modular missions w/ shines
+    - [ ] Make the Mission Menu
+
 
 

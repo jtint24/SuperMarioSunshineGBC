@@ -272,7 +272,9 @@ public class Images {
             "zs",
             "greyBigShine",
             "bigShine",
-            "greenBand"
+            "greenBand",
+            "leftArrow",
+            "rightArrow"
     };
 
     static Image getImage(String s) {

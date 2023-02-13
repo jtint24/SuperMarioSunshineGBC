@@ -29,6 +29,9 @@ public class Text implements Renderable{
                 if (size == Size.DOUBLETIGHT) {
                     width = 40;
                 }
+                if (size == Size.SINGLE) {
+                    width = 40;
+                }
                 columnOffset += width;
                 columnNumber++;
                 continue;
@@ -36,7 +39,7 @@ public class Text implements Renderable{
             if (ch == '\n') {
                 lineNumber++;
                 columnNumber = 0;
-                columnOffset = 0;
+                columnOffset = location.x*80+ location.offsetX*5;
                 continue;
             }
             Image unscaledImage = Images.getImage("" + ch + (size == Size.SINGLE ? "s" : ""));
@@ -44,6 +47,12 @@ public class Text implements Renderable{
             Image scaledImage = unscaledImage.getScaledInstance(width, width, Image.SCALE_DEFAULT);
             if (ch == 'i' && size == Size.DOUBLETIGHT) {
                 columnOffset -= 15;
+            }
+            if (ch == 'l' && size == Size.DOUBLETIGHT) {
+                columnOffset -= 5;
+            }
+            if (size == Size.DOUBLETIGHT) {
+                width = 75;
             }
             c.imagesToRender.push(new RenderedImage(scaledImage,  columnOffset, location.y*80+location.offsetY*5+lineNumber*(width+5)));
             columnNumber++;
