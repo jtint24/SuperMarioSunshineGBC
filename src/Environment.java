@@ -394,4 +394,13 @@ public class Environment {
         actorsToAdd.add(shadow);
     }
 
+    public boolean hasActorType(Class c) {
+        for (Actor a : actors) {
+            if (a.getClass() == c) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -34,7 +34,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
 - [ ] Improvements
     - [ ] Add pause menu
         - [ ] Add FLUDD-Switching
-    - [ ] Add scalable Text
+    - [x] Add scalable Text
     - [ ] Make shines collectable
     - [ ] Make modular missions w/ shines
     - [ ] Make the Mission Menu
