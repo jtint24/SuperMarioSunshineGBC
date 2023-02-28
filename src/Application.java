@@ -9,15 +9,33 @@ public class Application extends JFrame {
         super(name);
     }
 
+
+    static void advanceFrame() {
+        if (Main.state != Main.GameState.PAUSE) {
+            frameCount++;
+        }
+        keyData.runFrame();
+    }
+
     static class KeyData {
         private final HashMap<Integer, Boolean> data = new HashMap<>();
+        private final HashMap<Integer, Boolean> typeData = new HashMap<>();
+
 
         void setPressed(int key) {
             data.put(key, true);
+            if (!typeData.containsKey(key)) {
+                typeData.put(key, true);
+            }
         }
 
         void setReleased(int key) {
             data.put(key, false);
+            typeData.remove(key);
+        }
+
+        void runFrame() {
+            typeData.replaceAll((k, v) -> false);
         }
 
         boolean getIsPressed(int key) {
@@ -26,10 +44,16 @@ public class Application extends JFrame {
             }
             return data.get(key);
         }
+        boolean getIsTyped(int key) {
+            if (!typeData.containsKey(key)) {
+                return false;
+            }
+            return typeData.get(key);
+        }
     }
 
     static int frameNumber(int duration, int frameCount) {
-        return ((int)(System.currentTimeMillis()/duration % frameCount))+1;
+        return ((int)(((float)Application.frameCount*40f)/((float)duration) % frameCount))+1;
     }
 
     static int frameNumber() {

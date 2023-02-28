@@ -8,7 +8,7 @@ public class Main implements Runnable {
     static Canvas gameCanvas;
     static HUD hud = new HUD();
 
-    static GameState state = GameState.TITLE;
+    static GameState state = GameState.GAME;
 
     public static void main(String[] args) {
         Images.initializeImages();
@@ -233,29 +233,41 @@ public class Main implements Runnable {
         boolean running = true;
         while (running) {
 
-            if (state == GameState.GAME) {
-                gameEnvironment.runFrame();
-                gameEnvironment.render();
+            switch (state) {
+                case GAME -> {
+                    gameEnvironment.runFrame();
+                    gameEnvironment.render();
 
-                hud.render(gameEnvironment.player.location, gameCanvas);
+                    hud.render(gameEnvironment.player.location, gameCanvas);
 
-                // System.out.println(gameEnvironment.player.location.toString());
-
-
-            } else if (state == GameState.TITLE) {
-                gameCanvas.clear();
-                showTitleScreen();
-                if (Application.keyData.getIsPressed(KeyEvent.VK_Z)) {
-                    state = GameState.MENU;
+                    // System.out.println(gameEnvironment.player.location.toString());
+                    if (Application.keyData.getIsTyped(KeyEvent.VK_ENTER)) {
+                        state = GameState.PAUSE;
+                    }
                 }
-            } else if (state == GameState.MENU) {
-                gameCanvas.clear();
-                showMenu();
+                case PAUSE -> {
+                    gameEnvironment.render();
+                    if (Application.keyData.getIsTyped(KeyEvent.VK_ENTER)) {
+                        state = GameState.GAME;
+                    }
+                }
+                case TITLE -> {
+                    gameCanvas.clear();
+                    showTitleScreen();
+                    if (Application.keyData.getIsPressed(KeyEvent.VK_Z)) {
+                        state = GameState.MENU;
+                    }
+                }
+                case MENU -> {
+                    gameCanvas.clear();
+                    showMenu();
+                }
             }
-            Application.frameCount++;
+            Application.advanceFrame();
             try {
-                Thread.sleep(40);
-            } catch (InterruptedException ignored) {}
+                    Thread.sleep(40);
+            } catch (InterruptedException ignored) {
+            }
         }
     }
 
@@ -334,7 +346,7 @@ public class Main implements Runnable {
     }
 
     enum GameState {
-        TITLE, GAME, MENU;
+        TITLE, GAME, MENU, PAUSE;
     }
 
 }
