@@ -1,14 +1,9 @@
 public class BiancoHillsMissions {
-    public static Environment makeBiancoHillsMissions() {
-        Mission coinsOfTheLake = new Mission("Coins of the Lake") {
-            @Override
-            boolean completionCriteria(Environment e) {
-                return e.hasActorType(ActorLibrary.Coin.class);
-            }
-        };
+    public static Mission[] makeBiancoHillsMissions() {
+        Mission coinsOfTheLake = new Mission("Test", Mission.Objectives.collectShine,Main.createDelfinoPlaza(Main.gameEnvironment.player) );
 
 
 
-        return null;
+        return new Mission[] {coinsOfTheLake};
     }
 }

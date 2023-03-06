@@ -24,22 +24,44 @@ public class ActorLibrary {
     }
     static class Shine extends Actor {
         int initialZ;
+
+        int initialX;
         int initialOffsetZ;
+        int initialOffsetX;
+        boolean collected = false;
         public Shine(Point p, Environment e) {
             super(p,e);
             initialZ = p.z;
+            initialX = p.x;
+            initialOffsetX = p.offsetX;
             initialOffsetZ = p.offsetZ;
             imageFetcher = () -> Images.getImage("shineIcon");
         }
         @Override
         void move() {
-            int offset = (int) Math.round( (8.0*Math.sin(((float)Application.frameCount)/10.0)) );
-            location.offsetZ = initialOffsetZ + offset;
-            location.z = initialZ;
-            if (Application.frameCount%10 == 0) {
-                environment.addActor(new Sparkle((Point) location.clone(),environment));
+
+            if (collected) {
+                int offset = (int) Math.round((4.0 * Math.sin(((float) Application.frameCount) / 10.0)));
+                location = Point.average(environment.player.location, this.location);
+                location.offsetZ += offset;
+                location.z++;
+
+            } else {
+                int offset = (int) Math.round((8.0 * Math.sin(((float) Application.frameCount) / 10.0)));
+                location.offsetZ = initialOffsetZ + offset;
+                location.z = initialZ;
+            }
+
+
+            if (Application.frameCount % 10 == 0) {
+                environment.addActor(new Sparkle((Point) location.clone(), environment));
             }
             updateOffsets();
+
+
+            if (location.distanceToSQ(environment.player.location) < 256) {
+                collected = true;
+            }
         }
     }
     static class Number {}

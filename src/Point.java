@@ -79,6 +79,14 @@ public class Point implements Cloneable {
         return new Point(x,y,z, offsetX,offsetY, offsetZ);
     }
 
+    public static Point average(Point a, Point b) {
+        int totalOffsetX = (a.x*16 + b.x*16 + b.offsetX + a.offsetX) / 2;
+        int totalOffsetY = (a.y*16 + b.y*16 + b.offsetY + a.offsetY) / 2;
+        int totalOffsetZ = (a.z*16 + b.z*16 + b.offsetZ + a.offsetZ) / 2;
+        Point p = new Point(totalOffsetX / 16, totalOffsetY / 16, totalOffsetZ / 16, totalOffsetX % 16, totalOffsetY % 16, totalOffsetZ % 16);
+        return p;
+    }
+
     public Point randomize() {
         return new Point(x,y,z, (int)Math.round(offsetX+8*Math.random()-4)+8, (int)Math.round(offsetY+8*Math.random()-4), offsetZ);
     }
