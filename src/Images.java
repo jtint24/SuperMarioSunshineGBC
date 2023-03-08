@@ -270,11 +270,13 @@ public class Images {
             "xs",
             "ys",
             "zs",
+            "!s",
             "greyBigShine",
             "bigShine",
             "greenBand",
             "leftArrow",
-            "rightArrow"
+            "rightArrow",
+
     };
 
     static Image getImage(String s) {

@@ -5,7 +5,6 @@ public class Player extends MovingActor  {
     Direction direction = Direction.DOWN;
     boolean moving = false;
     FluddType fluddType = FluddType.jet;
-
     private int flashingBeginFrame = -100;
 
     public Player(Point location, Environment e) {

@@ -1,14 +1,18 @@
+import javax.print.attribute.standard.MediaSize;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Main implements Runnable {
+    static Mission currentMission;
     static Environment gameEnvironment;
+    static Mission[] missions;
     static Canvas gameCanvas;
     static HUD hud = new HUD();
-
     static GameState state = GameState.GAME;
+
+    static int collectionFrame = 0;
 
     public static void main(String[] args) {
         Images.initializeImages();
@@ -16,8 +20,13 @@ public class Main implements Runnable {
         gameCanvas = new Canvas();
 
         Player mario = new Player(new Point(30, 30, 1), gameEnvironment);
+        missions = BiancoHillsMissions.makeBiancoHillsMissions(mario);
+        currentMission = missions[0];
 
-        gameEnvironment = createDelfinoPlaza(mario); //createCoronaMountain(mario); //createDelfinoPlaza(mario); //createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
+        gameEnvironment = currentMission.environment;
+
+
+                // createDelfinoPlaza(mario); //createCoronaMountain(mario); //createDelfinoPlaza(mario); //createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
 
         gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
 
@@ -236,6 +245,10 @@ public class Main implements Runnable {
             switch (state) {
                 case GAME -> {
                     gameEnvironment.runFrame();
+                    if (currentMission.isComplete()) {
+                        collectionFrame = Application.frameCount;
+                        state = GameState.SHINECOLLECTED;
+                    }
                     gameEnvironment.render();
 
                     hud.render(gameEnvironment.player.location, gameCanvas);
@@ -245,11 +258,23 @@ public class Main implements Runnable {
                         state = GameState.PAUSE;
                     }
                 }
+                case SHINECOLLECTED -> {
+                    gameEnvironment.render();
+                    gameEnvironment.player.move();
+
+
+                    if (Application.frameCount - collectionFrame > 100) {
+                        state = GameState.MENU;
+                    }
+
+                    (new Text("Shine Get!", new Point(3,1, 0))).render(null, gameCanvas);
+                }
                 case PAUSE -> {
                     gameEnvironment.render();
                     if (Application.keyData.getIsTyped(KeyEvent.VK_ENTER)) {
                         state = GameState.GAME;
                     }
+
                 }
                 case TITLE -> {
                     gameCanvas.clear();
@@ -346,7 +371,7 @@ public class Main implements Runnable {
     }
 
     enum GameState {
-        TITLE, GAME, MENU, PAUSE;
+        TITLE, GAME, MENU, PAUSE, SHINECOLLECTED;
     }
 
 }

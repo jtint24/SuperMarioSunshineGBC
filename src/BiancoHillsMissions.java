@@ -1,6 +1,6 @@
 public class BiancoHillsMissions {
-    public static Mission[] makeBiancoHillsMissions() {
-        Mission coinsOfTheLake = new Mission("Test", Mission.Objectives.collectShine,Main.createDelfinoPlaza(Main.gameEnvironment.player) );
+    public static Mission[] makeBiancoHillsMissions(Player player) {
+        Mission coinsOfTheLake = new Mission("Test", Mission.Objectives.collectShine, Main.createDelfinoPlaza(player) );
 
 
 

@@ -11,8 +11,8 @@ public class Mission {
         this.environment = environment;
     }
 
-    boolean isComplete(Environment e) {
-        boolean criteriaMet = objective.completionCriteria(e);
+    boolean isComplete() {
+        boolean criteriaMet = objective.completionCriteria(environment);
         if (criteriaMet) {
             hasBeenCompleted = true;
         }

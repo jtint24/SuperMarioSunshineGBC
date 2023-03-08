@@ -41,9 +41,12 @@ public class ActorLibrary {
         void move() {
 
             if (collected) {
-                int offset = (int) Math.round((4.0 * Math.sin(((float) Application.frameCount) / 10.0)));
+                int offsetZ = (int) Math.round((4.0 * Math.sin(((float) Application.frameCount) / 10.0)));
+                int offsetX = (int) Math.round((4.0 * Math.cos(((float) Application.frameCount) / 10.0)));
+
                 location = Point.average(environment.player.location, this.location);
-                location.offsetZ += offset;
+                location.offsetZ += offsetZ;
+                location.offsetX += offsetX;
                 location.z++;
 
             } else {
