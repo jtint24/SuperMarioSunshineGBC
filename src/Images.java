@@ -276,7 +276,8 @@ public class Images {
             "greenBand",
             "leftArrow",
             "rightArrow",
-
+            "marioShineGet",
+            "!"
     };
 
     static Image getImage(String s) {

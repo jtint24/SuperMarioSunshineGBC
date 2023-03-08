@@ -260,14 +260,15 @@ public class Main implements Runnable {
                 }
                 case SHINECOLLECTED -> {
                     gameEnvironment.render();
-                    gameEnvironment.player.move();
+                    gameEnvironment.player.applyGravity();
+
 
 
                     if (Application.frameCount - collectionFrame > 100) {
                         state = GameState.MENU;
                     }
 
-                    (new Text("Shine Get!", new Point(3,1, 0))).render(null, gameCanvas);
+                    (new Text("Shine Get!", new Point(1,1, 0), Text.Size.DOUBLETIGHT)).render(null, gameCanvas);
                 }
                 case PAUSE -> {
                     gameEnvironment.render();

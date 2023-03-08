@@ -11,6 +11,9 @@ public class Player extends MovingActor  {
         super(location, e, 3);
 
         imageFetcher = () -> {
+            if (Main.state.equals(Main.GameState.SHINECOLLECTED)) {
+                return Images.getImage("marioShineGet");
+            }
             String shadow = "";
             if (!environment.isUncovered(location)) {
                 shadow = "s";
