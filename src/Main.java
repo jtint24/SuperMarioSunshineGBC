@@ -260,7 +260,7 @@ public class Main implements Runnable {
                 }
                 case SHINECOLLECTED -> {
                     gameEnvironment.render();
-                    gameEnvironment.player.applyGravity();
+                    gameEnvironment.runLockedFrame();
 
 
 
@@ -308,7 +308,7 @@ public class Main implements Runnable {
             }
         }
 
-        Text t = new Text("Corona Mountain", new Point(0,1,0), Text.Size.DOUBLETIGHT);
+        Text t = new Text("bianco hills", new Point(0,1,0), Text.Size.DOUBLETIGHT);
         t.render(null, gameCanvas);
         Text t2 = new Text("The Road to The big\nwindmill", new Point(0,6,0,4,4,0));
         t2.render(null, gameCanvas);
@@ -317,7 +317,7 @@ public class Main implements Runnable {
         int shineY = nearest5((int) (5 * 48 + Math.round(16 * -Math.sin(i / 10.0))));
 
 
-        gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("flare"+Application.frameNumber(200,3)),72*5-8*5,   shineY));
+        gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("shineFlare"+Application.frameNumber(200,4)),72*5-8*5,   shineY));
 
 
         gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"),72*5-8*5,   shineY));

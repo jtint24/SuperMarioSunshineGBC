@@ -380,6 +380,24 @@ public class Environment {
         }
     }
 
+    public void runLockedFrame() {
+        for (Actor actor : actorsToRemove) {
+            actors.remove(actor);
+        }
+        actorsToRemove.clear();
+
+        actors.addAll(actorsToAdd);
+        actorsToAdd.clear();
+
+        for (Actor actor : actors) {
+            if (actor instanceof Player) {
+                actor.applyGravity();
+            } else {
+                actor.move();
+            }
+        }
+    }
+
     public void deleteActor(Actor a) {
         actorsToRemove.add(a);
     }

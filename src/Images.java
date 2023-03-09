@@ -277,7 +277,11 @@ public class Images {
             "leftArrow",
             "rightArrow",
             "marioShineGet",
-            "!"
+            "!",
+            "shineFlare1",
+            "shineFlare2",
+            "shineFlare3",
+            "shineFlare4"
     };
 
     static Image getImage(String s) {
