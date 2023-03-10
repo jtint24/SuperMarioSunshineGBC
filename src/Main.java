@@ -11,7 +11,7 @@ public class Main implements Runnable {
     static Canvas gameCanvas;
     static HUD hud = new HUD();
     static GameState state = GameState.GAME;
-
+    static int missionIdx = 0;
     static int collectionFrame = 0;
 
     public static void main(String[] args) {
@@ -19,8 +19,7 @@ public class Main implements Runnable {
 
         gameCanvas = new Canvas();
 
-        Player mario = new Player(new Point(30, 30, 1), gameEnvironment);
-        missions = BiancoHillsMissions.makeBiancoHillsMissions(mario);
+        missions = BiancoHillsMissions.makeBiancoHillsMissions();
         currentMission = missions[0];
 
         gameEnvironment = currentMission.environment;
@@ -28,7 +27,7 @@ public class Main implements Runnable {
 
                 // createDelfinoPlaza(mario); //createCoronaMountain(mario); //createDelfinoPlaza(mario); //createBiancoHills(mario); //createGelatoBeach(mario); //createBiancoHills(mario);
 
-        gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
+        // gameEnvironment.actors.add(new ActorLibrary.Shadow(mario, gameEnvironment));
 
         gameEnvironment.render();
 
@@ -299,6 +298,7 @@ public class Main implements Runnable {
 
     public void showMenu() {
         float i = Application.frameCount;
+        Mission selectedMission = missions[missionIdx];
 
         gameCanvas.setBackground(new Color(33,144,14));
 
@@ -308,9 +308,9 @@ public class Main implements Runnable {
             }
         }
 
-        Text t = new Text("bianco hills", new Point(0,1,0), Text.Size.DOUBLETIGHT);
+        Text t = new Text("bianco hills", new Point(0,0,0, 0, 8, 0), Text.Size.DOUBLETIGHT);
         t.render(null, gameCanvas);
-        Text t2 = new Text("The Road to The big\nwindmill", new Point(0,6,0,4,4,0));
+        Text t2 = new Text(currentMission.name, new Point(0,6,0,4,4,0));
         t2.render(null, gameCanvas);
 
 
@@ -320,13 +320,25 @@ public class Main implements Runnable {
         gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("shineFlare"+Application.frameNumber(200,4)),72*5-8*5,   shineY));
 
 
-        gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"),72*5-8*5,   shineY));
+        if (currentMission.hasBeenCompleted) {
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"), 72 * 5 - 8 * 5, shineY));
+        } else {
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("greyBigShine"), 72 * 5 - 8 * 5, shineY));
+        }
 
         gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("leftArrow"),shineY-180,   260));
         gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("rightArrow"),920-shineY,   260));
 
 
         gameCanvas.repaint();
+
+        if (Application.keyData.getIsPressed(KeyEvent.VK_LEFT)) {
+            missionIdx = Math.max(0, missionIdx-1);
+        }
+        if (Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
+            missionIdx = Math.min(missions.length - 1, missionIdx + 1);
+        }
+
     }
 
     public void showTitleScreen() {

@@ -21,11 +21,12 @@ public class Environment {
         if (_actors != null) {
             actors.addAll(_actors);
         }
-        actors.add(player);
+        addActorWithShadow(player);
 
         for (Actor actor : actors) {
             actor.environment = this;
         }
+
     }
 
     Tile[] adjacentTiles(int x, int y, int z) {
