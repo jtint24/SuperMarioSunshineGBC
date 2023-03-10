@@ -310,7 +310,7 @@ public class Main implements Runnable {
 
         Text t = new Text("bianco hills", new Point(0,0,0, 0, 8, 0), Text.Size.DOUBLETIGHT);
         t.render(null, gameCanvas);
-        Text t2 = new Text(currentMission.name, new Point(0,6,0,4,4,0));
+        Text t2 = new Text(selectedMission.name, new Point(0,6,0,4,4,0));
         t2.render(null, gameCanvas);
 
 
@@ -320,23 +320,42 @@ public class Main implements Runnable {
         gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("shineFlare"+Application.frameNumber(200,4)),72*5-8*5,   shineY));
 
 
-        if (currentMission.hasBeenCompleted) {
+        if (selectedMission.hasBeenCompleted) {
             gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"), 72 * 5 - 8 * 5, shineY));
         } else {
             gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("greyBigShine"), 72 * 5 - 8 * 5, shineY));
         }
 
-        gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("leftArrow"),shineY-180,   260));
-        gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("rightArrow"),920-shineY,   260));
+        if (missionIdx != 0) {
+            if (missions[missionIdx-1].hasBeenCompleted) {
+                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"), 72 * 2 - 8 * 5, shineY));
+            } else {
+                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("greyBigShine"), 72 * 2 - 8 * 5, shineY));
+            }
 
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("leftArrow"),shineY-180,   260));
+
+        }
+
+        if (missionIdx != missions.length-1) {
+            if (missions[missionIdx+1].hasBeenCompleted) {
+                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"), 72 * 8 - 8 * 5, shineY));
+            } else {
+                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("greyBigShine"), 72 * 8 - 8 * 5, shineY));
+            }
+
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("rightArrow"),920-shineY,   260));
+        }
 
         gameCanvas.repaint();
 
-        if (Application.keyData.getIsPressed(KeyEvent.VK_LEFT)) {
+        if (Application.keyData.getIsTyped(KeyEvent.VK_LEFT)) {
             missionIdx = Math.max(0, missionIdx-1);
+            System.out.println(missionIdx+" left");
         }
-        if (Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
+        if (Application.keyData.getIsTyped(KeyEvent.VK_RIGHT)) {
             missionIdx = Math.min(missions.length - 1, missionIdx + 1);
+            System.out.println(missionIdx+" right");
         }
 
     }
