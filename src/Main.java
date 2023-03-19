@@ -315,9 +315,10 @@ public class Main implements Runnable {
 
 
         int shineY = nearest5((int) (5 * 48 + Math.round(16 * -Math.sin(i / 10.0))));
+        int sideShineY = nearest5((int) (5 * 48 + 8 + Math.round(8 * -Math.sin(i / 10.0))));
 
 
-        gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("shineFlare"+Application.frameNumber(200,4)),72*5-8*5,   shineY));
+        gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("shineFlare"+Application.frameNumber(200,3)),72*5-16*5,   shineY-8*5));
 
 
         if (selectedMission.hasBeenCompleted) {
@@ -328,23 +329,23 @@ public class Main implements Runnable {
 
         if (missionIdx != 0) {
             if (missions[missionIdx-1].hasBeenCompleted) {
-                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"), 72 * 2 - 8 * 5, shineY));
+                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"), 72 * 2 - 8 * 5, sideShineY));
             } else {
-                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("greyBigShine"), 72 * 2 - 8 * 5, shineY));
+                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("greyBigShine"), 72 * 2 - 8 * 5, sideShineY));
             }
 
-            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("leftArrow"),shineY-180,   260));
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("leftArrow"),shineY-200,   260));
 
         }
 
         if (missionIdx != missions.length-1) {
             if (missions[missionIdx+1].hasBeenCompleted) {
-                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"), 72 * 8 - 8 * 5, shineY));
+                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("bigShine"), 72 * 8 - 8 * 5, sideShineY));
             } else {
-                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("greyBigShine"), 72 * 8 - 8 * 5, shineY));
+                gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("greyBigShine"), 72 * 8 - 8 * 5, sideShineY));
             }
 
-            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("rightArrow"),920-shineY,   260));
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("rightArrow"),940-shineY,   260));
         }
 
         gameCanvas.repaint();
@@ -356,6 +357,10 @@ public class Main implements Runnable {
         if (Application.keyData.getIsTyped(KeyEvent.VK_RIGHT)) {
             missionIdx = Math.min(missions.length - 1, missionIdx + 1);
             System.out.println(missionIdx+" right");
+        }
+        if (Application.keyData.getIsTyped(KeyEvent.VK_Z)) {
+            currentMission = selectedMission;
+            state = GameState.GAME;
         }
 
     }
