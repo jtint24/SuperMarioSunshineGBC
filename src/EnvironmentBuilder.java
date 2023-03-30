@@ -1,26 +1,26 @@
 import java.util.Arrays;
 
 public class EnvironmentBuilder {
-    final TileType water = new TileType("water", true, true);
-    final TileType cliff = new TileType("cliff",true, true);
-    final TileType grass = new TileType("grass", true, true);
-    final TileType path = new TileType("path", true, true);
-    final TileType bridge = new TileType("bridge", false, true);
-    final TileType grassEdge = new TileType("grassEdge", false, false);
-    final TileType wall = new TileType("wall", true, true);
-    final TileType roof = new TileType("roof", false, true);
-    final TileType awning = new TileType("awning", true, true);
-    final TileType window = new TileType("window", true, true);
-    final TileType door = new TileType("door", true, true);
-    final TileType sand = new TileType("sand", true, true);
-    final TileType beach = new TileType("beach", true, true);
-    final TileType lava = new TileType("lava", true, true);
-    final TileType platform = new TileType("platform", false, true);
-    final TileType pole = new TileType("pole", true, true);
-    final TileType fountain = new TileType("fountain", false, true);
-    final TileType spout = new TileType("spout", true, true);
-    final TileType poison = new TileType("poison", true, true);
-    final TileType gaddBox = new TileType("gaddBox", false, true);
+    static final TileType water = new TileType("water", true, true);
+    static final TileType cliff = new TileType("cliff",true, true);
+    static final TileType grass = new TileType("grass", true, true);
+    static final TileType path = new TileType("path", true, true);
+    static final TileType bridge = new TileType("bridge", false, true);
+    static final TileType grassEdge = new TileType("grassEdge", false, false);
+    static final TileType wall = new TileType("wall", true, true);
+    static final TileType roof = new TileType("roof", false, true);
+    static final TileType awning = new TileType("awning", true, true);
+    static final TileType window = new TileType("window", true, true);
+    static final TileType door = new TileType("door", true, true);
+    static final TileType sand = new TileType("sand", true, true);
+    static final TileType beach = new TileType("beach", true, true);
+    static final TileType lava = new TileType("lava", true, true);
+    static final TileType platform = new TileType("platform", false, true);
+    static final TileType pole = new TileType("pole", true, true);
+    static final TileType fountain = new TileType("fountain", false, true);
+    static final TileType spout = new TileType("spout", true, true);
+    static final TileType poison = new TileType("poison", true, true);
+    static final TileType gaddBox = new TileType("gaddBox", false, true);
 
 
 

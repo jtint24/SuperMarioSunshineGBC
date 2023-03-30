@@ -89,11 +89,22 @@ public class Player extends MovingActor  {
             dx = 0;
             dy = 0;
         }
+        checkFluddRecharge();
 
         applyGravity();
 
+
         updateOffsets();
         // System.out.println(location.z+" "+ location.offsetZ+" +/-: "+dz);
+    }
+
+    public void checkFluddRecharge() {
+        if (environment.tileBelowIs(location.x, location.y, location.z, EnvironmentBuilder.water)) {
+            environment.hud.waterLevel++;
+            if (environment.hud.waterLevel > 100) {
+                environment.hud.waterLevel = 100;
+            }
+        }
     }
 
     @Override
