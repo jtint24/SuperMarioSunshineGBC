@@ -360,6 +360,8 @@ public class Main implements Runnable {
         }
         if (Application.keyData.getIsTyped(KeyEvent.VK_Z)) {
             currentMission = selectedMission;
+            gameEnvironment = selectedMission.environment;
+            selectedMission.initialize();
             state = GameState.GAME;
         }
 

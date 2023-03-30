@@ -422,4 +422,12 @@ public class Environment {
         return false;
     }
 
+    public ActorLibrary.Shine getShine() {
+        for (Actor a : actors) {
+            if (a instanceof ActorLibrary.Shine) {
+                return (ActorLibrary.Shine)a;
+            }
+        }
+        return null;
+    }
 }

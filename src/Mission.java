@@ -19,6 +19,16 @@ public class Mission {
         return hasBeenCompleted;
     }
 
+    void initialize() {
+        environment.player.location = new Point(20,20,10);
+        System.out.println("Actor list: ");
+        for (Actor a : environment.actors ) {
+            System.out.println("- "+a);
+        }
+        assert environment.player.environment == environment;
+        // environment.getShine().location = new Point(30,30, 7);
+    }
+
 
     interface Objective {
         boolean completionCriteria(Environment e);
