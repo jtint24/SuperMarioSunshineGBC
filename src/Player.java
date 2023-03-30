@@ -15,7 +15,7 @@ public class Player extends MovingActor  {
                 return Images.getImage("marioShineGet");
             }
             String shadow = "";
-            if (!environment.isUncovered(location)) {
+            if (!environment.isUncovered(getLocation())) {
                 shadow = "s";
             }
             if (!onSolidGround()) {
@@ -24,6 +24,10 @@ public class Player extends MovingActor  {
                 return moving ? Images.getImage(shadow+"mario" + direction.charCode() + Application.frameNumber()) : Images.getImage(shadow+"mario" + direction.charCode() + "2");
             }
         };
+    }
+
+    private Point getLocation() {
+        return location;
     }
 
     @Override
