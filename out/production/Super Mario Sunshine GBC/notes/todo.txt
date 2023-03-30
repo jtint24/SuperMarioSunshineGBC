@@ -49,7 +49,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [x] Make the Mission Menu
         - [ ] Make it so you can't go back to missions you've completed or make missions reset at least
     - [ ] Playability enhancements
-        - [ ] Make shadows get smaller for higher-up Actors
+        - [x] Make shadows get smaller for higher-up Actors
         - [x] Make Mario recharge FLUDD while in water
         - [ ] Give Mario new sprites while in water
         - [ ] Add new swimming physics? May not be necessary

@@ -15,13 +15,19 @@ public class Player extends MovingActor  {
                 return Images.getImage("marioShineGet");
             }
             String shadow = "";
+            String wetness = "";
+            if (environment.tileBelowIs(getLocation().x, getLocation().y, getLocation().z, EnvironmentBuilder.water)) {
+                wetness = "W";
+            }
             if (!environment.isUncovered(getLocation())) {
                 shadow = "s";
+                wetness = "";
             }
+
             if (!onSolidGround()) {
-                return Images.getImage(shadow+"mario"+direction.charCode()+"J");
+                return Images.getImage(shadow+"mario"+wetness+direction.charCode()+"J");
             } else {
-                return moving ? Images.getImage(shadow+"mario" + direction.charCode() + Application.frameNumber()) : Images.getImage(shadow+"mario" + direction.charCode() + "2");
+                return moving ? Images.getImage(shadow+"mario" + wetness + direction.charCode() + Application.frameNumber()) : Images.getImage(shadow+"mario" + wetness + direction.charCode() + "2");
             }
         };
     }
