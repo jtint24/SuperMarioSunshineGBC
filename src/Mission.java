@@ -20,12 +20,8 @@ public class Mission {
     }
 
     void initialize() {
-        environment.player.location = new Point(20,20,10);
-        System.out.println("Actor list: ");
-        for (Actor a : environment.actors ) {
-            System.out.println("- "+a);
-        }
-        assert environment.player.environment == environment;
+        // environment.player.location = new Point(20,20,10);
+
         // environment.getShine().location = new Point(30,30, 7);
     }
 

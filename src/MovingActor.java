@@ -41,17 +41,23 @@ public class MovingActor extends Actor {
         location.offsetY += dy;
         location.offsetX += dx;
 
+        updateOffsets();
+
         if (dy < 0 && !canMoveBack()) {
             location.offsetY -= dy;
+            dy = 0;
         }
         if (dy > 0 && !canMoveFront()) {
             location.offsetY -= dy;
+            dy = 0;
         }
         if (dx > 0 && !canMoveRight()) {
             location.offsetX -= dx;
+            dx = 0;
         }
         if (dx < 0 && !canMoveLeft()) {
             location.offsetX -= dx;
+            dx = 0;
         }
         updateOffsets();
     }
