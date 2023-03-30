@@ -51,9 +51,10 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [ ] Playability enhancements
         - [x] Make shadows get smaller for higher-up Actors
         - [x] Make Mario recharge FLUDD while in water
-        - [ ] Give Mario new sprites while in water
+        - [x] Give Mario new sprites while in water
         - [ ] Add new swimming physics? May not be necessary
         - [ ] Add 'ceiling' at top of tile array
+        - [ ] Make shines appear under certain conditions
 
 
 

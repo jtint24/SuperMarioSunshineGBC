@@ -38,6 +38,29 @@ public class Actor implements Renderable {
             location.z -= 1;
             location.offsetZ += 16;
         }
+
+        if (location.x > 99) {
+            location.x = 99;
+            location.offsetX = 15;
+        }
+        if (location.x < 1) {
+            location.x = 1;
+            location.offsetX = -15;
+        }
+
+        if (location.y > 99) {
+            location.y = 99;
+            location.offsetY = 15;
+        }
+        if (location.y < 1) {
+            location.y = 1;
+            location.offsetY = -15;
+        }
+        if (location.z > 9) {
+            location.z = 9;
+            location.offsetZ = 15;
+        }
+
     }
 
     public void applyGravity() {
