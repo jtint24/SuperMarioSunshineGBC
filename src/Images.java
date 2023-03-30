@@ -281,7 +281,9 @@ public class Images {
             "shineFlare1",
             "shineFlare2",
             "shineFlare3",
-            "shineFlare4"
+            "shineFlare4",
+            "smallShadow",
+            "tinyShadow"
     };
 
     static Image getImage(String s) {

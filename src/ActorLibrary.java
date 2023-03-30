@@ -178,7 +178,20 @@ public class ActorLibrary {
 
             this.owner = owner;
 
-            imageFetcher = () -> Images.getImage("shadow");
+            imageFetcher = () -> {
+                int yDifference = getOwner().location.z - this.location.z;
+                if (yDifference < 2) {
+                    return Images.getImage("shadow");
+                } else if (yDifference < 4) {
+                    return Images.getImage("smallShadow");
+                } else {
+                    return Images.getImage("tinyShadow");
+                }
+            };
+        }
+
+        public Actor getOwner() {
+            return owner;
         }
 
         @Override

@@ -35,9 +35,25 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
     - [x] Add pause menu
         - [ ] Add FLUDD-Switching
     - [x] Add scalable Text
-    - [ ] Make shines collectable
+    - [x] Make shines collectable
     - [ ] Make modular missions w/ shines
-    - [ ] Make the Mission Menu
+        - [ ] Mission 1
+        - [ ] Mission 2
+        - [ ] Mission 3
+        - [ ] Mission 4
+        - [ ] Mission 5
+        - [ ] Mission 6
+        - [ ] Mission 7
+        - [ ] Mission 8
+        - [ ] At least 15 minutes of playtime
+    - [x] Make the Mission Menu
+        - [ ] Make it so you can't go back to missions you've completed or make missions reset at least
+    - [ ] Playability enhancements
+        - [ ] Make shadows get smaller for higher-up Actors
+        - [x] Make Mario recharge FLUDD while in water
+        - [ ] Give Mario new sprites while in water
+        - [ ] Add new swimming physics? May not be necessary
+        - [ ] Add 'ceiling' at top of tile array
 
 
 
