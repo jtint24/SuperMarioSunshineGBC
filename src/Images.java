@@ -305,7 +305,12 @@ public class Images {
             "shineFlare3",
             "shineFlare4",
             "smallShadow",
-            "tinyShadow"
+            "tinyShadow",
+            "pauseBG",
+            "squirt",
+            "squirtS",
+            "hover",
+            "hoverS"
     };
 
     static Image getImage(String s) {

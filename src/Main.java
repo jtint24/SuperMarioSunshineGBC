@@ -274,6 +274,13 @@ public class Main implements Runnable {
                     if (Application.keyData.getIsTyped(KeyEvent.VK_ENTER)) {
                         state = GameState.GAME;
                     }
+                    if (Application.keyData.getIsPressed(KeyEvent.VK_LEFT)) {
+                        gameEnvironment.player.fluddType = Player.FluddType.squirt;
+                    }
+                    if (Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
+                        gameEnvironment.player.fluddType = Player.FluddType.jet;
+                    }
+                    renderPauseMenu();
 
                 }
                 case TITLE -> {
@@ -294,6 +301,28 @@ public class Main implements Runnable {
             } catch (InterruptedException ignored) {
             }
         }
+    }
+
+    private void renderPauseMenu() {
+        Text pauseHeader = new Text("pause", new Point(2,1,0,8,0,0), Text.Size.DOUBLE);
+        pauseHeader.render(null, gameCanvas);
+
+        gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("pauseBG"), 3*5*16, 3*5*16));
+
+        Text nozzleSubhead;
+        if (gameEnvironment.player.fluddType == Player.FluddType.squirt) {
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("squirtS"), 3 * 5 * 16 + 40, 3 * 5 * 16 + 40));
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("hover"), 5 * 5 * 16, 3 * 5 * 16 + 40));
+            nozzleSubhead = new Text("squirt", new Point(3,5,0,4,4,0));
+        } else {
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("squirt"), 3 * 5 * 16 + 40, 3 * 5 * 16 + 40));
+            gameCanvas.imagesToRender.push(new RenderedImage(Images.preparedImage("hoverS"), 5 * 5 * 16, 3 * 5 * 16 + 40));
+            nozzleSubhead = new Text("hover", new Point(3,5,0,8,4,0));
+        }
+
+        nozzleSubhead.render(null, gameCanvas);
+
+
     }
 
     public void showMenu() {
