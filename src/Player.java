@@ -11,7 +11,7 @@ public class Player extends MovingActor  {
         super(location, e, 3);
 
         imageFetcher = () -> {
-            if (Main.state.equals(Main.GameState.SHINECOLLECTED)) {
+            if (Main.state.equals(Main.GameState.SHINE_COLLECTED)) {
                 return Images.getImage("marioShineGet");
             }
             String shadow = "";
@@ -125,6 +125,10 @@ public class Player extends MovingActor  {
             environment.hud.lifeLevel--;
             flashingBeginFrame = Application.frameCount;
         }
+    }
+
+    void setFlashingBeginFrame(int fr) {
+        flashingBeginFrame = fr;
     }
 
     enum FluddType {

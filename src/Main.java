@@ -1,4 +1,3 @@
-import javax.print.attribute.standard.MediaSize;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -13,6 +12,7 @@ public class Main implements Runnable {
     static GameState state = GameState.GAME;
     static int missionIdx = 0;
     static int collectionFrame = 0;
+    static int deathFrame = 0;
 
     public static void main(String[] args) {
         Images.initializeImages();
@@ -246,7 +246,7 @@ public class Main implements Runnable {
                     gameEnvironment.runFrame();
                     if (currentMission.isComplete()) {
                         collectionFrame = Application.frameCount;
-                        state = GameState.SHINECOLLECTED;
+                        state = GameState.SHINE_COLLECTED;
                     }
                     gameEnvironment.render();
 
@@ -256,8 +256,11 @@ public class Main implements Runnable {
                     if (Application.keyData.getIsTyped(KeyEvent.VK_ENTER)) {
                         state = GameState.PAUSE;
                     }
+                    if (hud.lifeLevel == 0) {
+                        state = GameState.DEATH;
+                    }
                 }
-                case SHINECOLLECTED -> {
+                case SHINE_COLLECTED -> {
                     gameEnvironment.render();
                     gameEnvironment.runLockedFrame();
 
@@ -268,6 +271,16 @@ public class Main implements Runnable {
                     }
 
                     (new Text("Shine Get!", new Point(1,1, 0), Text.Size.DOUBLETIGHT)).render(null, gameCanvas);
+                }
+                case DEATH -> {
+                    gameCanvas.clear();
+                    renderDeath();
+                    if (Application.keyData.getIsPressed(KeyEvent.VK_ENTER) || Application.keyData.getIsPressed(KeyEvent.VK_Z)) {
+                        hud.lifeLevel = 8;
+                        state = GameState.MENU;
+                    }
+
+                    gameCanvas.setBackground(Color.DARK_GRAY);
                 }
                 case PAUSE -> {
                     gameEnvironment.render();
@@ -301,6 +314,15 @@ public class Main implements Runnable {
             } catch (InterruptedException ignored) {
             }
         }
+    }
+
+    private void renderDeath() {
+        Text deathHeader = new Text("game over", new Point(1,1,0,0,0,0), Text.Size.DOUBLETIGHT);
+        deathHeader.render(null, gameCanvas);
+        gameEnvironment.player.direction = Direction.DOWN;
+        gameEnvironment.player.setFlashingBeginFrame(-100);
+        gameEnvironment.player.render(gameEnvironment.player.location, gameCanvas);
+
     }
 
     private void renderPauseMenu() {
@@ -439,7 +461,7 @@ public class Main implements Runnable {
     }
 
     enum GameState {
-        TITLE, GAME, MENU, PAUSE, SHINECOLLECTED;
+        TITLE, GAME, MENU, PAUSE, SHINE_COLLECTED, DEATH;
     }
 
 }
