@@ -31,6 +31,9 @@ public class Mission {
     }
 
     static class Objectives {
+        public static Objective collectCoins = (Environment e) -> {
+            return !e.hasActorType(ActorLibrary.Coin.class);
+        };
         static Objective collectShine = (Environment e) -> {
             for (Actor actor : e.actors) {
                 if (actor instanceof ActorLibrary.Shine) {

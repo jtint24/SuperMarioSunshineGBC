@@ -55,7 +55,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [ ] Add new swimming physics? May not be necessary
         - [x] Add 'ceiling' at top of tile array
         - [ ] Make shines appear under certain conditions
-        - [ ] Make Mario killable
+        - [x] Make Mario killable
 
 
 

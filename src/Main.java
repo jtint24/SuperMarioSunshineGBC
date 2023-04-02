@@ -80,7 +80,8 @@ public class Main implements Runnable {
         delfinoPlaza.addActor(new ActorLibrary.Pianta("blue", new Point(33, 31, 1), delfinoPlaza));
         delfinoPlaza.addActor(new ActorLibrary.Pianta("pink", new Point(38, 35, 1), delfinoPlaza));
         delfinoPlaza.addActor(new ActorLibrary.Pianta("orange", new Point(43, 40, 1), delfinoPlaza));
-        delfinoPlaza.addActorWithShadow(new ActorLibrary.Shine(new Point(45, 43, 4), delfinoPlaza));
+        delfinoPlaza.addActorWithShadow(new ActorLibrary.Coin(new Point(45, 45, 1), delfinoPlaza));
+        delfinoPlaza.addActorWithShadow(new ActorLibrary.Shine(new Point(45, 43, 4), delfinoPlaza, Mission.Objectives.collectCoins));
 
 
         delfinoBuilder.getArea().finalizeArea();

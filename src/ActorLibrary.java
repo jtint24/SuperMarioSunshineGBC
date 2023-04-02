@@ -29,16 +29,24 @@ public class ActorLibrary {
         int initialOffsetZ;
         int initialOffsetX;
         boolean collected = false;
-        public Shine(Point p, Environment e) {
+        boolean active = false;
+
+        Mission.Objective objective;
+        public Shine(Point p, Environment e, Mission.Objective objective) {
             super(p,e);
             initialZ = p.z;
             initialX = p.x;
             initialOffsetX = p.offsetX;
             initialOffsetZ = p.offsetZ;
             imageFetcher = () -> Images.getImage("shineIcon");
+            this.objective = objective;
         }
         @Override
         void move() {
+
+            if (objective.completionCriteria(environment)) {
+                active = true;
+            }
 
             if (collected) {
                 int offsetZ = (int) Math.round((4.0 * Math.sin(((float) Application.frameCount) / 10.0)));
@@ -56,14 +64,21 @@ public class ActorLibrary {
             }
 
 
-            if (Application.frameCount % 10 == 0) {
+            if (Application.frameCount % 10 == 0 && active) {
                 environment.addActor(new Sparkle((Point) location.clone(), environment));
             }
             updateOffsets();
 
 
-            if (location.distanceToSQ(environment.player.location) < 256) {
+            if (location.distanceToSQ(environment.player.location) < 256 && active) {
                 collected = true;
+            }
+        }
+
+        @Override
+        public void render(Point p, Canvas c) {
+            if (active) {
+                super.render(p,c);
             }
         }
     }
@@ -204,6 +219,11 @@ public class ActorLibrary {
 
         @Override
         public void render(Point p, Canvas c) {
+            if (owner instanceof Shine) { // Makes sure invisible shines (that aren't supposed to be there yet) don't cast shadows
+                if (!((Shine) owner).active) {
+                    return;
+                }
+            }
             if (!owner.onSolidGround()) {
                 super.render(p,c);
             }
