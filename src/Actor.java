@@ -39,8 +39,8 @@ public class Actor implements Renderable {
             location.offsetZ += 16;
         }
 
-        if (location.x > 99) {
-            location.x = 99;
+        if (location.x > 98) {
+            location.x = 98;
             location.offsetX = 15;
         }
         if (location.x < 1) {
@@ -48,8 +48,8 @@ public class Actor implements Renderable {
             location.offsetX = -15;
         }
 
-        if (location.y > 99) {
-            location.y = 99;
+        if (location.y > 90) {
+            location.y = 90;
             location.offsetY = 15;
         }
         if (location.y < 1) {

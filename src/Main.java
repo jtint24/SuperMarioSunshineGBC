@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 
 public class Main implements Runnable {
     static Mission currentMission;
@@ -40,7 +39,6 @@ public class Main implements Runnable {
         HUD.Meter blueCoinMeter = new HUD.Meter(Images.getImage("blueCoinIcon"));
 
         hud.addMeter("coin", coinMeter);
-        coinMeter.incrementBy(90);
         hud.addMeter("blueCoin", blueCoinMeter);
 
         hud.meters.get("blueCoin").incrementBy(3);
@@ -95,6 +93,13 @@ public class Main implements Runnable {
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
         biancoBuilder.getFloor().makeGrass();
+
+        biancoBuilder.getArea(0,100,0,2,0,6).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(0,2,0,100,0,6).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(98,100,0,100,0,6).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(0,100,87,89,0,6).fillType(EnvironmentBuilder.wall);
+
+
 
         biancoBuilder.getArea(0, 100, 25, 30).makeWater();
         biancoBuilder.getArea(0, 100, 30, 100, 1, 2).makeGrass();
