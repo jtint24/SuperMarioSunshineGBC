@@ -8,6 +8,8 @@ class HUD implements Renderable {
     float waterLevel = 100;
     int lifeLevel = 1;
 
+    int oneUpFrame = -100;
+
     public HUD() {}
 
     @Override
@@ -28,6 +30,15 @@ class HUD implements Renderable {
         c.imagesToRender.push(new RenderedImage(Images.getImage("fludd"+dispWaterLevel).getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 560));
         c.imagesToRender.push(new RenderedImage(Images.getImage("h2oIcon").getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 600));
         c.imagesToRender.push(new RenderedImage(Images.getImage("life"+lifeLevel).getScaledInstance(80,80,Image.SCALE_DEFAULT), 710, 10));
+
+        if (meters.get("coin").getValue() == 99) {
+            lifeLevel = 8;
+            oneUpFrame = Application.frameCount;
+            show("coin");
+        }
+        if (Application.frameCount - oneUpFrame < 100 && meters.get("coin").count > 0) {
+            meters.get("coin").deincrement();
+        }
     }
 
     void show(String name) {
@@ -51,6 +62,7 @@ class HUD implements Renderable {
         public void increment() {
             count++;
         }
+        public void deincrement() { count--; }
         public void clear() {
             count = 0;
         }
@@ -61,7 +73,11 @@ class HUD implements Renderable {
             return count % 10;
         }
         private int getDigit2() {
-            return count / 10;
+            return (count / 10) % 10;
+        }
+
+        public int getValue() {
+            return count;
         }
 
         @Override

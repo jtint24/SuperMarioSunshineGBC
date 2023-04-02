@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class Main implements Runnable {
     static Mission currentMission;
@@ -39,6 +40,7 @@ public class Main implements Runnable {
         HUD.Meter blueCoinMeter = new HUD.Meter(Images.getImage("blueCoinIcon"));
 
         hud.addMeter("coin", coinMeter);
+        coinMeter.incrementBy(90);
         hud.addMeter("blueCoin", blueCoinMeter);
 
         hud.meters.get("blueCoin").incrementBy(3);
