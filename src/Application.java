@@ -7,6 +7,8 @@ public class Application extends JFrame {
 
     Application(String name) {
         super(name);
+        this.setIconImage(Images.getImage("shineIcon"));
+
     }
 
 

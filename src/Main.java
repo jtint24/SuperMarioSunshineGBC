@@ -35,13 +35,14 @@ public class Main implements Runnable {
 
         frame.setContentPane(gameCanvas);
 
+        frame.setIconImage(Images.preparedImage("shineIcon"));
+
+
         HUD.Meter coinMeter = new HUD.Meter(Images.getImage("coinIcon"));
         HUD.Meter blueCoinMeter = new HUD.Meter(Images.getImage("blueCoinIcon"));
 
         hud.addMeter("coin", coinMeter);
         hud.addMeter("blueCoin", blueCoinMeter);
-
-        hud.meters.get("blueCoin").incrementBy(3);
 
         hud.meterToShow = blueCoinMeter;
 
@@ -94,6 +95,7 @@ public class Main implements Runnable {
 
         biancoBuilder.getFloor().makeGrass();
 
+        // Boundary walls
         biancoBuilder.getArea(0,100,0,2,0,6).fillType(EnvironmentBuilder.wall);
         biancoBuilder.getArea(0,2,0,100,0,6).fillType(EnvironmentBuilder.wall);
         biancoBuilder.getArea(98,100,0,100,0,6).fillType(EnvironmentBuilder.wall);
@@ -122,29 +124,72 @@ public class Main implements Runnable {
         biancoBuilder.getArea(8, 27, 39, 48, 1, 2).makePath();
 
 
-        biancoBuilder.getArea(30, 37, 0, 40, 2, 6).fillType(biancoBuilder.wall);
+        // Big chunky wall
+        biancoBuilder.getArea(30, 37, 28, 60, 2, 6).fillType(biancoBuilder.wall);
+
+        // Northern wall
+
         biancoBuilder.getArea(0, 100, 20, 22, 2, 6).fillType(biancoBuilder.wall);
 
 
         biancoBuilder.getArea(11, 16, 39, 40, 2, 3).placeCoins();
         biancoBuilder.getArea(14, 19, 28, 29, 2, 4).placeShadowDelicateCoinArch();
 
-        biancoBuilder.getArea(11, 20, 51, 61, 2, 3).placeGoop();
-        biancoBuilder.getArea(10, 21, 49, 61, 1, 2).makePath();
+        // Path up to the houses
+
+        biancoBuilder.getArea(16, 22, 47,87,1,2).fillType(EnvironmentBuilder.path);
+
+        // First goop the player encounters
+
+        biancoBuilder.getArea(17, 21, 45,47, 2,3).placeGoop();
+
+        // Coins on the first path
+
+        biancoBuilder.getArea(18,20, 50,53,2,3).placeCoins();
+
+        // Coins leading up to the bridge
+
+        biancoBuilder.getArea(19, 21, 30, 33, 2, 3).placeCoins();
+
+        // Wall that stops you from going from pokey area to shine area
+
+        biancoBuilder.getArea(47, 49, 20,  27, 2, 6).fillType(EnvironmentBuilder.wall);
+
+        // East 2 short building
+
+        biancoBuilder.getArea(38, 45, 38, 44, 2, 6).makeHouse();
+
+        // Coin trail to shine
+
+        biancoBuilder.getArea(44, 55, 33,34, 2,3).placeCoins();
+
+        // Bridge to shine
+
+        biancoBuilder.getArea(56, 60, 26, 31, 1,2).fillType(EnvironmentBuilder.bridge);
+
+        // Final shine
+        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(58, 23, 5), biancoHills, Mission.Objectives.clearedImmediately));
+
 
 
         biancoBuilder.getArea(35, 50, 40, 47, 1, 2).makePath();
 
         // biancoBuilder.getArea(30, 70, 22, 23, 2,6).makeCliff();
         biancoHills.addActorWithShadow(new ActorLibrary.Pianta("pink", new Point(55, 24, 2), biancoHills));
-        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(58, 23, 3), biancoHills));
 
 
         biancoBuilder.getArea().finalizeArea();
 
-        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(25 + 2, 44, 2), null, 25 + 2, 28 + 2, 2));
-        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(29 + 2, 44, 2), null, 28 + 2, 31 + 2, 2));
-        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(33 + 2, 44, 2), null, 31 + 2, 34 + 2, 2));
+
+        // Northern pokeys
+
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(20, 24, 2), null, 18, 24, 1));
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(25, 23, 2), null, 23, 27, 1));
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(26, 24, 2), null, 24, 30, 1));
+
+        // Northern blue coin
+
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(6,24,4), null));
 
 
         //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
@@ -260,7 +305,7 @@ public class Main implements Runnable {
 
                     hud.render(gameEnvironment.player.location, gameCanvas);
 
-                    // System.out.println(gameEnvironment.player.location.toString());
+                    System.out.println(gameEnvironment.player.location.toString());
                     if (Application.keyData.getIsTyped(KeyEvent.VK_ENTER)) {
                         state = GameState.PAUSE;
                     }

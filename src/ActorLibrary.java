@@ -22,9 +22,26 @@ public class ActorLibrary {
             }
         }
     }
+
+    static class CoinSparkle extends Actor {
+        private int deleteFrame = -100;
+        public CoinSparkle(Point location, Environment environment) {
+            super(location, environment);
+            imageFetcher = () -> {
+                return Images.getImage("sparkle"+Application.frameNumber(160, 2));
+            };
+            deleteFrame = Application.frameCount + 5;
+        }
+
+        @Override
+        void move() {
+            if (deleteFrame == Application.frameCount) {
+                environment.deleteActor(this);
+            }
+        }
+    }
     static class Shine extends Actor {
         int initialZ;
-
         int initialX;
         int initialOffsetZ;
         int initialOffsetX;
@@ -157,6 +174,7 @@ public class ActorLibrary {
         void move() {
             if (environment.player.location.distanceToSQ(location) < 256) {
                 environment.deleteActor(this);
+                environment.addActor(new CoinSparkle(location, environment));
                 environment.hud.meters.get("coin").increment();
                 environment.hud.show("coin");
             }

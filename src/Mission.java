@@ -42,6 +42,7 @@ public class Mission {
             }
             return false;
         };
+        public static Objective clearedImmediately = (Environment e) -> true;
 
     }
 }

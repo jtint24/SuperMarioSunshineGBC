@@ -310,7 +310,9 @@ public class Images {
             "squirt",
             "squirtS",
             "hover",
-            "hoverS"
+            "hoverS",
+            "sparkle1",
+            "sparkle2"
     };
 
     static Image getImage(String s) {

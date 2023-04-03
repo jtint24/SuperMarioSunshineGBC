@@ -137,7 +137,7 @@ public class Environment {
     void renderActors() {
         boolean playerCovered = false;
         for (Actor actor : actors) {
-            if (isUncovered(actor.location)) {
+            if (isUncovered(actor.location) || actor instanceof ActorLibrary.CoinSparkle) {
                 actor.render(player.location, canvas);
             } else {
                 if (actor instanceof Player) {
