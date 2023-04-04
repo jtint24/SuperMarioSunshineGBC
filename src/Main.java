@@ -83,6 +83,7 @@ public class Main implements Runnable {
         delfinoPlaza.addActor(new ActorLibrary.Pianta("orange", new Point(43, 40, 1), delfinoPlaza));
         delfinoPlaza.addActorWithShadow(new ActorLibrary.Coin(new Point(45, 45, 1), delfinoPlaza));
         delfinoPlaza.addActorWithShadow(new ActorLibrary.Shine(new Point(45, 43, 4), delfinoPlaza, Mission.Objectives.collectCoins));
+        //delfinoPlaza.addActorWithShadow(new ActorLibrary.Shine(new Point(18, 7, 9), delfinoPlaza, Mission.Objectives.clearGoop));
 
 
         delfinoBuilder.getArea().finalizeArea();
@@ -141,7 +142,7 @@ public class Main implements Runnable {
 
         // First goop the player encounters
 
-        biancoBuilder.getArea(17, 21, 45,47, 2,3).placeGoop();
+        // biancoBuilder.getArea(17, 21, 45,47, 2,3).placeGoop();
 
         // Coins on the first path
 
@@ -168,7 +169,7 @@ public class Main implements Runnable {
         biancoBuilder.getArea(56, 60, 26, 31, 1,2).fillType(EnvironmentBuilder.bridge);
 
         // Final shine for level 1
-        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(58, 23, 5), biancoHills, Mission.Objectives.clearedImmediately));
+        // biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(58, 23, 5), biancoHills, Mission.Objectives.clearedImmediately));
 
         // LEVEL 2
         // Northern cliffs
@@ -189,8 +190,13 @@ public class Main implements Runnable {
         biancoBuilder.getArea(21,24,10, 14, 2,3).placeGoop();
         biancoBuilder.getArea(18,21,12, 14, 2,3).placeGoop();
 
+
+        // Some Northwestern coins
+        biancoBuilder.getArea(8, 9, 7,8, 6, 7).placeCoinArch();
+
+
         // House goop
-        biancoBuilder.getArea(8, 10, 12, 14, 6,7).placeGoop();
+        biancoBuilder.getArea(8, 11, 13, 15, 6,7).placeGoop();
 
         // Cliff Goop
         biancoBuilder.getArea(18,25,7,9,5,6).placeGoop();
@@ -198,6 +204,9 @@ public class Main implements Runnable {
         // Cliff Blue Coin
         biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(18,3,8),null));
 
+
+        // Shine for Level 2
+        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(16, 7, 8), null, Mission.Objectives.clearGoop));
 
 
         biancoBuilder.getArea(35, 50, 40, 47, 1, 2).makePath();

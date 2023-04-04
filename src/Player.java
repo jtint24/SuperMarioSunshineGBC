@@ -64,13 +64,13 @@ public class Player extends MovingActor  {
             if (fluddType == FluddType.squirt) {
                 Point loc = new Point(location.x, location.y, location.z, location.offsetX, location.offsetY, 16);
                 int wdx = switch (direction) {
-                    case LEFT -> -5 + dx;
-                    case RIGHT -> 5 + dx;
+                    case LEFT -> -4 + dx;
+                    case RIGHT -> 4 + dx;
                     default -> 0;
                 };
                 int wdy = switch (direction) {
-                    case UP -> -5 + dy;
-                    case DOWN -> 5 + dy;
+                    case UP -> -4 + dy;
+                    case DOWN -> 4 + dy;
                     default -> 0;
                 };
 
