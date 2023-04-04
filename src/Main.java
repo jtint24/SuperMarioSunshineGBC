@@ -90,13 +90,13 @@ public class Main implements Runnable {
     }
 
     public static Environment createBiancoHills(Player player) {
-        Environment biancoHills = new Environment(player, new Tile[100][100][10], null, gameCanvas, hud);
+        Environment biancoHills = new Environment(player, new Tile[100][100][11], null, gameCanvas, hud);
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
         biancoBuilder.getFloor().makeGrass();
 
         // Boundary walls
-        biancoBuilder.getArea(0,100,0,2,0,6).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(0,100,0,2,8,10).fillType(EnvironmentBuilder.wall);
         biancoBuilder.getArea(0,2,0,100,0,6).fillType(EnvironmentBuilder.wall);
         biancoBuilder.getArea(98,100,0,100,0,6).fillType(EnvironmentBuilder.wall);
         biancoBuilder.getArea(0,100,87,89,0,6).fillType(EnvironmentBuilder.wall);
@@ -129,7 +129,7 @@ public class Main implements Runnable {
 
         // Northern wall
 
-        biancoBuilder.getArea(0, 100, 20, 22, 2, 6).fillType(biancoBuilder.wall);
+        biancoBuilder.getArea(0, 80, 20, 22, 2, 6).fillType(biancoBuilder.wall);
 
 
         biancoBuilder.getArea(11, 16, 39, 40, 2, 3).placeCoins();
@@ -167,8 +167,36 @@ public class Main implements Runnable {
 
         biancoBuilder.getArea(56, 60, 26, 31, 1,2).fillType(EnvironmentBuilder.bridge);
 
-        // Final shine
+        // Final shine for level 1
         biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(58, 23, 5), biancoHills, Mission.Objectives.clearedImmediately));
+
+        // LEVEL 2
+        // Northern cliffs
+        biancoBuilder.getArea(0, 100, 0,10,2,5).fillType(EnvironmentBuilder.cliff);
+        biancoBuilder.getArea(0, 100, 0,9,0,5).fillType(EnvironmentBuilder.grass);
+
+        biancoBuilder.getArea(0, 100, 0,5,5,8).fillType(EnvironmentBuilder.cliff);
+        biancoBuilder.getArea(0, 100, 0,4,0,8).fillType(EnvironmentBuilder.grass);
+
+
+        // Northern house
+
+        biancoBuilder.getArea(7,12,11,15, 2, 6).makeHouse();
+
+        // Northern goop
+
+        biancoBuilder.getArea(15,18,10, 14, 2,3).placeGoop();
+        biancoBuilder.getArea(21,24,10, 14, 2,3).placeGoop();
+        biancoBuilder.getArea(18,21,12, 14, 2,3).placeGoop();
+
+        // House goop
+        biancoBuilder.getArea(8, 10, 12, 14, 6,7).placeGoop();
+
+        // Cliff Goop
+        biancoBuilder.getArea(18,25,7,9,5,6).placeGoop();
+
+        // Cliff Blue Coin
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(18,3,8),null));
 
 
 
@@ -189,7 +217,16 @@ public class Main implements Runnable {
 
         // Northern blue coin
 
-        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(6,24,4), null));
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(6,24,6), null));
+
+        // Short east 3 house blue coin
+
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(39, 45, 4), null));
+
+        // Short east 2 house piantas
+
+        biancoHills.addActorWithShadow(new ActorLibrary.Pianta("blue", new Point(40,47, 2), null));
+        biancoHills.addActorWithShadow(new ActorLibrary.Pianta("orange", new Point(42,47, 2), null));
 
 
         //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
