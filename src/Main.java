@@ -293,22 +293,46 @@ public class Main implements Runnable {
         Environment biancoHills = createBiancoHills(player);
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
-        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(79, 8, 5), null, 78, 82, 2));
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(79, 7, 5), null, 78, 82, 2));
+
+
+        // Blue coin off to the right
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(90, 7, 10), null));
+
+        // Goop protecting coin
+        biancoBuilder.getArea(87,91, 5,10, 5,6).placeGoop();
+
 
         // Big wall that hides obstacles
         biancoBuilder.getArea(50, 74, 7,9,5, 9).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(50, 58, 7,9,5, 10).fillType(EnvironmentBuilder.wall);
 
 
-
+        // First obstacle
         biancoBuilder.getArea(67,68, 5,7,5,6).fillType(EnvironmentBuilder.wall);
 
+
+        // Second obstacle
         biancoBuilder.getArea(60,62, 5,7,5,8).fillType(EnvironmentBuilder.wall);
 
-        biancoBuilder.getArea(56,57, 5,7,6,7).fillType(EnvironmentBuilder.wall);
+        // Platform that has blue coin
+        biancoBuilder.getArea(55,57, 5,7,7,8).fillType(EnvironmentBuilder.wall);
 
-        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(56,5,7), null));
+        // Under-area coins
+        biancoBuilder.getArea(55,56,5,7,5,6).placeCoins();
+
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(56,6,8), null));
 
         biancoBuilder.getArea().finalizeArea();
+
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(51,5,5), null, 47,49, 2));
+
+
+        // Shine
+        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(45, 6, 8), null, Mission.Objectives.collectCoins));
+        // Patch wall tile visual glitch
+
+        biancoHills.tiles[57][8][8].imageFetcher = () -> Images.getImage("wallMR");
 
         return  biancoHills;
     }

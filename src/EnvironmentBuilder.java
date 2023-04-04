@@ -361,6 +361,7 @@ public class EnvironmentBuilder {
                                     }
                                 }
 
+
                                 if ((e.tileBelowIs(i, j, k, wall) || e.tileBelowIs(i, j, k, window) ||  e.tileBelowIs(i, j, k, awning) || e.tileBelowIs(i,j,k,door) || e.tileBelowIs(i,j,k,spout))) {
                                     if ((e.tileRightIs(i, j, k, wall) || e.tileRightIs(i, j, k, window) || e.tileRightIs(i,j,k,door)) && (e.tileLeftIs(i, j, k, wall) || e.tileLeftIs(i, j, k, window) || e.tileLeftIs(i,j,k,door) || e.tileLeftIs(i,j,k,spout))) {
                                         yield () -> Images.getImage("wallMM");

@@ -36,10 +36,10 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Add FLUDD-Switching
     - [x] Add scalable Text
     - [x] Make shines collectable
-    - [ ] Make modular missions w/ shines
-        - [ ] Mission 1
-        - [ ] Mission 2
-        - [ ] Mission 3
+    - [x] Make modular missions w/ shines
+        - [x] Mission 1
+        - [x] Mission 2
+        - [x] Mission 3
         - [ ] Mission 4
         - [ ] Mission 5
         - [ ] Mission 6
