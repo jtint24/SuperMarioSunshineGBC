@@ -120,7 +120,7 @@ public class Main implements Runnable {
         biancoBuilder.getArea(10, 17, 40, 45, 2, 6).makeHouse();
         biancoBuilder.getArea(20, 25, 40, 45, 2, 7).makeHouse();
 
-        biancoBuilder.getArea(21, 24, 42, 45, 8, 9).placeCoins();
+        // biancoBuilder.getArea(21, 24, 42, 45, 8, 9).placeCoins();
 
         biancoBuilder.getArea(8, 27, 39, 48, 1, 2).makePath();
 
@@ -133,8 +133,6 @@ public class Main implements Runnable {
         biancoBuilder.getArea(0, 80, 20, 22, 2, 6).fillType(biancoBuilder.wall);
 
 
-        biancoBuilder.getArea(11, 16, 39, 40, 2, 3).placeCoins();
-        biancoBuilder.getArea(14, 19, 28, 29, 2, 4).placeShadowDelicateCoinArch();
 
         // Path up to the houses
 
@@ -146,11 +144,11 @@ public class Main implements Runnable {
 
         // Coins on the first path
 
-        biancoBuilder.getArea(18,20, 50,53,2,3).placeCoins();
+        // biancoBuilder.getArea(18,20, 50,53,2,3).placeCoins();
 
         // Coins leading up to the bridge
 
-        biancoBuilder.getArea(19, 21, 30, 33, 2, 3).placeCoins();
+        // biancoBuilder.getArea(19, 21, 30, 33, 2, 3).placeCoins();
 
         // Wall that stops you from going from pokey area to shine area
 
@@ -160,9 +158,6 @@ public class Main implements Runnable {
 
         biancoBuilder.getArea(38, 45, 38, 44, 2, 6).makeHouse();
 
-        // Coin trail to shine
-
-        biancoBuilder.getArea(44, 55, 33,34, 2,3).placeCoins();
 
         // Bridge to shine
 
@@ -184,30 +179,8 @@ public class Main implements Runnable {
 
         biancoBuilder.getArea(7,12,11,15, 2, 6).makeHouse();
 
-        // Northern goop
-
-        biancoBuilder.getArea(15,18,10, 14, 2,3).placeGoop();
-        biancoBuilder.getArea(21,24,10, 14, 2,3).placeGoop();
-        biancoBuilder.getArea(18,21,12, 14, 2,3).placeGoop();
-
-
-        // Some Northwestern coins
-        biancoBuilder.getArea(8, 9, 7,8, 6, 7).placeCoinArch();
-
-
-        // House goop
-        biancoBuilder.getArea(8, 11, 13, 15, 6,7).placeGoop();
-
-        // Cliff Goop
-        biancoBuilder.getArea(18,25,7,9,5,6).placeGoop();
-
-        // Cliff Blue Coin
-        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(18,3,8),null));
-
 
         // Shine for Level 2
-        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(16, 7, 8), null, Mission.Objectives.clearGoop));
-
 
         biancoBuilder.getArea(35, 50, 40, 47, 1, 2).makePath();
 
@@ -224,13 +197,6 @@ public class Main implements Runnable {
         biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(25, 23, 2), null, 23, 27, 1));
         biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(26, 24, 2), null, 24, 30, 1));
 
-        // Northern blue coin
-
-        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(6,24,6), null));
-
-        // Short east 3 house blue coin
-
-        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(39, 45, 4), null));
 
         // Short east 2 house piantas
 
@@ -241,6 +207,110 @@ public class Main implements Runnable {
         //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
 
         return biancoHills;
+    }
+
+
+    public static Environment createBiancoHillsMission1(Player player) {
+        Environment biancoHills = createBiancoHills(player);
+
+        EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
+
+        biancoBuilder.getArea(17, 21, 45,47, 2,3).placeGoop();
+
+        // Coins on the first path
+
+        biancoBuilder.getArea(18,20, 50,53,2,3).placeCoins();
+
+        // Coins leading up to the bridge
+
+        biancoBuilder.getArea(19, 21, 30, 33, 2, 3).placeCoins();
+
+
+        biancoBuilder.getArea(11, 16, 39, 40, 2, 3).placeCoins();
+
+
+        // Bridge arch
+        biancoBuilder.getArea(14, 19, 28, 29, 2, 4).placeShadowDelicateCoinArch();
+
+
+        // Coin trail to shine
+
+        biancoBuilder.getArea(44, 55, 33,34, 2,3).placeCoins();
+
+        // Coins on top of the house
+
+        biancoBuilder.getArea(21, 24, 42, 45, 8, 9).placeCoins();
+
+        // Northern blue coin
+
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(6,24,6), null));
+
+        // Short east 3 house blue coin
+
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(39, 45, 4), null));
+
+
+        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(58, 23, 5), biancoHills, Mission.Objectives.clearedImmediately));
+
+
+
+        return biancoHills;
+    }
+
+    public static Environment createBiancoHillsMission2(Player player) {
+        Environment biancoHills = createBiancoHills(player);
+
+        EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
+
+        // Northern goop
+
+        biancoBuilder.getArea(15,18,10, 14, 2,3).placeGoop();
+        biancoBuilder.getArea(21,24,10, 14, 2,3).placeGoop();
+        biancoBuilder.getArea(18,21,12, 14, 2,3).placeGoop();
+
+        // Some Northwestern coins
+        biancoBuilder.getArea(8, 9, 7,8, 6, 7).placeCoinArch();
+
+        // Some northwestern coins after the cliff goop
+        biancoBuilder.getArea(28, 29, 7,8, 6, 7).placeCoinArch();
+
+
+        // House goop
+        biancoBuilder.getArea(8, 11, 13, 15, 6,7).placeGoop();
+
+        // Cliff Goop
+        biancoBuilder.getArea(18,25,7,9,5,6).placeGoop();
+
+        // Cliff Blue Coin
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(18,3,8),null));
+
+        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(16, 7, 8), null, Mission.Objectives.clearGoop));
+
+        return biancoHills;
+    }
+
+    public static Environment createBiancoHillsMission3(Player player) {
+        Environment biancoHills = createBiancoHills(player);
+        EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
+
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(79, 8, 5), null, 78, 82, 2));
+
+        // Big wall that hides obstacles
+        biancoBuilder.getArea(50, 74, 7,9,5, 9).fillType(EnvironmentBuilder.wall);
+
+
+
+        biancoBuilder.getArea(67,68, 5,7,5,6).fillType(EnvironmentBuilder.wall);
+
+        biancoBuilder.getArea(60,62, 5,7,5,8).fillType(EnvironmentBuilder.wall);
+
+        biancoBuilder.getArea(56,57, 5,7,6,7).fillType(EnvironmentBuilder.wall);
+
+        biancoHills.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(56,5,7), null));
+
+        biancoBuilder.getArea().finalizeArea();
+
+        return  biancoHills;
     }
 
     public static Environment createNokiBay(Player player) {
@@ -334,6 +404,8 @@ public class Main implements Runnable {
         });
         return frame;
     }
+
+
 
     @Override
     public void run() {
