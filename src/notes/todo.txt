@@ -45,7 +45,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [ ] Mission 6
         - [ ] Mission 7
         - [ ] Mission 8
-        - [ ] At least 15 minutes of playtime
+        - [ ] At least 10 minutes of playtime
     - [x] Make the Mission Menu
         - [ ] Make it so you can't go back to missions you've completed or make missions reset at least
     - [ ] Playability enhancements
@@ -56,6 +56,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Add 'ceiling' at top of tile array
         - [x] Make shines appear under certain conditions
         - [x] Make Mario killable
+        - [x] Add flower tiles
 
 
 

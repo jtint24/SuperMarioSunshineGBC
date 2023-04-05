@@ -216,6 +216,8 @@ public class EnvironmentBuilder {
                                 String coordinates = ""+(i+1)*(j+1)+""+(j+1)*(k+1)+""+(k+1)*(i+1);
                                 if (coordinates.hashCode() % 10 == 0) {
                                     yield () -> Images.getImage("grassDetail");
+                                } else if (coordinates.hashCode() % 50 == 1) {
+                                    yield () -> Images.getImage("flowerTile");
                                 } else {
                                     yield () -> Images.getImage("grass");
                                 }

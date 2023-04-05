@@ -40,7 +40,7 @@ public class Main implements Runnable {
 
         HUD.Meter coinMeter = new HUD.Meter(Images.getImage("coinIcon"));
         HUD.Meter blueCoinMeter = new HUD.Meter(Images.getImage("blueCoinIcon"));
-        HUD.Meter redCoinMeter = new HUD.Meter(Images.getImage("redCoin1"));
+        HUD.Meter redCoinMeter = new HUD.Meter(Images.getImage("redCoin2"));
 
 
         hud.addMeter("coin", coinMeter);
@@ -192,6 +192,38 @@ public class Main implements Runnable {
         biancoHills.addActorWithShadow(new ActorLibrary.Pianta("pink", new Point(55, 24, 2), biancoHills));
 
 
+        // Level 4
+
+        // hollow wall for red coin
+
+        biancoBuilder.getArea(30, 50,60,62,2,6).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(52, 80,60,62,2,6).fillType(EnvironmentBuilder.wall);
+
+        biancoBuilder.getArea(30, 80,64,66,2,6).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(30, 36,60,66,2,6).fillType(EnvironmentBuilder.wall);
+
+
+        // Windmill village plaza area
+
+        biancoBuilder.getArea(52, 80, 38, 51, 1,2).fillType(EnvironmentBuilder.path);
+
+
+        // plaza buildings
+
+        biancoBuilder.getArea(71, 76, 41, 47, 2, 8).makeHouse();
+        biancoBuilder.getArea(55, 62, 41, 47, 2, 7).makeHouse();
+
+        // Plaza fountain
+
+        biancoBuilder.getArea(65, 68,42, 45,1,2).makeWater();
+        biancoBuilder.getArea(66,67,44,45,3,4).makeFountain();
+
+        // fountain red coin
+
+        biancoHills.addActor(new ActorLibrary.RedCoin(new Point(66,44,4), null));
+
+        //
+
         biancoBuilder.getArea().finalizeArea();
 
 
@@ -206,6 +238,8 @@ public class Main implements Runnable {
 
         biancoHills.addActorWithShadow(new ActorLibrary.Pianta("blue", new Point(40,47, 2), null));
         biancoHills.addActorWithShadow(new ActorLibrary.Pianta("orange", new Point(42,47, 2), null));
+
+
 
 
         //gameEnvironment.addActor(new ActorLibrary.Goop(new Point(12, 34, 2), gameEnvironment));
@@ -341,6 +375,30 @@ public class Main implements Runnable {
         biancoHills.tiles[57][8][8].imageFetcher = () -> Images.getImage("wallMR");
 
         return  biancoHills;
+    }
+
+    public static Environment createBiancoHillsMission4(Player player) {
+        Environment biancoHills = createBiancoHills(player);
+        EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
+
+        // Behind the wall coins
+        biancoBuilder.getArea(54, 79, 62,63,2,3).placeCoins();
+
+        // Behind the wall red coin
+        biancoHills.addActor(new ActorLibrary.RedCoin(new Point(38, 62, 2), null));
+
+
+        // House coins
+        biancoBuilder.getArea(38, 44, 41, 42, 6,7).placeCoins();
+
+        // On top of wall enemy
+        biancoHills.addActor(new ActorLibrary.Enemy("pokey", new Point(31,37, 6), null, 31,35,2));
+
+        // On top of wall red coin
+        biancoHills.addActorWithShadow(new ActorLibrary.RedCoin(new Point(33,32,9), null));
+
+
+        return biancoHills;
     }
 
     public static Environment createNokiBay(Player player) {

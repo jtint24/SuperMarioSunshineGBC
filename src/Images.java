@@ -317,6 +317,7 @@ public class Images {
             "redCoin2",
             "redCoin3",
             "redCoin4",
+            "flowerTile"
 
     };
 
