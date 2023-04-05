@@ -196,6 +196,22 @@ public class ActorLibrary {
         }
     }
 
+    static class RedCoin extends Actor {
+        public RedCoin(Point p, Environment e) {
+            super(p, e);
+            imageFetcher = () -> Images.getImage("redCoin"+Application.frameNumber());
+        }
+
+        @Override
+        void move() {
+            if (environment.player.location.distanceToSQ(location) < 256) {
+                environment.deleteActor(this);
+                environment.hud.meters.get("redCoin").increment();
+                environment.hud.show("redCoin");
+            }
+        }
+    }
+
     static class Pianta extends Actor {
         public Pianta(String color, Point p, Environment e) {
             super(p,e);

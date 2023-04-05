@@ -312,7 +312,12 @@ public class Images {
             "hover",
             "hoverS",
             "sparkle1",
-            "sparkle2"
+            "sparkle2",
+            "redCoin1",
+            "redCoin2",
+            "redCoin3",
+            "redCoin4",
+
     };
 
     static Image getImage(String s) {

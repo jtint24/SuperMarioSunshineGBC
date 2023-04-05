@@ -7,7 +7,6 @@ class HUD implements Renderable {
     Meter meterToShow;
     float waterLevel = 100;
     int lifeLevel = 8;
-
     int oneUpFrame = -100;
 
     public HUD() {}

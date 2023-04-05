@@ -40,9 +40,13 @@ public class Main implements Runnable {
 
         HUD.Meter coinMeter = new HUD.Meter(Images.getImage("coinIcon"));
         HUD.Meter blueCoinMeter = new HUD.Meter(Images.getImage("blueCoinIcon"));
+        HUD.Meter redCoinMeter = new HUD.Meter(Images.getImage("redCoin1"));
+
 
         hud.addMeter("coin", coinMeter);
         hud.addMeter("blueCoin", blueCoinMeter);
+        hud.addMeter("redCoin", redCoinMeter);
+
 
         hud.meterToShow = blueCoinMeter;
 
@@ -293,7 +297,8 @@ public class Main implements Runnable {
         Environment biancoHills = createBiancoHills(player);
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
-        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(79, 7, 5), null, 78, 82, 2));
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(80, 6, 5), null, 78, 82, 2));
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(79, 7, 5), null, 76, 80, 2));
 
 
         // Blue coin off to the right
@@ -326,10 +331,11 @@ public class Main implements Runnable {
         biancoBuilder.getArea().finalizeArea();
 
         biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(51,5,5), null, 47,49, 2));
+        biancoHills.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(42,5,5), null, 41,47, 2));
 
 
         // Shine
-        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(45, 6, 8), null, Mission.Objectives.collectCoins));
+        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(37, 6, 8), null, Mission.Objectives.collectCoins));
         // Patch wall tile visual glitch
 
         biancoHills.tiles[57][8][8].imageFetcher = () -> Images.getImage("wallMR");
@@ -349,7 +355,6 @@ public class Main implements Runnable {
         nokiBuilder.getArea(20, 25, 30, 35, 1, 3).fillType(nokiBuilder.platform);
 
         nokiBuilder.getArea(40, 45, 30, 35, 1, 3).fillType(nokiBuilder.platform);
-
 
         nokiBuilder.getArea(31, 34, 32, 35, 3, 4).placeGoop();
 
