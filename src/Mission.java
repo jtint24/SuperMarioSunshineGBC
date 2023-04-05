@@ -37,6 +37,9 @@ public class Mission {
         public static Objective clearGoop = (Environment e) -> {
             return !e.hasActorType(ActorLibrary.Goop.class);
         };
+        public static Objective clearRedCoins = (Environment e) -> {
+            return !e.hasActorType(ActorLibrary.RedCoin.class);
+        };
         static Objective collectShine = (Environment e) -> {
             for (Actor actor : e.actors) {
                 if (actor instanceof ActorLibrary.Shine) {

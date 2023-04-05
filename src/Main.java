@@ -218,11 +218,6 @@ public class Main implements Runnable {
         biancoBuilder.getArea(65, 68,42, 45,1,2).makeWater();
         biancoBuilder.getArea(66,67,44,45,3,4).makeFountain();
 
-        // fountain red coin
-
-        biancoHills.addActor(new ActorLibrary.RedCoin(new Point(66,44,4), null));
-
-        //
 
         biancoBuilder.getArea().finalizeArea();
 
@@ -391,11 +386,28 @@ public class Main implements Runnable {
         // House coins
         biancoBuilder.getArea(38, 44, 41, 42, 6,7).placeCoins();
 
+        // southwest corner goop
+
+        biancoBuilder.getArea(39, 46, 52, 56, 2, 3).placeGoop();
+        biancoHills.addActorWithShadow(new ActorLibrary.RedCoin(new Point(42, 54, 6), null));
+
+        // Blue coin
+
+        biancoHills.addActor(new ActorLibrary.BlueCoin(new Point(28,28,1), null));
+
         // On top of wall enemy
         biancoHills.addActor(new ActorLibrary.Enemy("pokey", new Point(31,37, 6), null, 31,35,2));
 
         // On top of wall red coin
         biancoHills.addActorWithShadow(new ActorLibrary.RedCoin(new Point(33,32,9), null));
+
+        // fountain red coin
+
+        biancoHills.addActor(new ActorLibrary.RedCoin(new Point(66,44,4), null));
+
+        // Shine
+
+        biancoHills.addActorWithShadow(new ActorLibrary.Shine(new Point(66,48,4), null, Mission.Objectives.clearRedCoins));
 
 
         return biancoHills;
