@@ -16,7 +16,7 @@ public class Player extends MovingActor  {
             }
             String shadow = "";
             String wetness = "";
-            if (environment.tileBelowIs(getLocation().x, getLocation().y, getLocation().z, EnvironmentBuilder.water)) {
+            if (environment.tileBelowIs(getLocation().x, getLocation().y, getLocation().z, EnvironmentBuilder.water) || environment.tileBelowIs(getLocation().x, getLocation().y, getLocation().z, EnvironmentBuilder.lava) || environment.tileBelowIs(getLocation().x, getLocation().y, getLocation().z, EnvironmentBuilder.poison)) {
                 wetness = "W";
             }
             if (!environment.isUncovered(getLocation())) {
@@ -102,6 +102,11 @@ public class Player extends MovingActor  {
             dx = 0;
             dy = 0;
         }
+
+        if (environment.tileBelowIs(location.x, location.y, location.z, EnvironmentBuilder.poison) || environment.tileBelowIs(location.x, location.y, location.z, EnvironmentBuilder.lava)) {
+            damage();
+        }
+
         checkFluddRecharge();
 
         applyGravity();

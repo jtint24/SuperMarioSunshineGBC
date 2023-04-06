@@ -453,6 +453,8 @@ public class Main implements Runnable {
 
         nokiBuilder.getArea(31, 34, 32, 35, 3, 4).placeGoop();
 
+        nokiBuilder.getArea(45,55,33,34,1,2).fillType(EnvironmentBuilder.rope);
+
         nokiBuilder.getArea().finalizeArea();
 
         return nokiBay;
