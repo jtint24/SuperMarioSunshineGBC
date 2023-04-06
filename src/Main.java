@@ -197,10 +197,17 @@ public class Main implements Runnable {
         // hollow wall for red coin
 
         biancoBuilder.getArea(30, 50,60,62,2,6).fillType(EnvironmentBuilder.wall);
-        biancoBuilder.getArea(52, 80,60,62,2,6).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(52, 90,60,62,2,6).fillType(EnvironmentBuilder.wall);
 
-        biancoBuilder.getArea(30, 80,64,66,2,6).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(30, 90,64,66,2,6).fillType(EnvironmentBuilder.wall);
         biancoBuilder.getArea(30, 36,60,66,2,6).fillType(EnvironmentBuilder.wall);
+
+
+        // Bridge between walls
+
+        biancoBuilder.getArea(84, 88,50,53,2,6).fillType(EnvironmentBuilder.wall);
+        biancoBuilder.getArea(84, 88,53,60,5,6).fillType(EnvironmentBuilder.bridge);
+
 
 
         // Windmill village plaza area
@@ -404,6 +411,25 @@ public class Main implements Runnable {
         // fountain red coin
 
         biancoHills.addActor(new ActorLibrary.RedCoin(new Point(66,44,4), null));
+
+        //coins under the bridge
+
+        biancoBuilder.getArea(82,85,55,56,2,3).placeCoins();
+        biancoBuilder.getArea(86,89,55,56,2,3).placeCoins();
+
+
+        // red coin under the bridge
+
+        // biancoHills.addActor(new ActorLibrary.RedCoin(new Point(85,86,55,56,2,3), null));
+
+
+        // coin arch on the post
+
+        biancoBuilder.getArea(84,85,52,53,7,8).placeCoinArch();
+
+        // red coin on the post
+
+        biancoHills.addActor(new ActorLibrary.RedCoin(new Point(85, 52,6,8,0,0), null));
 
         // Shine
 

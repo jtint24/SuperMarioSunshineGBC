@@ -40,7 +40,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Mission 1
         - [x] Mission 2
         - [x] Mission 3
-        - [ ] Mission 4
+        - [x] Mission 4
         - [ ] Mission 5
         - [ ] Mission 6
         - [ ] Mission 7
@@ -57,6 +57,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Make shines appear under certain conditions
         - [x] Make Mario killable
         - [x] Add flower tiles
+        - [ ] Make poison harmful
 
 
 

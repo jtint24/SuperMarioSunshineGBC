@@ -1,5 +1,4 @@
 public class ActorLibrary {
-
     static class Sparkle extends MovingActor {
         public Sparkle(Point location, Environment environment) {
             super(location.randomize(), environment, 5);
@@ -22,7 +21,6 @@ public class ActorLibrary {
             }
         }
     }
-
     static class CoinSparkle extends Actor {
         private int deleteFrame = -100;
         public CoinSparkle(Point location, Environment environment) {
@@ -195,7 +193,6 @@ public class ActorLibrary {
             }
         }
     }
-
     static class RedCoin extends Actor {
         public RedCoin(Point p, Environment e) {
             super(p, e);
@@ -211,14 +208,12 @@ public class ActorLibrary {
             }
         }
     }
-
     static class Pianta extends Actor {
         public Pianta(String color, Point p, Environment e) {
             super(p,e);
             imageFetcher = () -> Images.getImage(color+"Pianta");
         }
     }
-
     static class Shadow extends Actor {
         Actor owner;
 
@@ -264,7 +259,6 @@ public class ActorLibrary {
         }
 
     }
-
     static class WaterDrop extends MovingActor {
 
         public WaterDrop(Point p, Environment e, int dx, int dy, int dz) {

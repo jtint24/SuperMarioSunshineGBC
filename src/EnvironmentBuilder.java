@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class EnvironmentBuilder {
     static final TileType water = new TileType("water", true, true);
