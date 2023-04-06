@@ -91,6 +91,13 @@ public class Player extends MovingActor  {
             dz = 9;
         }
 
+        if (onSolidGround() && environment.tileBelowIs(location.x, location.y, location.z, EnvironmentBuilder.trampoline)) {
+            dz = 9;
+            if (Application.keyData.getIsPressed(KeyEvent.VK_Z)) {
+                dz = 15;
+            }
+        }
+
         if (!Application.keyData.getIsPressed(KeyEvent.VK_UP) && !Application.keyData.getIsPressed(KeyEvent.VK_DOWN) &&!Application.keyData.getIsPressed(KeyEvent.VK_LEFT) && !Application.keyData.getIsPressed(KeyEvent.VK_RIGHT)) {
             dx = 0;
             dy = 0;

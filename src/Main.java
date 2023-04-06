@@ -384,7 +384,7 @@ public class Main implements Runnable {
         EnvironmentBuilder biancoBuilder = new EnvironmentBuilder(biancoHills);
 
         // Behind the wall coins
-        biancoBuilder.getArea(54, 79, 62,63,2,3).placeCoins();
+        biancoBuilder.getArea(54, 85, 62,63,2,3).placeCoins();
 
         // Behind the wall red coin
         biancoHills.addActor(new ActorLibrary.RedCoin(new Point(38, 62, 2), null));
@@ -422,7 +422,6 @@ public class Main implements Runnable {
 
         // biancoHills.addActor(new ActorLibrary.RedCoin(new Point(85,86,55,56,2,3), null));
 
-
         // coin arch on the post
 
         biancoBuilder.getArea(84,85,52,53,7,8).placeCoinArch();
@@ -440,7 +439,7 @@ public class Main implements Runnable {
     }
 
     public static Environment createNokiBay(Player player) {
-        Environment nokiBay = new Environment(player, new Tile[100][100][10], null, gameCanvas, hud);
+        Environment nokiBay = new Environment(player, new Tile[100][100][15], null, gameCanvas, hud);
 
         EnvironmentBuilder nokiBuilder = new EnvironmentBuilder(nokiBay);
 
@@ -450,7 +449,7 @@ public class Main implements Runnable {
 
         nokiBuilder.getArea(20, 25, 30, 35, 1, 3).fillType(nokiBuilder.platform);
 
-        nokiBuilder.getArea(40, 45, 30, 35, 1, 3).fillType(nokiBuilder.platform);
+        nokiBuilder.getArea(40, 45, 30, 35, 1, 3).makeTrampoline();
 
         nokiBuilder.getArea(31, 34, 32, 35, 3, 4).placeGoop();
 

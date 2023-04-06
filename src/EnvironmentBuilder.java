@@ -19,9 +19,9 @@ public class EnvironmentBuilder {
     static final TileType fountain = new TileType("fountain", false, true);
     static final TileType spout = new TileType("spout", true, true);
     static final TileType poison = new TileType("poison", true, true);
+    static final TileType rope = new TileType("rope", false, true);
+    static final TileType trampoline = new TileType("trampoline", false, true);
     static final TileType gaddBox = new TileType("gaddBox", false, true);
-
-
 
     Environment e;
 
@@ -183,6 +183,26 @@ public class EnvironmentBuilder {
             }
         }
 
+        public void makeTrampoline() {
+            int midX = (maxX+minX)/2;
+            int midY = (maxY+minY)/2;
+            for (int i = midX-1; i<midX+1; i++) {
+                for (int j = midY-1; j<midY+1; j++) {
+                    for (int k = minZ; k<maxZ-2; k++) {
+                        e.tiles[i][j][k] = new Tile(new Point(i,j,k), pole, null);
+                    }
+                }
+            }
+
+            for (int i = minX; i<maxX; i++) {
+                for (int j = minY; j<maxY; j++) {
+                    e.tiles[i][j][maxZ-1] = new Tile(new Point(i,j,maxZ-1), trampoline, null);
+                    e.tiles[i][maxY-1][maxZ-2] = new Tile(new Point(i,maxY-1,maxZ-2), trampoline, null);
+
+                }
+            }
+        }
+
         public void finalizeArea() {
             setImages();
             for (int i = minX; i<maxX; i++) {
@@ -293,6 +313,50 @@ public class EnvironmentBuilder {
                                     } else {
                                         yield () -> Images.getImage("platformTMM");
                                     }
+                                }
+                            }
+
+                            case "trampoline" -> {
+                                if (e.tileAboveIs(i,j,k,trampoline)) {
+                                    if (e.tileLeftIs(i,j,k,trampoline) && e.tileRightIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineBM");
+                                    } else if (e.tileLeftIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineBR");
+                                    } else {
+                                        yield () -> Images.getImage("trampolineBL");
+                                    }
+                                } else {
+                                    if (e.tileRightIs(i,j,k,trampoline) && e.tileLeftIs(i,j,k,trampoline) && e.tileFrontIs(i,j,k,trampoline) && e.tileBehindIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineTMM");
+                                    }  else if (!e.tileRightIs(i,j,k,trampoline) && e.tileLeftIs(i,j,k,trampoline) && e.tileFrontIs(i,j,k,trampoline) && e.tileBehindIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineTMR");
+                                    } else if (e.tileRightIs(i,j,k,trampoline) && !e.tileLeftIs(i,j,k,trampoline) && e.tileFrontIs(i,j,k,trampoline) && e.tileBehindIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineTML");
+                                    } else if (e.tileRightIs(i,j,k,trampoline) && e.tileLeftIs(i,j,k,trampoline) && !e.tileFrontIs(i,j,k,trampoline) && e.tileBehindIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineTBM");
+                                    } else if (e.tileRightIs(i,j,k,trampoline) && e.tileLeftIs(i,j,k,trampoline) && e.tileFrontIs(i,j,k,trampoline) && !e.tileBehindIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineTTM");
+                                    } else if (e.tileFrontIs(i,j,k,trampoline) && e.tileLeftIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineTTR");
+                                    } else if (e.tileBehindIs(i,j,k,trampoline) && e.tileLeftIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineTBR");
+                                    } else if (e.tileFrontIs(i,j,k,trampoline) && e.tileRightIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineTTL");
+                                    } else if (e.tileBehindIs(i,j,k,trampoline) && e.tileRightIs(i,j,k,trampoline)) {
+                                        yield () -> Images.getImage("trampolineTBL");
+                                    } else {
+                                        yield () -> Images.getImage("trampolineTMM");
+                                    }
+                                }
+                            }
+
+                            case "rope" -> {
+                                if (e.tileLeftIs(i,j,k,rope) && e.tileRightIs(i,j,k,rope)) {
+                                    yield () -> Images.getImage("ropeM");
+                                } else if (e.tileLeftIs(i,j,k,rope)) {
+                                    yield () -> Images.getImage("ropeR");
+                                } else {
+                                    yield () -> Images.getImage("ropeL");
                                 }
                             }
                             case "cliff" -> {
