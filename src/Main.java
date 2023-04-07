@@ -472,7 +472,7 @@ public class Main implements Runnable {
 
         // platform below trampoline 1
 
-        nokiBuilder.getArea(15,20,53,58, 1,3).fillType(EnvironmentBuilder.platform);
+        nokiBuilder.getArea(15,20,53,65, 1,3).fillType(EnvironmentBuilder.platform);
 
         // West 1 house
         nokiBuilder.getArea(17,24, 14,19, 2,7).makeHouse();
@@ -489,7 +489,15 @@ public class Main implements Runnable {
 
         nokiBuilder.getArea(13,42, 12,21, 1,2).fillType(EnvironmentBuilder.path);
 
-        //
+        // Rope from final platform to Blue Coin 3 platform
+
+        nokiBuilder.getArea(19,29,57,58, 3,4).fillType(EnvironmentBuilder.rope);
+
+
+        // Blue coin 3 platform
+
+        nokiBuilder.getArea(28,34,55,60, 2,4).fillType(EnvironmentBuilder.platform);
+
 
 
         nokiBuilder.getArea().finalizeArea();
@@ -520,8 +528,31 @@ public class Main implements Runnable {
 
         // Coins to south 1 platform
 
-        nokiBuilder.getArea(17,18,54,55,3,6).placeCoins();
+        nokiBuilder.getArea(17,18,54,55,4,6).placeCoins();
 
+        // goop on West 1 house
+
+        nokiBuilder.getArea(18,22, 16,19, 7,8).placeGoop();
+
+        // Blue coin on house
+        nokiBay.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(20, 16, 11), null));
+
+
+        // Coin arrow
+
+        nokiBuilder.getArea(28,29,24,25,2,3).placeCoins();
+        nokiBuilder.getArea(28,29,20,21,2,3).placeCoins();
+        nokiBuilder.getArea(29,30,21,22,2,3).placeCoins();
+        nokiBuilder.getArea(29,30,23,24,2,3).placeCoins();
+
+        nokiBuilder.getArea(23,31,22,23,2,3).placeCoins();
+
+        nokiBay.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(30,57, 7), null));
+
+
+        nokiBay.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(21,57,4, 8,0,0), null, 21,26, 1));
+
+        nokiBay.addActorWithShadow(new ActorLibrary.Shine(new Point(17,65,8), null, Mission.Objectives.clearedImmediately));
 
         return nokiBay;
     }
