@@ -474,6 +474,23 @@ public class Main implements Runnable {
 
         nokiBuilder.getArea(15,20,53,58, 1,3).fillType(EnvironmentBuilder.platform);
 
+        // West 1 house
+        nokiBuilder.getArea(17,24, 14,19, 2,7).makeHouse();
+
+        //West 2 house
+        nokiBuilder.getArea(33,38, 14,19, 2,7).makeHouse();
+
+        nokiBuilder.getArea(39,41,15,17,2,4).makeTrampoline();
+
+        // Rope between houses
+
+        nokiBuilder.getArea(23,34, 16,17,7,8).fillType(EnvironmentBuilder.rope);
+
+
+        nokiBuilder.getArea(13,42, 12,21, 1,2).fillType(EnvironmentBuilder.path);
+
+        //
+
 
         nokiBuilder.getArea().finalizeArea();
 
@@ -485,6 +502,7 @@ public class Main implements Runnable {
 
         EnvironmentBuilder nokiBuilder = new EnvironmentBuilder(nokiBay);
 
+
         // goop on initial platform 1
 
         nokiBuilder.getArea(24,27,34,37, 3,4).placeGoop();
@@ -493,8 +511,16 @@ public class Main implements Runnable {
 
         nokiBuilder.getArea(24,27,34,37,4,5).placeCoins();
 
+        // Enemy on initial platform 2
+
+        nokiBay.addActor(new ActorLibrary.Enemy("pokey", new Point(34,39,3), null, 31,33,1));
+
         nokiBuilder.getArea(17,18,48,49, 4,10).placeCoins();
         nokiBay.addActor(new ActorLibrary.BlueCoin(new Point(17,48,11), null));
+
+        // Coins to south 1 platform
+
+        nokiBuilder.getArea(17,18,54,55,3,6).placeCoins();
 
 
         return nokiBay;

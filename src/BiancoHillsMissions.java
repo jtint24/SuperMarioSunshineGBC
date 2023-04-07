@@ -9,7 +9,7 @@ public class BiancoHillsMissions {
 
         Mission redCoinsOfTheVillage = new Mission("Red Coins of the \nVillage", Mission.Objectives.collectShine, Main.createBiancoHillsMission4(new Player(new Point(66, 40, 2), null)) );
 
-        Mission theTrickyRuins = new Mission("The Tricky Ruins", Mission.Objectives.collectShine, Main.createNokiBayMission1(new Player(new Point(38,30,5), null)));
+        Mission theTrickyRuins = new Mission("The Tricky Ruins", Mission.Objectives.collectShine, Main.createNokiBayMission1(new Player(new Point(29,29,2), null)));
 
 
         return new Mission[] {theTrickyRuins, coinsOfTheLake, goopCleanup , theHillsideSecret, redCoinsOfTheVillage, /*coinsOfTheLake5*/};
