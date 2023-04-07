@@ -480,7 +480,7 @@ public class Main implements Runnable {
         //West 2 house
         nokiBuilder.getArea(33,38, 14,19, 2,7).makeHouse();
 
-        nokiBuilder.getArea(39,41,15,17,2,4).makeTrampoline();
+        nokiBuilder.getArea(39,41,15,17,1,3).makeTrampoline();
 
         // Rope between houses
 
@@ -491,12 +491,12 @@ public class Main implements Runnable {
 
         // Rope from final platform to Blue Coin 3 platform
 
-        nokiBuilder.getArea(19,29,57,58, 3,4).fillType(EnvironmentBuilder.rope);
+        nokiBuilder.getArea(19,30,57,58, 3,4).fillType(EnvironmentBuilder.rope);
 
 
         // Blue coin 3 platform
 
-        nokiBuilder.getArea(28,34,55,60, 2,4).fillType(EnvironmentBuilder.platform);
+        nokiBuilder.getArea(28,34,55,60, 1,3).fillType(EnvironmentBuilder.platform);
 
 
 
@@ -547,12 +547,12 @@ public class Main implements Runnable {
 
         nokiBuilder.getArea(23,31,22,23,2,3).placeCoins();
 
-        nokiBay.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(30,57, 7), null));
+        nokiBay.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(31,59, 6), null));
 
 
-        nokiBay.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(21,57,4, 8,0,0), null, 21,26, 1));
+        nokiBay.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(21,57,4, 0,8,0), null, 21,26, 1));
 
-        nokiBay.addActorWithShadow(new ActorLibrary.Shine(new Point(17,65,8), null, Mission.Objectives.clearedImmediately));
+        nokiBay.addActorWithShadow(new ActorLibrary.Shine(new Point(17,62,6), null, Mission.Objectives.clearedImmediately));
 
         return nokiBay;
     }
