@@ -9,7 +9,7 @@ public class Main implements Runnable {
     static Mission[] missions;
     static Canvas gameCanvas;
     static HUD hud = new HUD();
-    static GameState state = GameState.GAME;
+    static GameState state = GameState.TITLE;
     static int missionIdx = 0;
     static int collectionFrame = 0;
     static int deathFrame = 0;
@@ -753,7 +753,7 @@ public class Main implements Runnable {
             }
         }
 
-        Text t = new Text("bianco hills", new Point(0,0,0, 0, 8, 0), Text.Size.DOUBLETIGHT);
+        Text t = new Text(selectedMission.environmentName, new Point(0,0,0, 0, 8, 0), Text.Size.DOUBLETIGHT);
         t.render(null, gameCanvas);
         Text t2 = new Text(selectedMission.name, new Point(0,6,0,4,4,0));
         t2.render(null, gameCanvas);

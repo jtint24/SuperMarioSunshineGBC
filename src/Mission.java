@@ -1,12 +1,15 @@
 public class Mission {
     String name;
+
+    String environmentName;
     Environment environment;
     Objective objective;
     boolean hasBeenCompleted = false;
 
 
-    Mission(String name, Objective objective, Environment environment) {
+    Mission(String name, String environmentName, Objective objective, Environment environment) {
         this.name = name;
+        this.environmentName = environmentName;
         this.objective = objective;
         this.environment = environment;
     }
