@@ -165,7 +165,11 @@ public class ActorLibrary {
     static class Coin extends Actor {
         public Coin(Point p, Environment e) {
             super(p, e);
-            imageFetcher = () -> Images.getImage("coin"+Application.frameNumber());
+            imageFetcher = () -> {
+                int frameNumber = (p.x+p.y+Application.frameNumber())%4+1;
+                // frameNumber = Application.frameNumber();
+                return Images.getImage("coin"+frameNumber);
+            };
         }
 
         @Override

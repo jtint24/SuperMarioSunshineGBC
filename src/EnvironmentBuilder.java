@@ -492,5 +492,15 @@ public class EnvironmentBuilder {
                 }
             }
         }
+
+        public void placeCoinsNoShadow() {
+            for (int i = minX; i<maxX; i++) {
+                for (int j = minY; j<maxY; j++) {
+                    for (int k = minZ; k<maxZ; k++) {
+                        e.addActor(new ActorLibrary.Coin(new Point(i,j,k), e));
+                    }
+                }
+            }
+        }
     }
 }

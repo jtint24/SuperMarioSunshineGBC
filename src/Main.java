@@ -480,7 +480,7 @@ public class Main implements Runnable {
         //West 2 house
         nokiBuilder.getArea(33,38, 14,19, 2,7).makeHouse();
 
-        nokiBuilder.getArea(39,41,15,17,1,3).makeTrampoline();
+        nokiBuilder.getArea(39,41,15,17,2,4).makeTrampoline();
 
         // Rope between houses
 
@@ -498,6 +498,30 @@ public class Main implements Runnable {
 
         nokiBuilder.getArea(28,34,55,60, 1,3).fillType(EnvironmentBuilder.platform);
 
+
+        // dividing wall
+
+        nokiBuilder.getArea(73,77,5,31,2,13).fillType(EnvironmentBuilder.wall);
+
+        // First platform on the 2nd mission
+
+        nokiBuilder.getArea(49,53,32,36,1,3).fillType(EnvironmentBuilder.platform);
+
+
+        nokiBuilder.getArea(49,53,39,43,1,3).makeTrampoline();
+
+
+        nokiBuilder.getArea(55,60,39,43,2,10).fillType(EnvironmentBuilder.wall);
+
+        nokiBuilder.getArea(80,85,39,43,2,10).fillType(EnvironmentBuilder.wall);
+
+        nokiBuilder.getArea(57,82,41,42,10,11).fillType(EnvironmentBuilder.rope);
+
+        nokiBuilder.getArea(57,82,41,42,7,8).fillType(EnvironmentBuilder.rope);
+
+        nokiBuilder.getArea(57,82,41,42,4,5).fillType(EnvironmentBuilder.rope);
+
+        nokiBuilder.getArea(67,73,40,45,1,3).makeTrampoline();
 
 
         nokiBuilder.getArea().finalizeArea();
@@ -553,6 +577,42 @@ public class Main implements Runnable {
         nokiBay.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(21,57,4, 0,8,0), null, 21,26, 1));
 
         nokiBay.addActorWithShadow(new ActorLibrary.Shine(new Point(17,62,6), null, Mission.Objectives.clearedImmediately));
+
+        return nokiBay;
+    }
+
+    public static Environment createNokiBayMission2(Player player) {
+        Environment nokiBay = createNokiBay(player);
+        EnvironmentBuilder nokiBuilder = new EnvironmentBuilder(nokiBay);
+
+
+        // Trampoline Blue coin
+        nokiBay.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(42,15,12), null));
+
+        nokiBuilder.getArea(42,52,19,20,2,3).placeCoins();
+        nokiBuilder.getArea(52,53,19,29,2,3).placeCoins();
+
+        // CoinFish
+
+        // top row
+        nokiBuilder.getArea(64,70,41,42,11,12).placeCoinsNoShadow();
+        nokiBay.addActor(new ActorLibrary.RedCoin(new Point(77,41,11), null));
+
+        // middle row
+        nokiBuilder.getArea(63,65,41,42,8,9).placeCoinsNoShadow();
+        nokiBay.addActor(new ActorLibrary.RedCoin(new Point(65, 41,8), null));
+        nokiBuilder.getArea(66,78,41,42,8,9).placeCoinsNoShadow();
+
+        nokiBuilder.getArea(63,78,41,42,9,10).placeCoinsNoShadow();
+        nokiBuilder.getArea(63,78,41,42,6,7).placeCoinsNoShadow();
+
+
+        //bottom row
+        nokiBuilder.getArea(64,70,41,42,5,6).placeCoinsNoShadow();
+        nokiBay.addActor(new ActorLibrary.RedCoin(new Point(77,41,5), null));
+
+
+        nokiBay.addActorWithShadow(new ActorLibrary.Shine(new Point(83,41,12), null, Mission.Objectives.clearRedCoins));
 
         return nokiBay;
     }
@@ -627,6 +687,7 @@ public class Main implements Runnable {
         });
         return frame;
     }
+
 
 
 

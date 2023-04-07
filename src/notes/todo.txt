@@ -41,8 +41,8 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Mission 2
         - [x] Mission 3
         - [x] Mission 4
-        - [ ] Mission 5
-        - [ ] Mission 6
+        - [x] Mission 5
+        - [x] Mission 6
         - [ ] Mission 7
         - [ ] Mission 8
         - [ ] At least 10 minutes of playtime
@@ -60,6 +60,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Make poison harmful
         - [x] Add trampolines
         - [x] Add ropes
+        - [ ] Add a new bob-omb enemy
 
 
 
