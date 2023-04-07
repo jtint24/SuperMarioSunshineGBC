@@ -439,23 +439,63 @@ public class Main implements Runnable {
     }
 
     public static Environment createNokiBay(Player player) {
-        Environment nokiBay = new Environment(player, new Tile[100][100][15], null, gameCanvas, hud);
+        Environment nokiBay = new Environment(player, new Tile[100][100][13], null, gameCanvas, hud);
 
         EnvironmentBuilder nokiBuilder = new EnvironmentBuilder(nokiBay);
 
+
+        // Northern cliff and grassy area
+
+        nokiBuilder.getArea(0,100,0,4,0,12).fillType(EnvironmentBuilder.cliff);
+        nokiBuilder.getArea(0,100,0,30,0,2).fillType(EnvironmentBuilder.grass);
+        nokiBuilder.getArea(0,100,30,31,0,2).fillType(EnvironmentBuilder.cliff);
+
+
         nokiBuilder.getFloor().fillType(nokiBuilder.poison);
 
-        nokiBuilder.getArea(30, 35, 30, 35, 1, 3).fillType(nokiBuilder.platform);
+        // initial platforms
 
-        nokiBuilder.getArea(20, 25, 30, 35, 1, 3).fillType(nokiBuilder.platform);
+        nokiBuilder.getArea(30, 35, 32, 45, 1, 3).fillType(nokiBuilder.platform);
 
-        nokiBuilder.getArea(40, 45, 30, 35, 1, 3).makeTrampoline();
+        nokiBuilder.getArea(23, 28, 32, 37, 1, 3).fillType(nokiBuilder.platform);
 
-        nokiBuilder.getArea(31, 34, 32, 35, 3, 4).placeGoop();
 
-        nokiBuilder.getArea(45,55,33,34,1,2).fillType(EnvironmentBuilder.rope);
+
+        // first trampoline
+
+        nokiBuilder.getArea(15, 20, 45, 50, 1, 3).makeTrampoline();
+
+        // rope to trampoline
+
+        nokiBuilder.getArea(20, 32, 47,48, 2,3).fillType(EnvironmentBuilder.rope);
+
+
+        // platform below trampoline 1
+
+        nokiBuilder.getArea(15,20,53,58, 1,3).fillType(EnvironmentBuilder.platform);
+
 
         nokiBuilder.getArea().finalizeArea();
+
+        return nokiBay;
+    }
+
+    public static Environment createNokiBayMission1(Player player) {
+        Environment nokiBay = createNokiBay(player);
+
+        EnvironmentBuilder nokiBuilder = new EnvironmentBuilder(nokiBay);
+
+        // goop on initial platform 1
+
+        nokiBuilder.getArea(24,27,34,37, 3,4).placeGoop();
+
+        // coins on initial platform 1
+
+        nokiBuilder.getArea(24,27,34,37,4,5).placeCoins();
+
+        nokiBuilder.getArea(17,18,48,49, 4,10).placeCoins();
+        nokiBay.addActor(new ActorLibrary.BlueCoin(new Point(17,48,11), null));
+
 
         return nokiBay;
     }

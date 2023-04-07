@@ -56,8 +56,8 @@ public class Actor implements Renderable {
             location.y = 1;
             location.offsetY = -15;
         }
-        if (location.z > 9) {
-            location.z = 9;
+        if (location.z > environment.tiles[0][0].length-1) {
+            location.z = environment.tiles[0][0].length-1;
             location.offsetZ = 15;
         }
 

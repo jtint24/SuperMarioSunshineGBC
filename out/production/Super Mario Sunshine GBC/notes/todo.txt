@@ -57,7 +57,9 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Make shines appear under certain conditions
         - [x] Make Mario killable
         - [x] Add flower tiles
-        - [ ] Make poison harmful
+        - [x] Make poison harmful
+        - [x] Add trampolines
+        - [x] Add ropes
 
 
 

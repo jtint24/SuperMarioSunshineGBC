@@ -148,7 +148,6 @@ public class Environment {
         if (playerCovered) {
             player.render(player.location, canvas);
         }
-
     }
 
     void render() {
@@ -174,7 +173,7 @@ public class Environment {
     }
 
     boolean tileAboveIs(int i, int j, int k, TileType t) {
-        if (k<tiles.length-2) {
+        if (k<tiles[0][0].length-2) {
             Tile tile = tiles[i][j][k+1];
             if (tile == null) {
                 return false;
