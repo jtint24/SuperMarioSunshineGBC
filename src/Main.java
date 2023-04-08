@@ -623,7 +623,7 @@ public class Main implements Runnable {
         EnvironmentBuilder coronaBuilder = new EnvironmentBuilder(coronaMountain);
 
 
-        coronaBuilder.getFloor().fillType(coronaBuilder.lava);
+        coronaBuilder.getFloor().fillType(EnvironmentBuilder.lava);
 
         coronaBuilder.getArea(19, 25, 10, 16, 1, 6).makePlatform();
 
@@ -631,12 +631,37 @@ public class Main implements Runnable {
 
         coronaBuilder.getArea(22, 30, 29, 32, 1, 6).makePlatform();
 
-        coronaMountain.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(27, 31, 8), coronaMountain));
+        coronaBuilder.getArea(36, 42, 29, 32, 1, 6).makePlatform();
 
-        coronaBuilder.getArea(26, 32, 37, 41, 1, 6).makePlatform();
+        // Hidden platform 3
+        coronaBuilder.getArea(26, 36, 37, 42, 1, 6).makePlatform();
 
 
         coronaBuilder.getArea().finalizeArea();
+
+        return coronaMountain;
+    }
+
+    public static Environment createCoronaMountainMission1(Player player) {
+        Environment coronaMountain = createCoronaMountain(player);
+        EnvironmentBuilder coronaBuilder = new EnvironmentBuilder(coronaMountain);
+
+        coronaBuilder.getArea(27,35,38,40,6,7).placeGoop();
+
+        coronaBuilder.getArea(27,30,40,42,6,7).placeGoop();
+        coronaBuilder.getArea(32,35,40,42,6,7).placeGoop();
+
+        coronaBuilder.getArea(27,35,42,43,6,7).placeGoop();
+
+
+        // Goop on platform 2
+        coronaBuilder.getArea(22,25,30,33,6,7).placeGoop();
+
+
+        // Blue coin on secret platform
+        coronaMountain.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(38, 31, 8), coronaMountain));
+
+        coronaMountain.addActorWithShadow(new ActorLibrary.Shine(new Point(24,31,9), null,Mission.Objectives.clearGoop));
 
         return coronaMountain;
     }
@@ -732,6 +757,7 @@ public class Main implements Runnable {
                     renderDeath();
                     if (Application.keyData.getIsPressed(KeyEvent.VK_ENTER) || Application.keyData.getIsPressed(KeyEvent.VK_Z)) {
                         hud.lifeLevel = 8;
+                        hud.waterLevel = 100;
                         state = GameState.MENU;
                     }
 

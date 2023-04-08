@@ -14,9 +14,9 @@ public class BiancoHillsMissions {
         Mission redCoinFish = new Mission("The Red Coin Fish", "   Noki Bay ", Mission.Objectives.collectShine, Main.createNokiBayMission2(new Player(new Point(39,20,2), null)));
 
 
-        Mission coronaCleanup = new Mission("Cleanup on\n Corona mountain", " Corona mtn ", Mission.Objectives.collectShine, Main.createNokiBayMission1(new Player(new Point(29,29,2), null)));
+        Mission coronaCleanup = new Mission("Cleanup on\n Corona mountain", " Corona mtn ", Mission.Objectives.collectShine, Main.createCoronaMountainMission1(new Player(new Point(31,40,6,-8,0,0), null)));
 
 
-        return new Mission[] {redCoinFish, coinsOfTheLake, goopCleanup , theHillsideSecret, redCoinsOfTheVillage, theTrickyRuins, coronaCleanup/*coinsOfTheLake5*/};
+        return new Mission[] {coronaCleanup, coinsOfTheLake, goopCleanup , theHillsideSecret, redCoinsOfTheVillage, theTrickyRuins, redCoinFish, coronaCleanup/*coinsOfTheLake5*/};
     }
 }
