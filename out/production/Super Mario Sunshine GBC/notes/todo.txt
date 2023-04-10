@@ -43,7 +43,7 @@ TO-DO LIST FOR SUPER MARIO SUNSHINE GBC
         - [x] Mission 4
         - [x] Mission 5
         - [x] Mission 6
-        - [ ] Mission 7
+        - [x] Mission 7
         - [ ] Mission 8
         - [ ] At least 10 minutes of playtime
     - [x] Make the Mission Menu

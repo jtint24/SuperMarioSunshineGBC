@@ -297,6 +297,7 @@ public class Main implements Runnable {
         return biancoHills;
     }
 
+
     public static Environment createBiancoHillsMission2(Player player) {
         Environment biancoHills = createBiancoHills(player);
 
@@ -662,6 +663,46 @@ public class Main implements Runnable {
         coronaMountain.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(38, 31, 8), coronaMountain));
 
         coronaMountain.addActorWithShadow(new ActorLibrary.Shine(new Point(24,31,9), null,Mission.Objectives.clearGoop));
+
+        return coronaMountain;
+    }
+
+    public static Environment createCoronaMountainMission2(Player player) {
+        Environment coronaMountain = createCoronaMountain(player);
+        EnvironmentBuilder coronaBuilder = new EnvironmentBuilder(coronaMountain);
+
+
+        // Coin loop on platform 1
+        coronaBuilder.getArea(26,36,38,39,6,7).placeCoins();
+        coronaBuilder.getArea(26,36,41,42,6,7).placeCoins();
+        coronaBuilder.getArea(35,36,39,41,6,7).placeCoins();
+        coronaBuilder.getArea(26,27,39,41,6,7).placeCoins();
+
+
+        // Pokey on platform 2
+        coronaMountain.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(27,30,6),null, 23,28,2));
+
+        // Goop on platform 3
+        coronaBuilder.getArea(21,25,22, 24,6, 7).placeGoop();
+
+        // Red coins on platform 4
+        coronaMountain.addActorWithShadow(new ActorLibrary.RedCoin(new Point(26, 15,9), null));
+        coronaMountain.addActorWithShadow(new ActorLibrary.RedCoin(new Point(26, 11,9), null));
+        coronaMountain.addActorWithShadow(new ActorLibrary.RedCoin(new Point(17, 15,9), null));
+        coronaMountain.addActorWithShadow(new ActorLibrary.RedCoin(new Point(17, 11,9), null));
+
+        // Blue coin on platform 4
+        coronaMountain.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(30, 15,9), null));
+
+        // Coin arch on platform 4
+
+        coronaBuilder.getArea(20,21,13,14,7,10).placeCoinArch();
+
+        // Shine on platform 4
+
+        coronaMountain.addActorWithShadow(new ActorLibrary.Shine(new Point(22, 13,9), null, Mission.Objectives.clearRedCoins));
+
+
 
         return coronaMountain;
     }
