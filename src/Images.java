@@ -334,8 +334,11 @@ public class Images {
             "redCoin2",
             "redCoin3",
             "redCoin4",
-            "flowerTile"
-
+            "flowerTile",
+            "gooble1",
+            "gooble2",
+            "gooble3",
+            "gooble4"
     };
 
     static Image getImage(String s) {

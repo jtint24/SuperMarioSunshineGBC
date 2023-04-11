@@ -546,7 +546,7 @@ public class Main implements Runnable {
 
         // Enemy on initial platform 2
 
-        nokiBay.addActor(new ActorLibrary.Enemy("pokey", new Point(34,39,3), null, 31,33,1));
+        nokiBay.addActor(new ActorLibrary.Enemy("gooble", new Point(34,39,3), null, 31,33,1));
 
         nokiBuilder.getArea(17,18,48,49, 4,10).placeCoins();
         nokiBay.addActor(new ActorLibrary.BlueCoin(new Point(17,48,11), null));
@@ -575,7 +575,7 @@ public class Main implements Runnable {
         nokiBay.addActorWithShadow(new ActorLibrary.BlueCoin(new Point(31,59, 6), null));
 
 
-        nokiBay.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(21,57,4, 0,8,0), null, 21,26, 1));
+        nokiBay.addActorWithShadow(new ActorLibrary.Enemy("gooble", new Point(21,57,4, 0,8,0), null, 21,26, 1));
 
         nokiBay.addActorWithShadow(new ActorLibrary.Shine(new Point(17,62,6), null, Mission.Objectives.clearedImmediately));
 
@@ -680,7 +680,7 @@ public class Main implements Runnable {
 
 
         // Pokey on platform 2
-        coronaMountain.addActorWithShadow(new ActorLibrary.Enemy("pokey", new Point(27,30,6),null, 23,28,2));
+        coronaMountain.addActorWithShadow(new ActorLibrary.Enemy("gooble", new Point(27,30,6),null, 23,28,2));
 
         // Goop on platform 3
         coronaBuilder.getArea(21,25,22, 24,6, 7).placeGoop();
