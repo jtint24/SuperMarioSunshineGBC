@@ -43,9 +43,12 @@ public class Main implements Runnable {
         HUD.Meter redCoinMeter = new HUD.Meter(Images.getImage("redCoin2"));
 
 
+
+        blueCoinMeter.incrementBy(10);
         hud.addMeter("coin", coinMeter);
         hud.addMeter("blueCoin", blueCoinMeter);
         hud.addMeter("redCoin", redCoinMeter);
+
 
 
         hud.meterToShow = blueCoinMeter;
@@ -623,6 +626,8 @@ public class Main implements Runnable {
 
         EnvironmentBuilder coronaBuilder = new EnvironmentBuilder(coronaMountain);
 
+        coronaBuilder.getArea(0,100,0,1,0,7).fillType(EnvironmentBuilder.lava);
+
 
         coronaBuilder.getFloor().fillType(EnvironmentBuilder.lava);
 
@@ -931,7 +936,7 @@ public class Main implements Runnable {
             missionIdx = Math.min(missions.length - 1, missionIdx + 1);
             System.out.println(missionIdx+" right");
         }
-        if (Application.keyData.getIsTyped(KeyEvent.VK_Z)) {
+        if (Application.keyData.getIsTyped(KeyEvent.VK_Z) && !selectedMission.hasBeenCompleted) {
             currentMission = selectedMission;
             gameEnvironment = selectedMission.environment;
             selectedMission.initialize();

@@ -19,6 +19,6 @@ public class BiancoHillsMissions {
         Mission coronaPeril = new Mission("Corona Mountain\nPeril!", " Corona mtn ", Mission.Objectives.collectShine, Main.createCoronaMountainMission2(new Player(new Point(31,40,6,-8,0,0), null)));
 
 
-        return new Mission[] {coronaPeril, coinsOfTheLake, goopCleanup , theHillsideSecret, redCoinsOfTheVillage, theTrickyRuins, redCoinFish, coronaCleanup, coronaPeril/*coinsOfTheLake5*/};
+        return new Mission[] {coinsOfTheLake, goopCleanup , theHillsideSecret, redCoinsOfTheVillage, theTrickyRuins, redCoinFish, coronaCleanup, coronaPeril/*coinsOfTheLake5*/};
     }
 }
