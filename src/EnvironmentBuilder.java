@@ -1,4 +1,3 @@
-
 public class EnvironmentBuilder {
     static final TileType water = new TileType("water", true, true);
     static final TileType cliff = new TileType("cliff",true, true);

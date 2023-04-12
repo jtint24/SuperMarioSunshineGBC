@@ -778,7 +778,7 @@ public class Main implements Runnable {
 
                     hud.render(gameEnvironment.player.location, gameCanvas);
 
-                    System.out.println(gameEnvironment.player.location.toString());
+                    // System.out.println(gameEnvironment.player.location.toString());
                     if (Application.keyData.getIsTyped(KeyEvent.VK_ENTER)) {
                         state = GameState.PAUSE;
                     }
@@ -930,11 +930,11 @@ public class Main implements Runnable {
 
         if (Application.keyData.getIsTyped(KeyEvent.VK_LEFT)) {
             missionIdx = Math.max(0, missionIdx-1);
-            System.out.println(missionIdx+" left");
+            // System.out.println(missionIdx+" left");
         }
         if (Application.keyData.getIsTyped(KeyEvent.VK_RIGHT)) {
             missionIdx = Math.min(missions.length - 1, missionIdx + 1);
-            System.out.println(missionIdx+" right");
+            // System.out.println(missionIdx+" right");
         }
         if (Application.keyData.getIsTyped(KeyEvent.VK_Z) && !selectedMission.hasBeenCompleted) {
             currentMission = selectedMission;

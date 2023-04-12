@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Super Mario Sunshine GBC:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Super_Mario_Sunshine_GBC_jar</output-path>
+    <root id="archive" name="Super Mario Sunshine GBC.jar">
+      <element id="module-output" name="Super Mario Sunshine GBC" />
+      <element id="module-source" name="Super Mario Sunshine GBC" />
+    </root>
+  </artifact>
+</component>

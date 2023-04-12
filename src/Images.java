@@ -1,8 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 
 public class Images {
@@ -30,6 +28,7 @@ public class Images {
             "pathMR",
             "pathML",
             "pathMM",
+            "pathBR",
             "pathBR",
             "pathBL",
             "pathBM",
@@ -341,19 +340,29 @@ public class Images {
             "gooble4"
     };
 
-    static Image getImage(String s) {
+    public static Image getImage(String s) {
         if (!images.containsKey(s)) {
             throw new IllegalArgumentException("There is no image called " + s);
         }
         return images.get(s);
     }
 
-    static void initializeImages() {
+    public static void initializeImages() {
         for (String name : imageNames) {
             try {
-                images.put(name, ImageIO.read(new File("src/resources/"+name+".png")));
-            } catch (IOException e) {
-                System.out.println(name+".png not found");
+                //images.put(name, ImageIO.read(new File("src/resources/"+name+".png")));
+                ClassLoader systemCL = Images.class.getClassLoader();
+                assert systemCL != null;
+
+                // BufferedImage newImage = ImageIO.read(new FileInputStream("./resources/"+name+".png"));
+                //URL resourceURL = Images.class.getResource(name);
+
+                //BufferedImage newImage = ImageIO.read(new File(resourceURL.getFile()));
+                BufferedImage newImage = ImageIO.read(Images.class.getResource(name+".png"));
+                images.put(name, newImage);
+                //images.put(Toolkit.getDefaultToolkit().getImage(Images.class.getResource("src/resources/"+name+".png")));
+            } catch (Exception e) {
+                System.out.println(name + ".png not found");
                 e.printStackTrace();
             }
         }
